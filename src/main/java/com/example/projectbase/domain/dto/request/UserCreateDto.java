@@ -26,9 +26,15 @@ public class UserCreateDto {
   private String password;
 
   @NotBlank(message = ErrorMessage.NOT_BLANK_FIELD)
-  private String firstName;
+  private String fullName;
 
   @NotBlank(message = ErrorMessage.NOT_BLANK_FIELD)
-  private String lastName;
+  @Pattern(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", message = ErrorMessage.INVALID_FORMAT_EMAIL)
+  private String email;
 
+  @NotBlank(message = ErrorMessage.NOT_BLANK_FIELD)
+  private String timezone;
+
+  @NotBlank(message = ErrorMessage.NOT_BLANK_FIELD)
+  private String defaultLanguage;
 }

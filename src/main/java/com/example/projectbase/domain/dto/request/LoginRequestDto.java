@@ -13,7 +13,7 @@ import javax.validation.constraints.NotBlank;
 public class LoginRequestDto {
 
   @NotBlank(message = ErrorMessage.NOT_BLANK_FIELD)
-  private String emailOrPhone;
+  private String usernameOfEmail;
 
   @NotBlank(message = ErrorMessage.NOT_BLANK_FIELD)
   private String password;

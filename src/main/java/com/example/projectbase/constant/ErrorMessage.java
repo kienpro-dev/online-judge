@@ -13,6 +13,7 @@ public class ErrorMessage {
   public static final String INVALID_SOME_THING_FIELD_IS_REQUIRED = "invalid.general.required";
   public static final String NOT_BLANK_FIELD = "invalid.general.not-blank";
   public static final String INVALID_FORMAT_PASSWORD = "invalid.password-format";
+  public static final String INVALID_FORMAT_EMAIL = "invalid.email-format";
   public static final String INVALID_DATE = "invalid.date-format";
   public static final String INVALID_DATE_FEATURE = "invalid.date-future";
   public static final String INVALID_DATETIME = "invalid.datetime-format";

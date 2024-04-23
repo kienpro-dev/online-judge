@@ -7,6 +7,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Nationalized;
 
 import javax.persistence.*;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -32,15 +33,32 @@ public class User extends DateAuditing {
 
   @Nationalized
   @Column(nullable = false)
-  private String firstName;
+  private String fullName;
 
-  @Nationalized
+  @Column(nullable = false, unique = true)
+  private String email;
+
   @Column(nullable = false)
-  private String lastName;
+  private String timezone;
+
+  @Column(nullable = false)
+  private String defaultLanguage;
 
   //Link to table Role
   @ManyToOne
   @JoinColumn(name = "role_id", foreignKey = @ForeignKey(name = "FK_USER_ROLE"))
   private Role role;
+
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+  @JsonIgnore
+  private List<Exercise> exercises;
+
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+  @JsonIgnore
+  private List<Blog> blogs;
+
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+  @JsonIgnore
+  private List<Submission> submissions;
 
 }

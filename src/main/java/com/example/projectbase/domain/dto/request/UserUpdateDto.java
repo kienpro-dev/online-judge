@@ -15,9 +15,11 @@ import javax.validation.constraints.NotBlank;
 public class UserUpdateDto {
 
   @NotBlank(message = ErrorMessage.NOT_BLANK_FIELD)
-  private String firstName;
+  private String fullName;
 
   @NotBlank(message = ErrorMessage.NOT_BLANK_FIELD)
-  private String lastName;
+  private String timezone;
 
+  @NotBlank(message = ErrorMessage.NOT_BLANK_FIELD)
+  private String defaultLanguage;
 }
