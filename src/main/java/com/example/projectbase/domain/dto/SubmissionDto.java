@@ -9,7 +9,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Submission {
+public class SubmissionDto {
     private String status;
 
     private String code;
