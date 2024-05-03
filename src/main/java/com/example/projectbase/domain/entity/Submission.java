@@ -31,4 +31,8 @@ public class Submission extends DateAuditing {
     @ManyToOne
     @JoinColumn(name = "exercise_id", foreignKey = @ForeignKey(name = "FK_SUBMISSION_EXERCISE"))
     private Exercise exercise;
+
+    @ManyToOne
+    @JoinColumn(name = "contest_id", foreignKey = @ForeignKey(name = "FK_SUBMISSION_"))
+    private Contest contest;
 }

@@ -30,7 +30,7 @@ public class AuthServiceImpl implements AuthService {
   public LoginResponseDto login(LoginRequestDto request) {
     try {
       Authentication authentication = authenticationManager.authenticate(
-          new UsernamePasswordAuthenticationToken(request.getEmailOrPhone(), request.getPassword()));
+          new UsernamePasswordAuthenticationToken(request.getUsernameOfEmail(), request.getPassword()));
       SecurityContextHolder.getContext().setAuthentication(authentication);
       UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
       String accessToken = jwtTokenProvider.generateToken(userPrincipal, Boolean.FALSE);

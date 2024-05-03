@@ -55,7 +55,8 @@ public class ProjectBaseApplication {
       if (userRepository.count() == 0) {
         User admin = User.builder().username(userInfo.getUsername())
             .password(passwordEncoder.encode(userInfo.getPassword()))
-            .firstName(userInfo.getFirstName()).lastName(userInfo.getLastName())
+            .fullName(userInfo.getFullName()).email(userInfo.getEmail()).defaultLanguage(userInfo.getDefaultLanguage())
+            .timezone(userInfo.getTimeZone())
             .role(roleRepository.findByRoleName(RoleConstant.ADMIN)).build();
         userRepository.save(admin);
       }

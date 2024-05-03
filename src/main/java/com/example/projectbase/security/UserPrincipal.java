@@ -12,27 +12,24 @@ public class UserPrincipal implements UserDetails {
 
   private final String id;
 
-  private final String firstName;
-
-  private final String lastName;
+  private final String fullName;
 
   @JsonIgnore
   private final String username;
 
   @JsonIgnore
-  private String password;
+  private final String password;
 
   private final Collection<? extends GrantedAuthority> authorities;
 
   public UserPrincipal(String username, String password, Collection<? extends GrantedAuthority> authorities) {
-    this(null, null, null, username, password, authorities);
+    this(null, null, username, password, authorities);
   }
 
-  public UserPrincipal(String id, String firstName, String lastName, String username, String password,
+  public UserPrincipal(String id, String fullName, String username, String password,
                        Collection<? extends GrantedAuthority> authorities) {
     this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
+    this.fullName = fullName;
     this.username = username;
     this.password = password;
 
@@ -46,7 +43,7 @@ public class UserPrincipal implements UserDetails {
   public static UserPrincipal create(User user) {
     List<GrantedAuthority> authorities = new LinkedList<>();
     authorities.add(new SimpleGrantedAuthority(user.getRole().getName()));
-    return new UserPrincipal(user.getId(), user.getFirstName(), user.getLastName(),
+    return new UserPrincipal(user.getId(), user.getFullName(),
         user.getUsername(), user.getPassword(), authorities);
   }
 
@@ -54,13 +51,10 @@ public class UserPrincipal implements UserDetails {
     return id;
   }
 
-  public String getFirstName() {
-    return firstName;
+  public String getFullName() {
+    return fullName;
   }
 
-  public String getLastName() {
-    return lastName;
-  }
 
   @Override
   public String getUsername() {

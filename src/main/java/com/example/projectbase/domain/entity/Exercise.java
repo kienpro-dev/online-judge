@@ -45,5 +45,9 @@ public class Exercise extends DateAuditing {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "exercise")
     @JsonIgnore
-    private List<Exercise> exercises;
+    private List<Submission> submissions;
+
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "contests_exercises")
+    @JsonIgnore
+    private List<Contest> exercises_contests;
 }

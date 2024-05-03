@@ -11,7 +11,8 @@ public class AdminInfoProperties {
 
   private String username;
   private String password;
-  private String lastName;
-  private String firstName;
-
+  private String fullName;
+  private String email;
+  private String timeZone;
+  private String defaultLanguage;
 }

@@ -61,4 +61,12 @@ public class User extends DateAuditing {
   @JsonIgnore
   private List<Submission> submissions;
 
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+  @JsonIgnore
+  private List<Contest> contests;
+
+  @ManyToMany(cascade = CascadeType.ALL, mappedBy = "contests_users")
+  @JsonIgnore
+  private List<Contest> users_contests;
+
 }
