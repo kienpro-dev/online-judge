@@ -16,4 +16,5 @@ public interface UserService {
 
   UserDto getCurrentUser(UserPrincipal principal);
 
+  boolean createUser(UserCreateDto userCreateDto);
 }

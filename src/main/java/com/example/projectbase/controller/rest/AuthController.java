@@ -1,4 +1,4 @@
-package com.example.projectbase.controller;
+package com.example.projectbase.controller.rest;
 
 import com.example.projectbase.base.RestApiV1;
 import com.example.projectbase.base.VsResponseUtil;
