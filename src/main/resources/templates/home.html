@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</head>
+<style>
+    *{
+        margin: 0;padding: 0;box-sizing: border-box;
+    }
+    .list-group-horizontal .list-group-item.active {
+            background-color: #28a745 !important; 
+            color: #fff !important;
+            
+        }
+    .active{
+        color: #1A906B !important;
+    }
+    
+</style>
+<body>
+    <div id="header" class="px-5">
+        <nav class="navbar navbar-light bg-white navbar-expand-xl" >
+            <img src="root/img/logo.PNG" width="50px" alt="ảnh">
+            <a href="home.html" class="navbar-brand"><h3 class="text-black ">AlgorithmMaster</h3></a>
+            <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="fa fa-bars text-primary"></span>
+            </button>
+            <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                <div class="navbar-nav mx-auto">
+                    <a href="problems.html" class="nav-item nav-link font-weight-bold"><h4>Problems</h4></a>
+                    <a href="submissions.html" class="nav-item nav-link font-weight-bold active"><h4>Submissions</h4></a>
+                    <a href="user_leaderboard.html" class="nav-item nav-link"><h4>Users</h4></a>
+                    <a href="contest_list.html" class="nav-item nav-link"><h4>Contests</h4></a>
+                    <a href="#" class="nav-item nav-link"><h4>About</h4></a>
+                </div>
+                <div class="d-flex m-3 me-0 navbar-nav ">
+                    <a href="signin.html" class="nav-item nav-link font-weight-bold"><p class="btn"><b>Sign in</b></p></a>
+                    <a href="signup.html" class="nav-item nav-link font-weight-bold"><p class="btn btn-primary border" style="background-color: #20B486;"><b>Create free account</b></p></a>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <hr>
+    <div class="container" style="min-height: 1000px;">
+        <div class="row">
+            <div class="col-sm-9 navbar-light bg-white navbar-expand-xl">
+                <div class="border-0 p-3">
+                    <div class="navbar-nav d-flex flex-row mx-auto">
+                        <a href="#" class="nav-item nav-link active font-weight-bold pr-4">Newsfeed</a>
+                        <a href="#" class="nav-item nav-link font-weight-bold pr-4">Blogs</a>
+                    </div>
+                    <hr>
+                </div>
+                
+            </div>
+            <div class="col-sm-3">
+                <div class="border row">
+                    <div style="border-top-left-radius: 12px; border-top-right-radius:12px " class="d-flex flex-row justify-content-between bg-dark text-white">
+                        <h4>Top users</h4>
+                        <h4>Icon</h4>
+                    </div>
+                    <table class="table table-bordered">
+                        <tr class="bg-dark text-white">
+                            <th class="col-sm-2">#</th>
+                            <th class="col-sm-8 text-center">Username</th>
+                            <th class="col-sm-2">Point</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>hoahoane</td>
+                            <td>17.55</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>hoahoane</td>
+                            <td>17.55</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>hoahoane</td>
+                            <td>17.55</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>hoahoane</td>
+                            <td>17.55</td>
+                        </tr>
+                    </table>
+                    <div class="d-flex flex-row justify-content-between text-danger">
+                        <a href="#" class="nav-item nav-link text-danger pr-4">Organizations</a>
+                        <a href="#" class="nav-item nav-link pr-4 text-danger">View all >>></a>
+                    </div>
+                </div>
+                <div class="border row mt-5 rounded-lg">
+                    <div class="d-flex flex-row justify-content-between bg-dark text-white">
+                        <h4>Comment stream</h4>
+                        
+                    </div>
+                    
+                    <span class="d-flex flex-row">
+                        <p class="nav-item nav-link text-secondary">hoahoane ->></p>
+                        <a href="#" class="nav-item nav-link">Bài 5: Số lớn</a>
+                    </span>
+                    <span class="d-flex flex-row">
+                        <p class="nav-item nav-link pr-4 text-secondary">hoahoane ->></p>
+                        <a href="#" class="nav-item nav-link pr-4">Bài 5: Số lớn</a>
+                    </span>
+                    <span class="d-flex flex-row">
+                        <p class="nav-item nav-link pr-4 text-secondary">hoahoane ->></p>
+                        <a href="#" class="nav-item nav-link pr-4">Bài 5: Số lớn</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</html>

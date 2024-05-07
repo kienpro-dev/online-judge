@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/abc5153db7.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="header" class="px-5">
+        <nav class="navbar navbar-light bg-white navbar-expand-xl" >
+          <img src="root/img/logo.PNG" width="50px" alt="ảnh">
+            <a href="home.html" class="navbar-brand"><h3 class="text-black ">AlgorithmMaster</h3></a>
+            <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="fa fa-bars text-primary"></span>
+            </button>
+            <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                <div class="navbar-nav mx-auto">
+                    <a href="problems.html" class="nav-item nav-link font-weight-bold"><h4>Problems</h4></a>
+                    <a href="submissions.html" class="nav-item nav-link font-weight-bold"><h4>Submissions</h4></a>
+                    <a href="user_leaderboard.html" class="nav-item nav-link"><h4>Users</h4></a>
+                    <a href="contest_list.html" class="nav-item nav-link"><h4>Contests</h4></a>
+                </div>
+                <div class="d-flex m-3 me-0 navbar-nav ">
+                  <a href="signin.html" class="nav-item nav-link font-weight-bold"><p class="btn text-bold"><b>Sign in</b></p></a>
+                  <a href="signup.html" class="nav-item nav-link font-weight-bold"><p class="btn btn-primary border" style="background-color: #20B486;"><b>Create free account</b></p></a>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <hr><br><br>
+    <div class="container border shadow-lg" style="min-height: 300px;border-radius: 20px !important;">
+        <div class="row">
+            <div class="col-sm-7" >
+                <div>
+                    <img src="root/img/anh1.PNG" style="width: 100%; padding: 20px;" alt="">
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="container mt-5">
+                    <div class="row justify-content-center p-3" style="border: 1px solid #20B486; border-radius: 10px;">
+                            <form onsubmit="return validateForm()">
+                                <div class="form-group">
+                                    <label for="" style="color: #20B486;" aria-required="true">Fullname</label>
+                                    <input type="text" class="form-control" id="" name="" required>
+                                    </div><br>
+                              <div class="form-group">
+                                <label for="" style="color: #20B486;" aria-required="true">Username</label>
+                                <input type="text" class="form-control" id="" required>
+                              </div>
+                              <br>
+                              <div class="form-group">
+                                <label for="" style="color: #20B486;" aria-required="true">Email</label>
+                                <input type="email" class="form-control" id="" required>
+                              </div><br>
+                              <div class="form-group">
+                                <label for="" style="color: #20B486;"> Password</label>
+                                <div class="input-group "  style="border:1px solid #ddd; border-radius: 5px;">
+                                    
+                                  <input type="password" class="form-control" id="password" required >
+                                  <div class="input-group-append  d-flex align-items-center text-center">
+                                    <i class="fa-regular fa-eye" style="width: 50px;" type="button" id="togglePassword"></i>
+                                  </div>
+                                </div>
+                              </div>
+                              <br>
+                              <div class="form-group">
+                                <label for="" style="color: #20B486;"> Password(confirm)</label>
+                                <div class="input-group "  style="border:1px solid #ccc; border-radius: 5px;">
+                                    
+                                  <input type="password" class="form-control" id="confirmpassword" required >
+                                  <div class="input-group-append  d-flex align-items-center text-center">
+                                    <i class="fa-regular fa-eye" style="width: 50px;" type="button" id="togglePassword1"></i>
+                                  </div>
+                                </div>
+                              </div><br>
+                              <div class="form-group">
+                                <label for="timezoneSelect" style="color: #20B486;">Select Timezone:</label>
+                                <select class="form-control" id="timezoneSelect" name="timezone">
+                                  <option value="hanoi">Hà Nội</option>
+                                  <option value="hochiminh">Hồ Chí Minh</option>
+                                </select>
+                              </div><br>
+                              <div class="form-group">
+                                <label for="timezoneSelect" style="color: #20B486;">Default language</label>
+                                <select class="form-control" id="languageSelect" name="timezone">
+                                  <option value="C++17">C++17</option>
+                                  <option value="Jave">Java</option>
+                                </select>
+                              </div><br>
+                              <div class="form-group">
+                                <label for="" style="color: #20B486;" aria-required="true">Affiliated Organizations</label>
+                                <input type="text" class="form-control" id="" required>
+                              </div> <br><br>
+                              <button type="submit" class="btn btn-block w-100 shadow-lg" style="background-color: #FFB459; color: #fff;"><b>Sign up</b></button><br>
+                              <div class="text-center">
+                                <a href="signin.html"style="color: #20B486; text-decoration: none;">I have an account! <b>Sign in</b></a>
+                              </div>
+                            </form> 
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function(){
+      $('#togglePassword').click(function(){
+        var input = $('#password');
+        var icon = $(this).find('i');
+        if (input.attr('type') === 'password') {
+          input.attr('type', 'text');
+          icon.removeClass('fa-eye').addClass('fa-eye-slash');
+        } else {
+          input.attr('type', 'password');
+          icon.removeClass('fa-eye-slash').addClass('fa-eye');
+        }
+      });
+    });
+  </script>
+  <script>
+    $(document).ready(function(){
+      $('#togglePassword1').click(function(){
+        var input = $('#confirmpassword');
+        var icon = $(this).find('i');
+        if (input.attr('type') === 'password') {
+          input.attr('type', 'text');
+          icon.removeClass('fa-eye').addClass('fa-eye-slash');
+        } else {
+          input.attr('type', 'password');
+          icon.removeClass('fa-eye-slash').addClass('fa-eye');
+        }
+      });
+    });
+  </script>
+  <script>
+    function validateForm() {
+      var password = document.getElementById("password").value;
+      var confirmPassword = document.getElementById("confirmpassword").value;
+      if (password != confirmPassword) {
+        alert("Password and Confirm Password do not match!");
+        return false;
+      }
+      return true;
+    }
+    
+</script>
+</html>

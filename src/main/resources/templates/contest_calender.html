@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</head>
+<style>
+    *{
+        margin: 0;padding: 0;box-sizing: border-box;
+    }
+    table {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+  th{
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 20px;
+    position: relative; 
+    background-color: #f2f2f2;
+  }
+  td {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 50px 50px 70px 50px;
+    position: relative; 
+  }
+  .date {
+    position: absolute;
+    top: 10%;
+    left: 95%;
+    transform: translate(-95%, -10%); 
+  }
+  .current-day {
+    background-color: #f9cf26; 
+  }
+  .chosenCSS{
+    color: red;  
+    font-size: 15px;
+  }
+  list-group-horizontal .list-group-item.active {
+            background-color: #28a745 !important; 
+            color: #fff !important;
+            
+        }
+    .active{
+        color: #1A906B !important;
+    }
+  
+</style>
+<body>
+  <div id="header" class="px-5">
+    <nav class="navbar navbar-light bg-white navbar-expand-xl" >
+        <img src="root/img/logo.PNG" width="50px" alt="ảnh">
+        <a href="home.html" class="navbar-brand"><h3 class="text-black ">AlgorithmMaster</h3></a>
+        <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="fa fa-bars text-primary"></span>
+        </button>
+        <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+            <div class="navbar-nav mx-auto">
+                <a href="problems.html" class="nav-item nav-link font-weight-bold"><h4>Problems</h4></a>
+                <a href="submissions.html" class="nav-item nav-link font-weight-bold"><h4>Submissions</h4></a>
+                <a href="user_leaderboard.html" class="nav-item nav-link"><h4>Users</h4></a>
+                <a href="contest_list.html" class="nav-item nav-link active"><h4>Contests</h4></a>
+            </div>
+            <div class="d-flex m-3 me-0 navbar-nav ">
+                <a href="signin.html" class="nav-item nav-link font-weight-bold"><p class="btn"><b>Sign in</b></p></a>
+                <a href="signup.html" class="nav-item nav-link font-weight-bold"><p class="btn btn-primary border" style="background-color: #20B486;"><b>Create free account</b></p></a>
+            </div>
+        </div>
+    </nav>
+</div>
+    <hr>
+    <div class="mt-5" style="min-height: 1000px; margin: 0 50px;">
+        <div class="d-flex">
+            <h3 style="width: 1000px;">Contests in May 2024</h3>
+            <div class="d-flex navbar-collapse bg-white justify-content-end">
+                <a href="#" class="nav-item nav-link"><p class="btn btn-outline-secondary border-0" style=" margin-right: -10px; margin-left: -20px;">List</p></a>
+                <a href="#" class="nav-item nav-link hover" ><p class="btn" style="border-bottom: 3px solid green !important; border: 1px solid #ccc;">Calender</p></a>
+            </div>
+        </div>
+        <hr style="margin-top: -25px;">
+        <br>
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Sun</th>
+                    <th>Mon</th>
+                    <th>Tue</th>
+                    <th>Wed</th>
+                    <th>Thu</th>
+                    <th>Fri</th>
+                    <th>Sat</th> 
+                  </tr>
+                </thead>
+                <tbody id="calendarBody"></tbody>
+              </table>
+            </div>
+          </div>
+        
+    </div>
+    
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    function generateCalendar() {
+      var calendarBody = document.getElementById("calendarBody");
+      calendarBody.innerHTML = "";
+  
+      var date = new Date();
+      var currentDate = new Date();
+      date.setDate(1); 
+  
+      var currentMonth = date.getMonth();
+      var daysInMonth = new Date(date.getFullYear(), currentMonth + 1, 0).getDate(); 
+  
+      var firstDayIndex = date.getDay(); 
+      var row = document.createElement("tr");
+  
+      for (var i = 0; i < firstDayIndex; i++) {
+        var cell = document.createElement("td");
+        cell.textContent = "";
+        row.appendChild(cell);
+      }
+  
+      for (var i = 1; i <= daysInMonth; i++) {
+        var cell = document.createElement("td");
+        var span = document.createElement("span"); 
+        span.textContent = i;
+        span.classList.add("date"); 
+  
+        if (i === currentDate.getDate() && currentMonth === currentDate.getMonth()) {
+          cell.classList.add("current-day"); 
+        }
+  
+        cell.appendChild(span);
+        row.appendChild(cell);
+        
+        var chosenDay = new Date(2024,5,10);
+        if (i === chosenDay.getDate() && currentMonth === chosenDay.getMonth() -1) {
+          var div = document.createElement("div");
+          div.textContent = "Phạm Thi Hoa"; // Thêm thông tin  vào ô này
+          div.classList.add("chosenCSS");
+        cell.appendChild(span);
+        cell.appendChild(div);
+        row.appendChild(cell);
+        }
+        
+
+        if ((i + firstDayIndex) % 7 === 0 || i === daysInMonth) {
+          calendarBody.appendChild(row);
+          row = document.createElement("tr");
+        }
+      }
+    }
+  
+    generateCalendar();
+  </script>
+</html>
