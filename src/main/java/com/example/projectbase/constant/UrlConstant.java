@@ -24,4 +24,11 @@ public class UrlConstant {
     }
   }
 
+  public static class Exercise {
+    private static final String PRE_FIX = "/exercise";
+
+    public static final String GET_EXERCISES = PRE_FIX;
+    public static final String GET_EXERCISE = PRE_FIX + "/{exerciseId}";
+  }
+
 }
