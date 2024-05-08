@@ -14,10 +14,10 @@ public class LoginController {
     @GetMapping(UrlConstant.Auth.LOGIN)
     public String getPage() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication == null || authentication.getPrincipal() instanceof User) {
-            return "login";
+        if (authentication != null && authentication.getPrincipal() instanceof User) {
+            return "redirect:/";
         }
-        return "redirect:/home";
+        return "signin";
     }
 
 

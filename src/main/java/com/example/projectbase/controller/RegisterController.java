@@ -26,7 +26,7 @@ public class RegisterController {
             return "redirect:/";
         }
         model.addAttribute("user", new User());
-        return "register";
+        return "signup";
     }
 
     @PostMapping(UrlConstant.Auth.REGISTER)
@@ -37,6 +37,6 @@ public class RegisterController {
         } else {
             model.addAttribute("error", "Đăng ký thất bại!");
         }
-        return "register";
+        return "signup";
     }
 }

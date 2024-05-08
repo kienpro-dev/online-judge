@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,8 +11,8 @@
 <body>
     <div id="header" class="px-5">
         <nav class="navbar navbar-light bg-white navbar-expand-xl" >
-            <img src="root/img/logo.PNG" width="50px" alt="ảnh">
-            <a href="home.html" class="navbar-brand"><h3 class="text-black ">AlgorithmMaster</h3></a>
+            <img th:src="@{/img/logo.PNG}" width="50px" alt="ảnh">
+            <a th:href="@{/ui/v1}" class="navbar-brand"><h3 class="text-black ">AlgorithmMaster</h3></a>
             
             <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="fa fa-bars text-primary"></span>
@@ -25,8 +25,8 @@
                     <a href="contest_list.html" class="nav-item nav-link"><h4>Contests</h4></a>
                 </div>
                 <div class="d-flex m-3 me-0 navbar-nav ">
-                    <a href="signin.html" class="nav-item nav-link font-weight-bold"><p class="btn text-bold"><b>Sign in</b></p></a>
-                    <a href="signup.html" class="nav-item nav-link font-weight-bold"><p class="btn btn-primary border" style="background-color: #20B486;"><b>Create free account</b></p></a>
+                    <a th:href="@{/ui/v1/auth/login}" class="nav-item nav-link font-weight-bold"><p class="btn text-bold"><b>Sign in</b></p></a>
+                    <a th:href="@{/ui/v1/auth/register}" class="nav-item nav-link font-weight-bold"><p class="btn btn-primary border" style="background-color: #20B486;"><b>Create free account</b></p></a>
                 </div>
             </div>
         </nav>
@@ -36,7 +36,7 @@
         <div class="row">
             <div class="col-sm-6" >
                 <div>
-                    <img src="root/img/anh2.PNG" style="width: 100%;" alt="">
+                    <img th:src="@{/img/anh2.PNG}" style="width: 100%;" alt="">
                 </div>
             </div>
             <div class="col-sm-6" style="background-color: #f1fced;">
@@ -45,7 +45,7 @@
                     <div class="row justify-content-center" style="padding: 60px;">
                         <div style="border:1px solid #47C973; border-radius: 15px; background-color: #fff;" >
                             <div class="pt-5 d-flex justify-content-center">
-                                <img src="root/img/logo.PNG" width="50px" alt="ảnh">
+                                <img th:src="@{/img/logo.PNG}" width="50px" alt="ảnh">
                                 <h3>AlgorithmMaster</h3>
                             </div>
                           <div class="card-body">
@@ -66,7 +66,7 @@
                               <a href="#" style="color: #20B486; text-decoration: none;">Forget your password?</a><br><br><br>
                               <button type="submit" class="btn btn-block w-100 shadow-lg" style="background-color: #FFB459; color: #fff;"><b>Sign in</b></button><br>
                               <div class="text-center">
-                                <a href="signup.html"style="color: #20B486; text-decoration: none;">Create free account? <b></b></a>
+                                <a th:href="@{/ui/v1/auth/register}" style="color: #20B486; text-decoration: none;">Create free account? <b></b></a>
                               </div>
                             </form>
                           </div>
