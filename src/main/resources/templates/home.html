@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,8 +24,8 @@
 <body>
     <div id="header" class="px-5">
         <nav class="navbar navbar-light bg-white navbar-expand-xl" >
-            <img src="root/img/logo.PNG" width="50px" alt="ảnh">
-            <a href="home.html" class="navbar-brand"><h3 class="text-black ">AlgorithmMaster</h3></a>
+            <img th:src="@{/img/logo.PNG}" width="50px" alt="ảnh">
+            <a th:href="@{/ui/v1}" class="navbar-brand"><h3 class="text-black ">AlgorithmMaster</h3></a>
             <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="fa fa-bars text-primary"></span>
             </button>
