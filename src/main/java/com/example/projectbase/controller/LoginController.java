@@ -15,7 +15,7 @@ public class LoginController {
     public String getPage() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.getPrincipal() instanceof User) {
-            return "redirect:/";
+            return "redirect:/u1/v1";
         }
         return "signin";
     }

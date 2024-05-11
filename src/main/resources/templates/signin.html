@@ -49,15 +49,20 @@
                                 <h3>AlgorithmMaster</h3>
                             </div>
                           <div class="card-body">
-                            <form >
+                              <div th:if="${param.error}">
+								<div class="alert alert-danger" role="alert">
+									Đăng nhập thất bại
+								</div>
+							</div>
+                            <form method="post" th:action="@{/ui/v1/auth/signin}">
                               <div class="form-group" style="border:1px solid #47C973; border-radius: 5px;">
-                                <input type="text" class="form-control" id="" placeholder="Username">
+                                <input type="text" class="form-control" id="username" placeholder="Username" name="username">
                                
                               </div>
                               <br>
                               <div class="form-group" style="border:1px solid #47C973; border-radius: 5px;">
                                 <div class="input-group">
-                                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
                                   <div class="input-group-append  d-flex align-items-center text-center">
                                     <i class="fa-regular fa-eye" style="width: 50px;" type="button" id="togglePassword"></i>
                                   </div>

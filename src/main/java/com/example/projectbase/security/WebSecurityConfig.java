@@ -50,13 +50,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().csrf().disable()
                 .formLogin(
                         form -> form
-                                .loginPage("/ui/v1/login")
-                                .loginProcessingUrl("/ui/v1/login")
+                                .loginPage("/ui/v1/auth/signin")
+                                .loginProcessingUrl("/ui/v1/auth/signin")
                                 .defaultSuccessUrl("/")
                                 .permitAll()
                 ).logout(
                         logout -> logout
-                                .logoutRequestMatcher(new AntPathRequestMatcher("/ui/v1/logout"))
+                                .logoutRequestMatcher(new AntPathRequestMatcher("/ui/v1/auth/logout"))
                                 .permitAll()
                                 .logoutSuccessUrl("/")
                                 .invalidateHttpSession(true)
