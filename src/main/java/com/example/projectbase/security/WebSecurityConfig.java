@@ -52,13 +52,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         form -> form
                                 .loginPage("/ui/v1/auth/signin")
                                 .loginProcessingUrl("/ui/v1/auth/signin")
-                                .defaultSuccessUrl("/")
+                                .defaultSuccessUrl("/ui/v1")
                                 .permitAll()
                 ).logout(
                         logout -> logout
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/ui/v1/auth/logout"))
                                 .permitAll()
-                                .logoutSuccessUrl("/")
+                                .logoutSuccessUrl("/ui/v1")
                                 .invalidateHttpSession(true)
                                 .deleteCookies("JSESSIONID")
 
