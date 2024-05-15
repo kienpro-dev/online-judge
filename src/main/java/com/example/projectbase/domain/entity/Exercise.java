@@ -50,4 +50,23 @@ public class Exercise extends DateAuditing {
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "contests_exercises")
     @JsonIgnore
     private List<Contest> exercises_contests;
+
+    public long countSuccessSubmissions() {
+        return submissions.stream().filter(submission -> submission.getStatus().equals("true")).count();
+    }
+
+    public long countFailedSubmissions() {
+        return submissions.stream().filter(submission -> submission.getStatus().equals("false")).count();
+    }
+
+    public double calculateCorrectPercentage() {
+        long totalSubmissions = submissions.size();
+        long correctSubmissions = countSuccessSubmissions();
+
+        if (totalSubmissions == 0) {
+            return 0.0;
+        }
+
+        return ((double) correctSubmissions / totalSubmissions) * 100;
+    }
 }

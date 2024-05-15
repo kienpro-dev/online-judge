@@ -22,9 +22,9 @@ public class ExerciseController {
                           @RequestParam(name = "size", defaultValue = "10") int size) {
         Page<Exercise> exercises = exerciseService.getAllExercise(PageRequest.of(page - 1, size));
 
-//        model.addAttribute("exercises", exercises);
-//        model.addAttribute("currentPage", page);
-//        model.addAttribute("totalPages", exercises.getTotalPages());
+        model.addAttribute("exercises", exercises);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", exercises.getTotalPages());
 
         return "problems";
     }

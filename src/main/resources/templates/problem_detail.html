@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -33,8 +33,8 @@
 <body>
     <div id="header" class="px-5">
         <nav class="navbar navbar-light bg-white navbar-expand-xl">
-            <img src="root/img/logo.PNG" width="50px" alt="ảnh">
-            <a href="home.html" class="navbar-brand">
+            <img th:src="@{/img/logo.PNG}" width="50px" alt="ảnh">
+            <a th:href="@{/ui/v1}" class="navbar-brand">
                 <h3 class="text-black ">AlgorithmMaster</h3>
             </a>
             <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse"
@@ -79,7 +79,7 @@
                         href="">Statement</a></p>
                 <!-- <iframe src="root/file/panasonic-thong-bao-ve-chuong-trinh-hb-panasonic-viet-nam-2024.pdf" width="1100"
                     height="800"></iframe> -->
-                <object class="pdf" data="root/file/panasonic-thong-bao-ve-chuong-trinh-hb-panasonic-viet-nam-2024.pdf" width="1000" height="1000"></object>
+                <object class="pdf"  data="root/file/panasonic-thong-bao-ve-chuong-trinh-hb-panasonic-viet-nam-2024.pdf" width="1000" height="1000"></object>
             </div>
             <div class="col-sm-2 navbar-light bg-white navbar-expand-xl">
                 <p><b>Please push code here!</b></p>

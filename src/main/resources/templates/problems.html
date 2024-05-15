@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,14 +12,14 @@
         margin: 0;padding: 0;box-sizing: border-box;
     }
     .list-group-horizontal .list-group-item.active {
-            background-color: #28a745 !important; 
+            background-color: #28a745 !important;
             color: #fff !important;
-            
+
         }
     .active{
         color: #1A906B !important;
     }
-    
+
 </style>
 <body>
     <div id="header" class="px-5">
@@ -68,99 +68,24 @@
                             <th class="col-sm-1 text-center">Points</th>
                             <th class="col-sm-1 text-center">%AC</th>
                             <th class="col-sm-1 text-center">#AC</th>
-                            <th class="col-sm-1 text-center">###</th>
+                            <th class="col-sm-1 text-center">Solved</th>
                         </tr>
-                        <tr>
-                            <td class="text-center"><a style="text-decoration: none; color: #000;" href="problem_detail.html">hoahoane</td>
-                            <td class="text-center"><a style="text-decoration: none; color: #000;" href="problem_detail.html">Số lớn</td>
-                            <td class="text-center">Dễ</td>
-                            <td class="text-center">0.10</td>
-                            <td class="text-center">17.4%</td>
-                            <td class="text-center">30</td>
-                            <td class="text-center">>></td>
+                        <tr th:each="ex : ${exercises}">
+                            <td class="text-center" th:text="${ex.id}"><a style="text-decoration: none; color: #000;" href="problem_detail.html"></td>
+                            <td class="text-center" th:text="${ex.name}"><a style="text-decoration: none; color: #000;" href="problem_detail.html"></td>
+                            <td class="text-center" th:text="${ex.category}"></td>
+                            <td class="text-center">
+                                <span th:switch="${ex.category}">
+                                    <span th:case="'Dễ'">0.1</span>
+                                    <span th:case="'Trung bình'">0.2</span>
+                                    <span th:case="'Khó'">0.3</span>
+                                    <span th:case="*">0.0</span>
+                                </span>
+                            </td>
+                            <td class="text-center" th:text="${#numbers.formatDecimal(ex.calculateCorrectPercentage(), 2)} + '%'"></td>
+                            <td class="text-center" th:text="${ex.countSuccessSubmissions()}"></td>
+                            <td class="text-center">True</td>
                         </tr>
-                        <tr>
-                            <td class="text-center">hoahoane</td>
-                            <td class="text-center">Số lớn</td>
-                            <td class="text-center">Dễ</td>
-                            <td class="text-center">0.10</td>
-                            <td class="text-center">17.4%</td>
-                            <td class="text-center">30</td>
-                            <td class="text-center">>></td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">hoahoane</td>
-                            <td class="text-center">Số lớn</td>
-                            <td class="text-center">Dễ</td>
-                            <td class="text-center">0.10</td>
-                            <td class="text-center">17.4%</td>
-                            <td class="text-center">30</td>
-                            <td class="text-center">>></td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">hoahoane</td>
-                            <td class="text-center">Số lớn</td>
-                            <td class="text-center">Dễ</td>
-                            <td class="text-center">0.10</td>
-                            <td class="text-center">17.4%</td>
-                            <td class="text-center">30</td>
-                            <td class="text-center">>></td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">hoahoane</td>
-                            <td class="text-center">Số lớn</td>
-                            <td class="text-center">Dễ</td>
-                            <td class="text-center">0.10</td>
-                            <td class="text-center">17.4%</td>
-                            <td class="text-center">30</td>
-                            <td class="text-center">>></td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">hoahoane</td>
-                            <td class="text-center">Số lớn</td>
-                            <td class="text-center">Dễ</td>
-                            <td class="text-center">0.10</td>
-                            <td class="text-center">17.4%</td>
-                            <td class="text-center">30</td>
-                            <td class="text-center">>></td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">hoahoane</td>
-                            <td class="text-center">Số lớn</td>
-                            <td class="text-center">Dễ</td>
-                            <td class="text-center">0.10</td>
-                            <td class="text-center">17.4%</td>
-                            <td class="text-center">30</td>
-                            <td class="text-center">>></td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">hoahoane</td>
-                            <td class="text-center">Số lớn</td>
-                            <td class="text-center">Dễ</td>
-                            <td class="text-center">0.10</td>
-                            <td class="text-center">17.4%</td>
-                            <td class="text-center">30</td>
-                            <td class="text-center">>></td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">hoahoane</td>
-                            <td class="text-center">Số lớn</td>
-                            <td class="text-center">Dễ</td>
-                            <td class="text-center">0.10</td>
-                            <td class="text-center">17.4%</td>
-                            <td class="text-center">30</td>
-                            <td class="text-center">>></td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">hoahoane</td>
-                            <td class="text-center">Số lớn</td>
-                            <td class="text-center">Dễ</td>
-                            <td class="text-center">0.10</td>
-                            <td class="text-center">17.4%</td>
-                            <td class="text-center">30</td>
-                            <td class="text-center">>></td>
-                        </tr>
-                        
                     </table>
                 </div>
             </div>
@@ -209,17 +134,17 @@
                             <option value="2">2</option>
                         </datalist>
                       </div>
-                    
+
                     <div class="d-flex flex-row justify-content-end">
                         <button type="submit" class="btn btn-primary border-0 shadow" style="margin-right: 20px; background-color: #FF974C;">Go</button>
                         <button type="submit" class="btn btn-primary border-0 shadow" style=" background-color: #FF974C;">Random</button>
                     </div>
                   </form>
-                
+
             </div>
         </div>
     </div>
-    
+
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
