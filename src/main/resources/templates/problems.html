@@ -4,58 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
 </head>
 <style>
-    *{
-        margin: 0;padding: 0;box-sizing: border-box;
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
-    .list-group-horizontal .list-group-item.active {
-            background-color: #28a745 !important;
-            color: #fff !important;
 
-        }
-    .active{
+    .list-group-horizontal .list-group-item.active {
+        background-color: #28a745 !important;
+        color: #fff !important;
+
+    }
+
+    .active {
         color: #1A906B !important;
     }
 
 </style>
 <body>
-    <div id="header" class="px-5">
-        <nav class="navbar navbar-light bg-white navbar-expand-xl" >
-            <img th:src="@{/img/logo.PNG}" width="50px" alt="ảnh">
-            <a th:href="@{/ui/v1}" class="navbar-brand"><h3 class="text-black ">AlgorithmMaster</h3></a>
-            <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="fa fa-bars text-primary"></span>
-            </button>
-            <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
-                <div class="navbar-nav mx-auto">
-                    <a href="problems.html" class="nav-item nav-link font-weight-bold active"><h4>Problems</h4></a>
-                    <a href="submissions.html" class="nav-item nav-link font-weight-bold"><h4>Submissions</h4></a>
-                    <a href="user_leaderboard.html" class="nav-item nav-link"><h4>Users</h4></a>
-                    <a href="contest_list.html" class="nav-item nav-link"><h4>Contests</h4></a>
-                </div>
-                <div class="d-flex m-3 me-0 navbar-nav ">
-                    <a th:href="@{/ui/v1/auth/login}" class="nav-item nav-link font-weight-bold"><p class="btn"><b>Sign in</b></p></a>
-                    <a th:href="@{/ui/v1/auth/register}" class="nav-item nav-link font-weight-bold"><p class="btn btn-primary border" style="background-color: #20B486;"><b>Create free account</b></p></a>
-                </div>
+<div id="header" class="px-5">
+    <nav class="navbar navbar-light bg-white navbar-expand-xl">
+        <img th:src="@{/img/logo.PNG}" width="50px" alt="ảnh">
+        <a th:href="@{/ui/v1}" class="navbar-brand"><h3 class="text-black ">AlgorithmMaster</h3></a>
+        <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarCollapse">
+            <span class="fa fa-bars text-primary"></span>
+        </button>
+        <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+            <div class="navbar-nav mx-auto">
+                <a href="problems.html" class="nav-item nav-link font-weight-bold active"><h4>Problems</h4></a>
+                <a href="submissions.html" class="nav-item nav-link font-weight-bold"><h4>Submissions</h4></a>
+                <a href="user_leaderboard.html" class="nav-item nav-link"><h4>Users</h4></a>
+                <a href="contest_list.html" class="nav-item nav-link"><h4>Contests</h4></a>
             </div>
-        </nav>
-    </div>
+            <div class="d-flex m-3 me-0 navbar-nav ">
+                <a th:href="@{/ui/v1/auth/login}" class="nav-item nav-link font-weight-bold"><p class="btn"><b>Sign
+                    in</b></p></a>
+                <a th:href="@{/ui/v1/auth/register}" class="nav-item nav-link font-weight-bold"><p
+                        class="btn btn-primary border" style="background-color: #20B486;"><b>Create free account</b></p>
+                </a>
+            </div>
+        </div>
+    </nav>
+</div>
+<hr>
+<div class="container" style="min-height: 1000px;">
+    <h2>Problem list</h2>
     <hr>
-    <div class="container" style="min-height: 1000px;">
-        <h2>Problem list</h2>
-        <hr>
-        <div class="mt-2 container">
-            <div class="row mt-2 container">
-                <div class="list-group list-group-horizontal">
-                    <a href="#" class="list-group-item text-white bg-dark border">&lt&lt</a>
-                    <a href="#" class="list-group-item text-white bg-dark border active">1</a>
-                    <a href="#" class="list-group-item text-white bg-dark border">2</a>
-                    <a href="#" class="list-group-item text-white bg-dark border">3</a>
-                    <a href="#" class="list-group-item text-white bg-dark border">>></a>
-                  </div>
+    <div class="mt-2 container">
+        <div class="row mt-2 container">
+            <div th:if="${totalPages > 1}" class="list-group list-group-horizontal" th:each="pageNumber : ${#numbers.sequence(1, totalPages)}">
+                <a th:class="${pageNumber == currentPage+1 ? 'list-group-item text-white bg-dark border active' : 'list-group-item text-white bg-dark border'}"
+                        th:href="@{/ui/v1/exercise(page=${pageNumber})}" th:text="${pageNumber}"></a>
+<!--                <a href="#" class="list-group-item text-white bg-dark border">&lt&lt</a>-->
+<!--                <a href="#" class="list-group-item text-white bg-dark border active">1</a>-->
+<!--                <a href="#" class="list-group-item text-white bg-dark border">2</a>-->
+<!--                <a href="#" class="list-group-item text-white bg-dark border">3</a>-->
+<!--                <a href="#" class="list-group-item text-white bg-dark border">>></a>-->
+            </div>
         </div>
         <div class="row container">
             <div class="col-sm-8">
@@ -71,8 +84,10 @@
                             <th class="col-sm-1 text-center">Solved</th>
                         </tr>
                         <tr th:each="ex : ${exercises}">
-                            <td class="text-center" th:text="${ex.id}"><a style="text-decoration: none; color: #000;" href="problem_detail.html"></td>
-                            <td class="text-center" th:text="${ex.name}"><a style="text-decoration: none; color: #000;" href="problem_detail.html"></td>
+                            <td class="text-center" th:text="${ex.id}"><a style="text-decoration: none; color: #000;"
+                                                                          href="problem_detail.html"></td>
+                            <td class="text-center" th:text="${ex.name}"><a style="text-decoration: none; color: #000;"
+                                                                            href="problem_detail.html"></td>
                             <td class="text-center" th:text="${ex.category}"></td>
                             <td class="text-center">
                                 <span th:switch="${ex.category}">
@@ -82,64 +97,75 @@
                                     <span th:case="*">0.0</span>
                                 </span>
                             </td>
-                            <td class="text-center" th:text="${#numbers.formatDecimal(ex.calculateCorrectPercentage(), 2)} + '%'"></td>
+                            <td class="text-center"
+                                th:text="${#numbers.formatDecimal(ex.calculateCorrectPercentage(), 2)} + '%'"></td>
                             <td class="text-center" th:text="${ex.countSuccessSubmissions()}"></td>
-                            <td class="text-center" th:text="${ex.isSolvedByCurrentUser(currentUser.getUsername()) ? 'Yes' : 'No'}"></td>
+                            <td class="text-center"
+                                th:text="${ex.isSolvedByCurrentUser(currentUser.getUsername()) ? 'Yes' : 'No'}"></td>
                         </tr>
                     </table>
                 </div>
             </div>
             <div class="col-sm-4 navbar-light bg-white navbar-expand-xl">
                 <h4 class="bg-dark text-white" style="padding: 10px; border-radius: 10px 10px 0 0 ;">Problem Search</h4>
-                <form action="" class="was-validated border p-2"  style="border-radius: 0 0 10px 10px;" >
+                <form action="" class="was-validated border p-2" style="border-radius: 0 0 10px 10px;">
                     <div class="mb-3">
                         <input type="text" class="form-control" id="" placeholder="Search problems" name="">
-                      </div>
+                    </div>
                     <div class="mb-3">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something" checked>
+                            <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something"
+                                   checked>
                             <label class="form-check-label" style="color: #000;">Full text search</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="check2" name="option1" value="something">
+                            <input class="form-check-input" type="checkbox" id="check2" name="option1"
+                                   value="something">
                             <label class="form-check-label" style="color: #000;">Has editorial</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="check3" name="option1" value="something">
+                            <input class="form-check-input" type="checkbox" id="check3" name="option1"
+                                   value="something">
                             <label class="form-check-label" style="color: #000;">Show problem types</label>
                         </div>
                     </div>
                     <div class="mb-3 mt-3">
-                      <label for="" class="form-label">Category:</label>
-                      <select class="form-select">
-                        <option>All</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                      </select>
+                        <label for="" class="form-label">Category:</label>
+                        <select class="form-select">
+                            <option>All</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                        </select>
                     </div>
                     <div class="mb-3">
-                      <label for="pwd" class="form-label text-italic">Problem types</label>
-                      <input type="text" class="form-control" id="pwd" placeholder="Filter by type..." name="pswd" required>
+                        <label for="pwd" class="form-label text-italic">Problem types</label>
+                        <input type="text" class="form-control" id="pwd" placeholder="Filter by type..." name="pswd"
+                               required>
                     </div>
                     <div class="mb-3">
                         <label for="pwd" class="form-label text-italic">Point range</label>
                         <div class="d-flex justify-content-between">
                             <span>0.1</span>
-                        <input type="range" min="0.1" max="2" step="0.1" value="0.1" class="form-range range-slider" id="pwd" list="tickmarks"  name="pswd">
-                        <span>2</span>
+                            <input type="range" min="0.1" max="2" step="0.1" value="0.1" class="form-range range-slider"
+                                   id="pwd" list="tickmarks" name="pswd">
+                            <span>2</span>
                         </div>
                         <datalist id="tickmarks">
                             <option value="0.1">0.1</option>
                             <option value="0.3">0.3</option>
                         </datalist>
-                      </div>
+                    </div>
 
                     <div class="d-flex flex-row justify-content-end">
-                        <button type="submit" class="btn btn-primary border-0 shadow" style="margin-right: 20px; background-color: #FF974C;">Go</button>
-                        <button type="submit" class="btn btn-primary border-0 shadow" style=" background-color: #FF974C;">Random</button>
+                        <button type="submit" class="btn btn-primary border-0 shadow"
+                                style="margin-right: 20px; background-color: #FF974C;">Go
+                        </button>
+                        <button type="submit" class="btn btn-primary border-0 shadow"
+                                style=" background-color: #FF974C;">Random
+                        </button>
                     </div>
-                  </form>
+                </form>
 
             </div>
         </div>
