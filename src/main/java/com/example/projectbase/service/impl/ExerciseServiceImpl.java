@@ -1,6 +1,5 @@
 package com.example.projectbase.service.impl;
 
-import com.example.projectbase.domain.dto.response.ExerciseResponse;
 import com.example.projectbase.domain.entity.Exercise;
 import com.example.projectbase.repository.ExerciseRepository;
 import com.example.projectbase.service.ExerciseService;
@@ -17,5 +16,10 @@ public class ExerciseServiceImpl implements ExerciseService {
     @Override
     public Page<Exercise> getAllExercise(Pageable pageable) {
         return exerciseRepository.findAll(pageable);
+    }
+
+    @Override
+    public Exercise getExerciseById(Long id) {
+        return exerciseRepository.findById(id).orElse(null);
     }
 }

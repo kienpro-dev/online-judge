@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @RequiredArgsConstructor
@@ -31,5 +32,12 @@ public class ExerciseController {
         model.addAttribute("currentUser", userPrincipal);
 
         return "problems";
+    }
+
+    @GetMapping(UrlConstant.Exercise.GET_EXERCISE)
+    public String getExerciseById(Model model, @PathVariable Long exerciseId) {
+        Exercise exercise = exerciseService.getExerciseById(exerciseId);
+        model.addAttribute("exercise", exercise);
+        return "problem_detail";
     }
 }

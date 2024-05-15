@@ -69,8 +69,8 @@
         </nav>
     </div>
     <hr>
-    <div class="container" style="min-height: 1000px;">
-        <h2>2023 HIT OPEN DAY - BÀI 4: MAI</h2>
+    <div class="container" style="min-height: 1000px;" th:object="${exercise}">
+        <h2 th:text="${exercise.name}"></h2>
         <hr>
 
         <div class="row">
@@ -79,7 +79,7 @@
                         href="">Statement</a></p>
                 <!-- <iframe src="root/file/panasonic-thong-bao-ve-chuong-trinh-hb-panasonic-viet-nam-2024.pdf" width="1100"
                     height="800"></iframe> -->
-                <object class="pdf"  data="root/file/panasonic-thong-bao-ve-chuong-trinh-hb-panasonic-viet-nam-2024.pdf" width="1000" height="1000"></object>
+            <iframe th:src="@{/pdf/}" width="1000px" height="6000px"></iframe>
             </div>
             <div class="col-sm-2 navbar-light bg-white navbar-expand-xl">
                 <p><b>Please push code here!</b></p>
@@ -92,14 +92,22 @@
                 <hr>
                 <a style="text-decoration: none;" href="submissions.html">All submissions</a>
                 <hr>
-                <span><b>Points: </b>0.10(partial)</span><br>
+                <span th:switch="${exercise.category}">
+                    <b>Points: </b>
+                    <span th:case="'Dễ'">0.1</span>
+                    <span th:case="'Trung bình'">0.2</span>
+                    <span th:case="'Khó'">0.3</span>
+                    <span th:case="*">0.0</span>
+                    <span> (partial)</span>
+                </span>
+<!--                <span><b>Points: </b>0.10(partial)</span><br>-->
                 <span><b>Time limit: </b>1.0s</span><br>
                 <span><b>Memory limit: </b>256MB</span>
                 <br>
                 <span><b>Input: </b>stdin</span><br>
                 <span><b>Output: </b>stdout</span>
                 <hr>
-                <span><b>Author: </b>Nguyễn Kiên</span><br>
+                <span><b>Author: </b><span th:text="${exercise.user.getFullName()}"></span></span><br>
                 <span><b>Allowed languages: </b>C, C++, Java</span>
             </div>
         </div>
