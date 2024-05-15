@@ -6,6 +6,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -69,4 +70,12 @@ public class Exercise extends DateAuditing {
 
         return ((double) correctSubmissions / totalSubmissions) * 100;
     }
+
+    public boolean isSolvedByCurrentUser(String currentUsername) {
+        return submissions.stream()
+                          .map(Submission::getUser)
+                          .filter(Objects::nonNull)
+                          .anyMatch(user -> user.getUsername().equals(currentUsername));
+    }
+
 }

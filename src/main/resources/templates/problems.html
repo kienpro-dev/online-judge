@@ -84,7 +84,7 @@
                             </td>
                             <td class="text-center" th:text="${#numbers.formatDecimal(ex.calculateCorrectPercentage(), 2)} + '%'"></td>
                             <td class="text-center" th:text="${ex.countSuccessSubmissions()}"></td>
-                            <td class="text-center">True</td>
+                            <td class="text-center" th:text="${ex.isSolvedByCurrentUser(currentUser.getUsername()) ? 'Yes' : 'No'}"></td>
                         </tr>
                     </table>
                 </div>
@@ -131,7 +131,7 @@
                         </div>
                         <datalist id="tickmarks">
                             <option value="0.1">0.1</option>
-                            <option value="2">2</option>
+                            <option value="0.3">0.3</option>
                         </datalist>
                       </div>
 
