@@ -60,14 +60,15 @@
     <hr>
     <div class="mt-2 container">
         <div class="row mt-2 container">
-            <div th:if="${totalPages > 1}" class="list-group list-group-horizontal" th:each="pageNumber : ${#numbers.sequence(1, totalPages)}">
+            <div th:if="${totalPages > 1}" class="list-group list-group-horizontal"
+                 th:each="pageNumber : ${#numbers.sequence(1, totalPages)}">
                 <a th:class="${pageNumber == currentPage+1 ? 'list-group-item text-white bg-dark border active' : 'list-group-item text-white bg-dark border'}"
-                        th:href="@{/ui/v1/exercise(page=${pageNumber})}" th:text="${pageNumber}"></a>
-<!--                <a href="#" class="list-group-item text-white bg-dark border">&lt&lt</a>-->
-<!--                <a href="#" class="list-group-item text-white bg-dark border active">1</a>-->
-<!--                <a href="#" class="list-group-item text-white bg-dark border">2</a>-->
-<!--                <a href="#" class="list-group-item text-white bg-dark border">3</a>-->
-<!--                <a href="#" class="list-group-item text-white bg-dark border">>></a>-->
+                   th:href="@{/ui/v1/exercise(page=${pageNumber})}" th:text="${pageNumber}"></a>
+                <!--                <a href="#" class="list-group-item text-white bg-dark border">&lt&lt</a>-->
+                <!--                <a href="#" class="list-group-item text-white bg-dark border active">1</a>-->
+                <!--                <a href="#" class="list-group-item text-white bg-dark border">2</a>-->
+                <!--                <a href="#" class="list-group-item text-white bg-dark border">3</a>-->
+                <!--                <a href="#" class="list-group-item text-white bg-dark border">>></a>-->
             </div>
         </div>
         <div class="row container">
@@ -84,10 +85,12 @@
                             <th class="col-sm-1 text-center">Solved</th>
                         </tr>
                         <tr th:each="ex : ${exercises}">
-                            <td class="text-center" th:text="${ex.id}"><a style="text-decoration: none; color: #000;"
-                                                                          href="problem_detail.html"></td>
-                            <td class="text-center" th:text="${ex.name}"><a style="text-decoration: none; color: #000;"
-                                                                            href="problem_detail.html"></td>
+                            <td class="text-center" th:text="${ex.id}">
+                                <a style="text-decoration: none; color: #000;" th:href="@{'/ui/v1/exercise/' + ${ex.id}}"></a>
+                            </td>
+                            <td class="text-center" th:text="${ex.name}">
+                                <a style="text-decoration: none; color: #000;" th:href="@{'/ui/v1/exercise/' + ${ex.id}}"></a>
+                            </td>
                             <td class="text-center" th:text="${ex.category}"></td>
                             <td class="text-center">
                                 <span th:switch="${ex.category}">
@@ -98,10 +101,14 @@
                                 </span>
                             </td>
                             <td class="text-center"
-                                th:text="${#numbers.formatDecimal(ex.calculateCorrectPercentage(), 2)} + '%'"></td>
+                                th:text="${ex.calculateCorrectPercentage()} + '%'"></td>
                             <td class="text-center" th:text="${ex.countSuccessSubmissions()}"></td>
-                            <td class="text-center"
-                                th:text="${ex.isSolvedByCurrentUser(currentUser.getUsername()) ? 'Yes' : 'No'}"></td>
+                            <td class="text-center">
+                                <span th:switch="${currentUser}">
+                                    <span th:case="null">No</span>
+                                    <span th:case="*" th:text="${ex.isSolvedByCurrentUser(currentUser.getUsername()) ? 'Yes' : 'No'}"></span>
+                                </span>
+                            </td>
                         </tr>
                     </table>
                 </div>
