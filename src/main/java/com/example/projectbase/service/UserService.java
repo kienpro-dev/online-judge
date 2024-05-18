@@ -17,4 +17,6 @@ public interface UserService {
   UserDto getCurrentUser(UserPrincipal principal);
 
   boolean createUser(UserCreateDto userCreateDto);
+
+  boolean resetPassword(String email);
 }

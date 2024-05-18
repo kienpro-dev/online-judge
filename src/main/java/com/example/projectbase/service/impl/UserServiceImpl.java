@@ -3,6 +3,7 @@ package com.example.projectbase.service.impl;
 import com.example.projectbase.constant.ErrorMessage;
 import com.example.projectbase.constant.RoleConstant;
 import com.example.projectbase.constant.SortByDataConstant;
+import com.example.projectbase.domain.dto.common.DataMailDto;
 import com.example.projectbase.domain.dto.pagination.PaginationFullRequestDto;
 import com.example.projectbase.domain.dto.pagination.PaginationResponseDto;
 import com.example.projectbase.domain.dto.request.UserCreateDto;
@@ -15,10 +16,15 @@ import com.example.projectbase.repository.UserRepository;
 import com.example.projectbase.security.UserPrincipal;
 import com.example.projectbase.service.UserService;
 import com.example.projectbase.util.PaginationUtil;
+import com.example.projectbase.util.RandomPassUtil;
+import com.example.projectbase.util.SendMailUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -31,6 +37,8 @@ public class UserServiceImpl implements UserService {
   private final PasswordEncoder passwordEncoder;
 
   private final UserMapper userMapper;
+
+  private final SendMailUtil sendMailUtil;
 
   @Override
   public UserDto getUserById(String userId) {
@@ -62,6 +70,34 @@ public class UserServiceImpl implements UserService {
     user.setRole(roleRepository.findByRoleName(RoleConstant.USER));
     user.setPassword(passwordEncoder.encode(userCreateDto.getPassword()));
     userRepository.save(user);
+    return true;
+  }
+
+  @Override
+  public boolean resetPassword(String email) {
+    User u = userRepository.findUserByEmail(email);
+    if(u == null) {
+      return false;
+    }
+    String newPassword = RandomPassUtil.random();
+
+    u.setPassword(passwordEncoder.encode(newPassword));
+    userRepository.save(u);
+    DataMailDto dataMailDto = new DataMailDto();
+    dataMailDto.setTo(email);
+    dataMailDto.setSubject("Mật khẩu mới của bạn là: " + newPassword);
+
+    Map<String, Object> properties = new HashMap<>();
+    properties.put("username", u.getUsername());
+    properties.put("newPassword", newPassword);
+
+    dataMailDto.setProperties(properties);
+
+    try {
+      sendMailUtil.sendEmailWithHTML(dataMailDto, "sendmail.html");
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
     return true;
   }
 

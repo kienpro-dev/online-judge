@@ -39,4 +39,19 @@ public class RegisterController {
         }
         return "signup";
     }
+
+    @GetMapping(UrlConstant.User.FORGOT_PASSWORD)
+    public String getForgotPage() {
+        return "forgot_pass";
+    }
+
+    @PostMapping(UrlConstant.User.FORGOT_PASSWORD)
+    public String resetPassword(Model model, @RequestParam String email) {
+        if(userService.resetPassword(email)) {
+            model.addAttribute("success", "Gửi yêu cầu thành công!");
+        } else {
+            model.addAttribute("error", "Gửi yêu cầu thất bại, kiểm tra lại email!");
+        }
+        return "forgot_pass";
+    }
 }
