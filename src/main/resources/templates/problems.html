@@ -39,7 +39,7 @@
         </button>
         <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
             <div class="navbar-nav mx-auto">
-                <a href="problems.html" class="nav-item nav-link font-weight-bold active"><h4>Problems</h4></a>
+                <a th:href="@{/ui/v1/exercise}" class="nav-item nav-link font-weight-bold active"><h4>Problems</h4></a>
                 <a href="submissions.html" class="nav-item nav-link font-weight-bold"><h4>Submissions</h4></a>
                 <a href="user_leaderboard.html" class="nav-item nav-link"><h4>Users</h4></a>
                 <a href="contest_list.html" class="nav-item nav-link"><h4>Contests</h4></a>
@@ -85,11 +85,11 @@
                             <th class="col-sm-1 text-center">Solved</th>
                         </tr>
                         <tr th:each="ex : ${exercises}">
-                            <td class="text-center" th:text="${ex.id}">
-                                <a style="text-decoration: none; color: #000;" th:href="@{'/ui/v1/exercise/' + ${ex.id}}"></a>
+                            <td class="text-center">
+                                <a style="text-decoration: none; color: #000;" th:href="@{'/ui/v1/exercise/' + ${ex.id}}" th:text="${ex.id}"></a>
                             </td>
-                            <td class="text-center" th:text="${ex.name}">
-                                <a style="text-decoration: none; color: #000;" th:href="@{'/ui/v1/exercise/' + ${ex.id}}"></a>
+                            <td class="text-center">
+                                <a style="text-decoration: none; color: #000;" th:href="@{'/ui/v1/exercise/' + ${ex.id}}" th:text="${ex.name}"></a>
                             </td>
                             <td class="text-center" th:text="${ex.category}"></td>
                             <td class="text-center">

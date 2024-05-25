@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <style>
     * {
@@ -31,67 +31,67 @@
 </style>
 
 <body>
-    <div id="header" class="px-5">
-        <nav class="navbar navbar-light bg-white navbar-expand-xl">
-            <img th:src="@{/img/logo.PNG}" width="50px" alt="ảnh">
-            <a th:href="@{/ui/v1}" class="navbar-brand">
-                <h3 class="text-black ">AlgorithmMaster</h3>
-            </a>
-            <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse"
+<div id="header" class="px-5">
+    <nav class="navbar navbar-light bg-white navbar-expand-xl">
+        <img th:src="@{/img/logo.PNG}" width="50px" alt="ảnh">
+        <a th:href="@{/ui/v1}" class="navbar-brand">
+            <h3 class="text-black ">AlgorithmMaster</h3>
+        </a>
+        <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarCollapse">
-                <span class="fa fa-bars text-primary"></span>
-            </button>
-            <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
-                <div class="navbar-nav mx-auto">
-                    <a href="problems.html" class="nav-item nav-link font-weight-bold active">
-                        <h4>Problems</h4>
-                    </a>
-                    <a href="submissions.html" class="nav-item nav-link font-weight-bold">
-                        <h4>Submissions</h4>
-                    </a>
-                    <a href="user_leaderboard.html" class="nav-item nav-link">
-                        <h4>Users</h4>
-                    </a>
-                    <a href="contest_list.html" class="nav-item nav-link">
-                        <h4>Contests</h4>
-                    </a>
-                </div>
-                <div class="d-flex m-3 me-0 navbar-nav ">
-                    <a th:href="@{/ui/v1/auth/login}" class="nav-item nav-link font-weight-bold">
-                        <p class="btn"><b>Sign in</b></p>
-                    </a>
-                    <a th:href="@{/ui/v1/auth/register}" class="nav-item nav-link font-weight-bold">
-                        <p class="btn btn-primary border" style="background-color: #20B486;"><b>Create free account</b>
-                        </p>
-                    </a>
-                </div>
+            <span class="fa fa-bars text-primary"></span>
+        </button>
+        <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+            <div class="navbar-nav mx-auto">
+                <a th:href="@{/ui/v1/exercise}" class="nav-item nav-link font-weight-bold active">
+                    <h4>Problems</h4>
+                </a>
+                <a href="submissions.html" class="nav-item nav-link font-weight-bold">
+                    <h4>Submissions</h4>
+                </a>
+                <a href="user_leaderboard.html" class="nav-item nav-link">
+                    <h4>Users</h4>
+                </a>
+                <a href="contest_list.html" class="nav-item nav-link">
+                    <h4>Contests</h4>
+                </a>
             </div>
-        </nav>
-    </div>
+            <div class="d-flex m-3 me-0 navbar-nav ">
+                <a th:href="@{/ui/v1/auth/login}" class="nav-item nav-link font-weight-bold">
+                    <p class="btn"><b>Sign in</b></p>
+                </a>
+                <a th:href="@{/ui/v1/auth/register}" class="nav-item nav-link font-weight-bold">
+                    <p class="btn btn-primary border" style="background-color: #20B486;"><b>Create free account</b>
+                    </p>
+                </a>
+            </div>
+        </div>
+    </nav>
+</div>
+<hr>
+<div class="container" style="min-height: 1000px;" th:object="${exercise}">
+    <h2 th:text="${exercise.name}"></h2>
     <hr>
-    <div class="container" style="min-height: 1000px;" th:object="${exercise}">
-        <h2 th:text="${exercise.name}"></h2>
-        <hr>
 
-        <div class="row">
-            <div class="col-sm-10">
-<!--                <p>In case the statement didn't load correctly, you can download the statement here: <a-->
-<!--                        href="">Statement</a></p>-->
-
-
-            </div>
-            <div class="col-sm-2 navbar-light bg-white navbar-expand-xl">
-                <p><b>Please push code here!</b></p>
-                <form action="">
-                    <input type="file" width="200px">
-                    <br><br>
-                    <input type="submit" value="Submit"
-                        style="width: 200px; height: 30px; border-radius: 12px; border: none; color: #fff; background-color: #20B486;">
-                </form>
-                <hr>
-                <a style="text-decoration: none;" href="submissions.html">All submissions</a>
-                <hr>
-                <span th:switch="${exercise.category}">
+    <div class="row">
+        <div class="col-sm-10">
+            <!--                <p>In case the statement didn't load correctly, you can download the statement here: <a-->
+            <!--                        href="">Statement</a></p>-->
+            <!--            <iframe src="/pdf/1.pdf" width="100%" height="500px" target="_parent"></iframe>-->
+            <!--            <embed src="./pdf/1.pdf" width="100%" height="500px" type="application/pdf">-->
+        </div>
+        <div class="col-sm-2 navbar-light bg-white navbar-expand-xl">
+            <p><b>Please push code here!</b></p>
+            <form action="">
+                <input type="file" width="200px">
+                <br><br>
+                <input type="submit" value="Submit"
+                       style="width: 200px; height: 30px; border-radius: 12px; border: none; color: #fff; background-color: #20B486;">
+            </form>
+            <hr>
+            <a style="text-decoration: none;" href="submissions.html">All submissions</a>
+            <hr>
+            <span th:switch="${exercise.category}">
                     <b>Points: </b>
                     <span th:case="'Dễ'">0.1</span>
                     <span th:case="'Trung bình'">0.2</span>
@@ -99,18 +99,18 @@
                     <span th:case="*">0.0</span>
                     <span> (partial)</span>
                 </span>
-<!--                <span><b>Points: </b>0.10(partial)</span><br>-->
-                <span><b>Time limit: </b>1.0s</span><br>
-                <span><b>Memory limit: </b>256MB</span>
-                <br>
-                <span><b>Input: </b>stdin</span><br>
-                <span><b>Output: </b>stdout</span>
-                <hr>
-                <span><b>Author: </b><span th:text="${exercise.user.getFullName()}"></span></span><br>
-                <span><b>Allowed languages: </b>C, C++, Java</span>
-            </div>
+            <!--                <span><b>Points: </b>0.10(partial)</span><br>-->
+            <span><b>Time limit: </b>1.0s</span><br>
+            <span><b>Memory limit: </b>256MB</span>
+            <br>
+            <span><b>Input: </b>stdin</span><br>
+            <span><b>Output: </b>stdout</span>
+            <hr>
+            <span><b>Author: </b><span th:text="${exercise.user.getFullName()}"></span></span><br>
+            <span><b>Allowed languages: </b>C, C++, Java</span>
         </div>
     </div>
+</div>
 
 </body>
 
