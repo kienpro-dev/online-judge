@@ -26,7 +26,7 @@ import java.nio.file.Paths;
 @RequiredArgsConstructor
 @UiV1
 public class ExerciseController {
-    StringBuilder outputBuilder = new StringBuilder();
+
 
     private final ExerciseService exerciseService;
 
@@ -55,69 +55,19 @@ public class ExerciseController {
     @PostMapping(UrlConstant.Exercise.SUBMIT_CODE)
     public String submitCode(Model model, @PathVariable Long exerciseId, @RequestParam("file") MultipartFile file) throws IOException, InterruptedException {
         if (!file.isEmpty()) {
-//            File tempFile = null;
-            try {
-//                tempFile = File.createTempFile("code", ".java"); // Or ".cpp" for C++
-//                Files.write(tempFile.toPath(), file.getBytes());
-                File tempFile = FileUtil.convertMultipartToFile(file);
-                boolean isSuccess = compileAndExecuteCode(tempFile, "1");
-                if (!isSuccess) {
-                    model.addAttribute("result", "false");
-                } else {
-                    boolean outputMatches = compareOutput(outputBuilder.toString(), "Hello, World! 1");
-                    if (outputMatches) {
-                        model.addAttribute("result", outputBuilder.toString());
-                    } else {
-                        model.addAttribute("result", "false");
-                    }
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+            String message = exerciseService.compileAndRunExercise(file, exerciseId);
+            if(message.equals("success")) {
+
+            } else if (message.equals("wrong")) {
+
+            } else if (message.equals("failed")) {
+
             }
-//            finally {
-//                if (tempFile != null) {
-//                    tempFile.delete();
-//                }
-//            }
+        } else {
+            model.addAttribute("error", "File chưa được chọn");
         }
         Exercise exercise = exerciseService.getExerciseById(exerciseId);
         model.addAttribute("exercise", exercise);
         return "problem_detail";
-    }
-
-    private boolean compileAndExecuteCode(File tempFile, String input) {
-        try {
-            // Compile the Java code
-            ProcessBuilder compileProcess = new ProcessBuilder("java", tempFile.getAbsolutePath());
-            compileProcess.redirectErrorStream(true);
-            Process process = compileProcess.start();
-
-            process.getOutputStream().write(input.getBytes());
-            process.getOutputStream().close();
-
-            // Execute the compiled Java program
-            // Capture the output
-            InputStream inputStream = process.getInputStream();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-
-            String line;
-            while ((line = reader.readLine()) != null) {
-                outputBuilder.append(line).append("\n");
-            }
-            reader.close();
-            int exitCode = process.waitFor();
-            if (exitCode != 0) {
-                return false;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return true;
-    }
-
-    private boolean compareOutput(String actualOutput, String expectedOutput) {
-        // Trim whitespace and compare
-        return actualOutput.trim().equals(expectedOutput.trim());
     }
 }

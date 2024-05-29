@@ -9,13 +9,15 @@ import com.example.projectbase.exception.NotFoundException;
 import com.example.projectbase.repository.ExerciseRepository;
 import com.example.projectbase.repository.UserRepository;
 import com.example.projectbase.service.ExerciseService;
+import com.example.projectbase.util.CompileUtil;
 import com.example.projectbase.util.FileUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
+import java.io.*;
 
 @Service
 @RequiredArgsConstructor
@@ -46,4 +48,21 @@ public class ExerciseServiceImpl implements ExerciseService {
         exercise.setExUrl(FileUtil.saveFile(fileName, savePath, exerciseDto.getExFilePDf()));
         return exerciseRepository.save(exercise);
     }
+
+    @Override
+    public String compileAndRunExercise(MultipartFile file, Long id) throws IOException {
+        Exercise exercise = exerciseRepository.findById(id).orElseThrow(() -> new NotFoundException(ErrorMessage.User.ERR_NOT_FOUND_ID));
+        File tempFile = FileUtil.convertMultipartToFile(file);
+        String message = CompileUtil.compileAndRunExercise(tempFile, exercise.getTestInput(), exercise.getTestOutput());
+        if (message.equals("success")) {
+
+        } else if (message.equals("wrong")) {
+
+        } else if (message.equals("failed")) {
+
+        }
+
+        return message;
+    }
+
 }
