@@ -5,10 +5,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -155,5 +152,13 @@ public class FileUtil {
       zos.closeEntry();
     }
   }
+
+  public static File convertMultipartToFile(MultipartFile file) throws IOException {
+        File convertFile = new File(Objects.requireNonNull(file.getOriginalFilename()));
+        FileOutputStream outputStream = new FileOutputStream(convertFile);
+        outputStream.write(file.getBytes());
+        outputStream.close();
+        return convertFile;
+    }
 
 }

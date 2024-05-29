@@ -31,6 +31,7 @@ public class UrlConstant {
     public static final String GET_EXERCISES = PRE_FIX;
     public static final String CREATE_EXERCISES = PRE_FIX;
     public static final String GET_EXERCISE = PRE_FIX + "/{exerciseId}";
+    public static final String SUBMIT_CODE = PRE_FIX + "/{exerciseId}" + "/submit";
   }
 
 }
