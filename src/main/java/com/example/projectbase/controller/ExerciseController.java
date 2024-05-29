@@ -60,15 +60,14 @@ public class ExerciseController {
 //                tempFile = File.createTempFile("code", ".java"); // Or ".cpp" for C++
 //                Files.write(tempFile.toPath(), file.getBytes());
                 File tempFile = FileUtil.convertMultipartToFile(file);
-                boolean isSuccess = compileAndExecuteCode(tempFile);
+                boolean isSuccess = compileAndExecuteCode(tempFile, "1");
                 if (!isSuccess) {
                     model.addAttribute("result", "false");
                 } else {
-                    boolean outputMatches = compareOutput(outputBuilder.toString(), "Hello, World!");
-                    if(outputMatches) {
-                       model.addAttribute("result", outputBuilder.toString());
-                    }
-                    else {
+                    boolean outputMatches = compareOutput(outputBuilder.toString(), "Hello, World! 1");
+                    if (outputMatches) {
+                        model.addAttribute("result", outputBuilder.toString());
+                    } else {
                         model.addAttribute("result", "false");
                     }
                 }
@@ -86,27 +85,31 @@ public class ExerciseController {
         return "problem_detail";
     }
 
-    private boolean compileAndExecuteCode(File tempFile) {
+    private boolean compileAndExecuteCode(File tempFile, String input) {
         try {
             // Compile the Java code
-            Process compileProcess = new ProcessBuilder("java", tempFile.getAbsolutePath()).start();
-            int compileExitValue = compileProcess.waitFor();
+            ProcessBuilder compileProcess = new ProcessBuilder("java", tempFile.getAbsolutePath());
+            compileProcess.redirectErrorStream(true);
+            Process process = compileProcess.start();
 
-            if (compileExitValue != 0) {
-                // Compilation failed
-                return false;
-            }
+            process.getOutputStream().write(input.getBytes());
+            process.getOutputStream().close();
 
             // Execute the compiled Java program
             // Capture the output
-            InputStream output = compileProcess.getInputStream();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(output));
+            InputStream inputStream = process.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 
             String line;
             while ((line = reader.readLine()) != null) {
                 outputBuilder.append(line).append("\n");
             }
-        } catch (IOException | InterruptedException e) {
+            reader.close();
+            int exitCode = process.waitFor();
+            if (exitCode != 0) {
+                return false;
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
