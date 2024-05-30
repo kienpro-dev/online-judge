@@ -10,12 +10,10 @@ import com.example.projectbase.util.FileUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.parameters.P;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
@@ -46,8 +44,11 @@ public class ExerciseController {
     }
 
     @GetMapping(UrlConstant.Exercise.GET_EXERCISE)
-    public String getExerciseById(Model model, @PathVariable Long exerciseId) {
+    public String getExerciseById(Model model, @PathVariable Long exerciseId) throws IOException {
         Exercise exercise = exerciseService.getExerciseById(exerciseId);
+        File pdfFile = FileUtil.getFileByPath("static/uploads/" + exerciseId + ".pdf");
+        byte[] image = FileUtil.convertPdfToLongImage(pdfFile);
+        FileUtil.saveByteToPng(image, exerciseId + ".png");
         model.addAttribute("exercise", exercise);
         return "problem_detail";
     }

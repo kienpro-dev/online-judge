@@ -80,7 +80,7 @@
             <!--                <p>In case the statement didn't load correctly, you can download the statement here: <a-->
             <!--                        href="">Statement</a></p>-->
             <!--            <iframe src="/pdf/1.pdf" width="100%" height="500px" target="_parent"></iframe>-->
-            <!--            <embed src="./pdf/1.pdf" width="100%" height="500px" type="application/pdf">-->
+            <img th:src="@{'/convert/' + ${exercise.id} + '.png'}" width="100%"/>
         </div>
         <div class="col-sm-2 navbar-light bg-white navbar-expand-xl">
             <p><b>Please push code here!</b></p>
