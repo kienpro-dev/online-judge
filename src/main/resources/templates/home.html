@@ -37,7 +37,10 @@
                     <a href="user_leaderboard.html" class="nav-item nav-link"><h4>Users</h4></a>
                     <a href="contest_list.html" class="nav-item nav-link"><h4>Contests</h4></a>
                 </div>
-                <div class="d-flex m-3 me-0 navbar-nav ">
+                <div class="d-flex m-3 me-0 navbar-nav " >
+                     <div th:include="fragments/login_profile :: login_profile"></div>
+                </div>
+                <div class="d-flex m-3 me-0 navbar-nav " >
                     <a th:href="@{/ui/v1/auth/login}" class="nav-item nav-link font-weight-bold"><p class="btn"><b>Sign in</b></p></a>
                     <a th:href="@{/ui/v1/auth/register}" class="nav-item nav-link font-weight-bold"><p class="btn btn-primary border" style="background-color: #20B486;"><b>Create free account</b></p></a>
                 </div>
