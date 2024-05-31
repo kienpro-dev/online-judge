@@ -4,122 +4,260 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="shortcut icon" th:href="@{/img/logo.PNG}" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" th:href="@{/img/logo.PNG}"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/abc5153db7.js" crossorigin="anonymous"></script>
 </head>
 <style>
-    *{
-        margin: 0;padding: 0;box-sizing: border-box;
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
+
     .list-group-horizontal .list-group-item.active {
-            background-color: #28a745 !important; 
-            color: #fff !important;
-            
-        }
-    .active{
+        background-color: #28a745 !important;
+        color: #fff !important;
+
+    }
+
+    .active {
         color: #1A906B !important;
     }
-    
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
 </style>
 <body>
-    <div id="header" class="px-5">
-        <nav class="navbar navbar-light bg-white navbar-expand-xl" >
-            <img th:src="@{/img/logo.PNG}" width="50px" alt="ảnh">
-            <a th:href="@{/ui/v1}" class="navbar-brand"><h3 class="text-black ">AlgorithmMaster</h3></a>
-            <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="fa fa-bars text-primary"></span>
-            </button>
-            <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
-                <div class="navbar-nav mx-auto">
-                    <a th:href="@{/ui/v1/exercise}" class="nav-item nav-link font-weight-bold"><h4>Problems</h4></a>
-                    <a th:href="@{/ui/v1/submission}" class="nav-item nav-link font-weight-boldS"><h4>Submissions</h4></a>
-                    <a href="user_leaderboard.html" class="nav-item nav-link"><h4>Users</h4></a>
-                    <a href="contest_list.html" class="nav-item nav-link"><h4>Contests</h4></a>
+<div id="header" class="px-5">
+    <nav class="navbar navbar-light bg-white navbar-expand-xl">
+        <img th:src="@{/img/logo.PNG}" width="50px" alt="ảnh">
+        <a th:href="@{/ui/v1}" class="navbar-brand"><h3 class="text-black ">AlgorithmMaster</h3></a>
+        <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarCollapse">
+            <span class="fa fa-bars text-primary"></span>
+        </button>
+        <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+            <div class="navbar-nav mx-auto">
+                <a th:href="@{/ui/v1/exercise}" class="nav-item nav-link font-weight-bold"><h4>Problems</h4></a>
+                <a th:href="@{/ui/v1/submission}" class="nav-item nav-link font-weight-boldS"><h4>Submissions</h4></a>
+                <a href="user_leaderboard.html" class="nav-item nav-link"><h4>Users</h4></a>
+                <a href="contest_list.html" class="nav-item nav-link"><h4>Contests</h4></a>
+            </div>
+            <div class="d-flex m-3 me-0 navbar-nav ">
+                <div th:include="fragments/login_profile :: login_profile"></div>
+            </div>
+            <div class="d-flex m-3 me-0 navbar-nav ">
+                <a th:href="@{/ui/v1/auth/login}" class="nav-item nav-link font-weight-bold"><p class="btn"><b>Sign
+                    in</b></p></a>
+                <a th:href="@{/ui/v1/auth/register}" class="nav-item nav-link font-weight-bold"><p
+                        class="btn btn-primary border" style="background-color: #20B486;"><b>Create free account</b></p>
+                </a>
+            </div>
+        </div>
+    </nav>
+</div>
+<hr>
+<div class="container" style="min-height: 1000px;">
+    <div class="row">
+        <div class="col-sm-9 navbar-light bg-white navbar-expand-xl">
+            <div class="border-0 p-3">
+                <div class="navbar-nav d-flex flex-row mx-auto">
+                    <a href="#" class="nav-item nav-link active font-weight-bold pr-4">
+                        <i class="fa fa-newspaper-o"></i>
+                        Newsfeed
+                    </a>
                 </div>
-                <div class="d-flex m-3 me-0 navbar-nav " >
-                     <div th:include="fragments/login_profile :: login_profile"></div>
-                </div>
-                <div class="d-flex m-3 me-0 navbar-nav " >
-                    <a th:href="@{/ui/v1/auth/login}" class="nav-item nav-link font-weight-bold"><p class="btn"><b>Sign in</b></p></a>
-                    <a th:href="@{/ui/v1/auth/register}" class="nav-item nav-link font-weight-bold"><p class="btn btn-primary border" style="background-color: #20B486;"><b>Create free account</b></p></a>
+                <hr>
+                <div class="sidebox-content">
+                    <section class="sticky post pb-5" id="post-850">
+                        <div style="display: flex; gap: 0.5em;">
+                            <div class="vote">
+                                <a href="javascript:alert('Hãy đăng nhập để bình chọn')"
+                                   title="Hãy đăng nhập để bình chọn"
+                                   class="upvote-link fa fa-chevron-up fa-fw"></a>
+                                <br>
+                                <div id="post-score" class="comment-score">15</div>
+                                <a href="javascript:alert('Hãy đăng nhập để bình chọn')"
+                                   title="Hãy đăng nhập để bình chọn"
+                                   class="downvote-link fa fa-chevron-down fa-fw"></a>
+                            </div>
+                            <div>
+                                <h4 class="title">
+                                    <a href="" previewlistener="true">VNOI CUP 2024: CÁC BẠN HỎI -
+                                        VNOI ĐÁP</a>
+                                </h4>
+                                <span class="time"><i title="Sticky" class="fa fa-star fa-fw"></i><span
+                                        class="post-authors"><span class="rating rate-none user"><a
+                                        href="" style="display: inline-block;"
+                                        previewlistener="true">admin</a></span></span>
+                                    <i class="fa-regular fa-circle-check"></i>
+                                        <span data-iso="2024-05-19T13:57:01+00:00" class="time-with-rel"
+                                              title="19, Tháng 5, 2024, 13:57" data-format="đã đăng {time}">đã đăng
+                                            8:57:01 ch, 19/05/2024</span>
+                                    </span>
+                            </div>
+                        </div>
+                        <div class="summary content-description blog-body border-start border-dark border-5 ps-3 pb-1">
+                            <div>
+                                <p> Chỉ còn hơn tuần nữa, VNOI CUP sẽ chính thức khởi tranh.
+                                    Ngoài sự quan tâm đông đảo từ các thí sinh, BTC cũng nhận được vô số câu hỏi,
+                                    băn khoăn về cuộc thi từ các bạn. Với sự trở lại đầy khác biệt về thể lệ của
+                                    VNOI CUP, hãy cùng chúng mình giải
+                                    đáp những thắc mắc này nhé
+                                </p>
+                            </div>
+                        </div>
+                        <div class="border border-secondary border-1 p-1 ps-3 pe-3 mt-3">
+                            <i class="fa fa-user"></i>
+                            <span class="rating rate-none user">
+                                <a href="" style="display: inline-block;vertical-align:middle;">admin</a>
+                            </span>
+                            <div style="float: right">
+                                <i class="fa fa-clock-o"></i>
+                                <span data-iso="2024-05-15T09:20:57.849742+00:00" class="time-with-rel"
+                                      title="May 15, 2024, 9:20 a.m."
+                                      data-format="{time}">4:20:57 pm, 15/05/2024
+                                    </span>
+                                <span class="comment-data">
+                                        <i class="fa fa-comments comment-icon"></i>
+                                        <span class="comment-count">0</span>
+                                </span>
+                            </div>
+                        </div>
+
+                    </section>
+
+                    <section class="sticky post pb-5" id="post-851">
+                        <div style="display: flex; gap: 0.5em;">
+                            <div class="vote">
+                                <a href="javascript:alert('Hãy đăng nhập để bình chọn')"
+                                   title="Hãy đăng nhập để bình chọn"
+                                   class="upvote-link fa fa-chevron-up fa-fw"></a>
+                                <br>
+                                <div id="post-score" class="comment-score">15</div>
+                                <a href="javascript:alert('Hãy đăng nhập để bình chọn')"
+                                   title="Hãy đăng nhập để bình chọn"
+                                   class="downvote-link fa fa-chevron-down fa-fw"></a>
+                            </div>
+                            <div>
+                                <h4 class="title">
+                                    <a href="" previewlistener="true">VNOI CUP 2024: CÁC BẠN HỎI -
+                                        VNOI ĐÁP</a>
+                                </h4>
+                                <span class="time"><i title="Sticky" class="fa fa-star fa-fw"></i><span
+                                        class="post-authors"><span class="rating rate-none user"><a
+                                        href="" style="display: inline-block;"
+                                        previewlistener="true">admin</a></span></span>
+                                    <i class="fa-regular fa-circle-check"></i>
+                                        <span data-iso="2024-05-19T13:57:01+00:00" class="time-with-rel"
+                                              title="19, Tháng 5, 2024, 13:57" data-format="đã đăng {time}">đã đăng
+                                            8:57:01 ch, 19/05/2024</span>
+                                    </span>
+                            </div>
+                        </div>
+                        <div class="summary content-description blog-body border-start border-dark border-5 ps-3 pb-1">
+                            <div>
+                                <p> Chỉ còn hơn tuần nữa, VNOI CUP sẽ chính thức khởi tranh.
+                                    Ngoài sự quan tâm đông đảo từ các thí sinh, BTC cũng nhận được vô số câu hỏi,
+                                    băn khoăn về cuộc thi từ các bạn. Với sự trở lại đầy khác biệt về thể lệ của
+                                    VNOI CUP, hãy cùng chúng mình giải
+                                    đáp những thắc mắc này nhé
+                                </p>
+                            </div>
+                        </div>
+                        <div class="border border-secondary border-1 p-1 ps-3 pe-3 mt-3">
+                            <i class="fa fa-user"></i>
+                            <span class="rating rate-none user">
+                                <a href="" style="display: inline-block;vertical-align:middle;">admin</a>
+                            </span>
+                            <div style="float: right">
+                                <i class="fa fa-clock-o"></i>
+                                <span data-iso="2024-05-15T09:20:57.849742+00:00" class="time-with-rel"
+                                      title="May 15, 2024, 9:20 a.m."
+                                      data-format="{time}">4:20:57 pm, 15/05/2024
+                                    </span>
+                                <span class="comment-data">
+                                        <i class="fa fa-comments comment-icon"></i>
+                                        <span class="comment-count">0</span>
+                                </span>
+                            </div>
+                        </div>
+
+                    </section>
                 </div>
             </div>
-        </nav>
-    </div>
-    <hr>
-    <div class="container" style="min-height: 1000px;">
-        <div class="row">
-            <div class="col-sm-9 navbar-light bg-white navbar-expand-xl">
-                <div class="border-0 p-3">
-                    <div class="navbar-nav d-flex flex-row mx-auto">
-                        <a href="#" class="nav-item nav-link active font-weight-bold pr-4">Newsfeed</a>
-                    </div>
-                    <hr>
+
+        </div>
+        <div class="col-sm-3">
+            <div class="border row">
+                <div style="border-top-left-radius: 12px; border-top-right-radius:12px "
+                     class="d-flex flex-row justify-content-between bg-dark text-white">
+                    <h4>Top users</h4>
+                    <h4>Icon</h4>
                 </div>
-                
+                <table class="table table-bordered">
+                    <tr class="bg-dark text-white">
+                        <th class="col-sm-2">#</th>
+                        <th class="col-sm-8 text-center">Username</th>
+                        <th class="col-sm-2">Point</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>hoahoane</td>
+                        <td>17.55</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>hoahoane</td>
+                        <td>17.55</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>hoahoane</td>
+                        <td>17.55</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>hoahoane</td>
+                        <td>17.55</td>
+                    </tr>
+                </table>
+                <div class="d-flex flex-row justify-content-between text-danger">
+                    <a href="#" class="nav-item nav-link text-danger pr-4">Organizations</a>
+                    <a href="#" class="nav-item nav-link pr-4 text-danger">View all >>></a>
+                </div>
             </div>
-            <div class="col-sm-3">
-                <div class="border row">
-                    <div style="border-top-left-radius: 12px; border-top-right-radius:12px " class="d-flex flex-row justify-content-between bg-dark text-white">
-                        <h4>Top users</h4>
-                        <h4>Icon</h4>
-                    </div>
-                    <table class="table table-bordered">
-                        <tr class="bg-dark text-white">
-                            <th class="col-sm-2">#</th>
-                            <th class="col-sm-8 text-center">Username</th>
-                            <th class="col-sm-2">Point</th>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>hoahoane</td>
-                            <td>17.55</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>hoahoane</td>
-                            <td>17.55</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>hoahoane</td>
-                            <td>17.55</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>hoahoane</td>
-                            <td>17.55</td>
-                        </tr>
-                    </table>
-                    <div class="d-flex flex-row justify-content-between text-danger">
-                        <a href="#" class="nav-item nav-link text-danger pr-4">Organizations</a>
-                        <a href="#" class="nav-item nav-link pr-4 text-danger">View all >>></a>
-                    </div>
+            <div class="border row mt-5 rounded-lg">
+                <div class="d-flex flex-row justify-content-between bg-dark text-white">
+                    <h4>Comment stream</h4>
+
                 </div>
-                <div class="border row mt-5 rounded-lg">
-                    <div class="d-flex flex-row justify-content-between bg-dark text-white">
-                        <h4>Comment stream</h4>
-                        
-                    </div>
-                    
-                    <span class="d-flex flex-row">
+
+                <span class="d-flex flex-row">
                         <p class="nav-item nav-link text-secondary">hoahoane ->></p>
                         <a href="#" class="nav-item nav-link">Bài 5: Số lớn</a>
                     </span>
-                    <span class="d-flex flex-row">
+                <span class="d-flex flex-row">
                         <p class="nav-item nav-link pr-4 text-secondary">hoahoane ->></p>
                         <a href="#" class="nav-item nav-link pr-4">Bài 5: Số lớn</a>
                     </span>
-                    <span class="d-flex flex-row">
+                <span class="d-flex flex-row">
                         <p class="nav-item nav-link pr-4 text-secondary">hoahoane ->></p>
                         <a href="#" class="nav-item nav-link pr-4">Bài 5: Số lớn</a>
                     </span>
-                </div>
             </div>
         </div>
     </div>
-    
+</div>
+
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
