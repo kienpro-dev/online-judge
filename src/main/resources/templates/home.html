@@ -34,6 +34,81 @@
         color: black;
     }
 
+    ul {
+        list-style: none;
+    }
+
+    #click li {
+        display: none;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    #click:hover li {
+        display: block !important;
+        z-index: 100;
+    }
+
+
+    .container {
+        width: 80%;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    textarea {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+    }
+
+    textarea {
+        height: 100px;
+    }
+
+    .checkbox-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .checkbox-group input {
+        margin-right: 10px;
+    }
+
+    .buttons {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .buttons button {
+        padding: 10px 20px;
+        margin: 0 5px;
+    }
+
+
+    .dropdown-menu a:hover {
+        background-color: #575757;
+    }
+
+    .profile-container:hover .dropdown-menu {
+        display: block !important;
+    }
+
 </style>
 <body>
 <div id="header" class="px-5">
@@ -52,9 +127,25 @@
                 <a href="contest_list.html" class="nav-item nav-link"><h4>Contests</h4></a>
             </div>
             <div class="d-flex m-3 me-0 navbar-nav ">
-                <div th:include="fragments/login_profile :: login_profile"></div>
+                <div class="profile-container" style="position: relative;
+                    display: inline-block;">
+                    <div class="profile"
+                         style="display: flex; align-items: center; background-color: #20B486;color: white;padding: 10px; border-radius: 5px;">
+                        <img th:src="@{/img/user.png}" alt="ảnh" class="profile-pic"
+                             style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
+                        <span>Hello, <strong>Nguyễn Tiến Kiên</strong>.</span>
+                    </div>
+                    <div class="dropdown-menu"
+                         style="display: none; position: absolute; top: 100%; left: 0; background-color: #333; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); border-radius: 5px; overflow: hidden; width: 100%;">
+                        <a href="edit_profile.html"
+                           style="color: white; padding: 12px 16px; text-decoration: none; display: block;">Edit
+                            profile</a>
+                        <a th:href="@{/ui/v1/auth/logout}"
+                           style="color: white; padding: 12px 16px; text-decoration: none; display: block;">Log out</a>
+                    </div>
+                </div>
             </div>
-            <div class="d-flex m-3 me-0 navbar-nav ">
+            <div class="d-flex m-3 me-0 navbar-nav">
                 <a th:href="@{/ui/v1/auth/login}" class="nav-item nav-link font-weight-bold"><p class="btn"><b>Sign
                     in</b></p></a>
                 <a th:href="@{/ui/v1/auth/register}" class="nav-item nav-link font-weight-bold"><p
