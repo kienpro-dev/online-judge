@@ -5,7 +5,9 @@ import com.example.projectbase.constant.UrlConstant;
 import com.example.projectbase.domain.dto.request.UserCreateDto;
 import com.example.projectbase.domain.entity.User;
 import com.example.projectbase.service.UserService;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
@@ -14,9 +16,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@RequiredArgsConstructor
 @UiV1
+@AllArgsConstructor
 public class RegisterController {
+
     private final UserService userService;
 
     @GetMapping(UrlConstant.Auth.REGISTER)

@@ -6,17 +6,20 @@ import com.example.projectbase.constant.UrlConstant;
 import com.example.projectbase.domain.dto.ExerciseDto;
 import com.example.projectbase.service.ExerciseService;
 import io.swagger.v3.oas.annotations.Operation;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
-@RequiredArgsConstructor
+@AllArgsConstructor
 @RestApiV1
 public class RestExerciseController {
-    private final ExerciseService exerciseService;
+    @Autowired
+    private ExerciseService exerciseService;
 
     @Operation(summary = "API get exercise by ID")
     @GetMapping(UrlConstant.Exercise.GET_EXERCISE)
