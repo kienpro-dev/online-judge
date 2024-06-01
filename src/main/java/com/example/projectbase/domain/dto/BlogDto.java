@@ -14,5 +14,5 @@ public class BlogDto {
 
     private String content;
 
-    private String userId;
+    private Long userId;
 }

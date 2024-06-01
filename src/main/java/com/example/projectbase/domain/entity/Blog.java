@@ -3,13 +3,13 @@ package com.example.projectbase.domain.entity;
 import com.example.projectbase.domain.entity.common.DateAuditing;
 import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Getter
 @Setter
-@Builder
 @Entity
 @Table(name = "blogs")
 public class Blog extends DateAuditing {
@@ -25,6 +25,6 @@ public class Blog extends DateAuditing {
     private String content;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "FK_BLOG_USER"))
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 }
