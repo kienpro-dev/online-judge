@@ -1,7 +1,7 @@
 package com.example.projectbase.util;
 
 import lombok.SneakyThrows;
-import org.apache.commons.collections4.CollectionUtils;
+//import org.apache.commons.collections4.CollectionUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.rendering.PDFRenderer;
 import org.springframework.util.StringUtils;
@@ -33,28 +33,28 @@ public class FileUtil {
      *                          Example: ["upload/xxx/xxx", "upload/xxx/xxx"]
      * @return byte[]
      */
-    public static byte[] zipFolder(String... sourceFolderPaths) throws IOException {
-        List<File> fileList = new ArrayList<>();
-        for (String pathFolder : sourceFolderPaths) {
-            File sourceFolder = new File(RESOURCES_PATH.resolve(pathFolder).toString());
-            fileList.add(sourceFolder);
-        }
-
-        if (CollectionUtils.isNotEmpty(fileList)) {
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            ZipOutputStream zipOutputStream = new ZipOutputStream(byteArrayOutputStream);
-            try {
-                for (File fileFolder : fileList) {
-                    addToZip(fileFolder.getParentFile().getPath(), zipOutputStream, fileFolder);
-                }
-                zipOutputStream.close();
-                return byteArrayOutputStream.toByteArray();
-            } catch (IOException ioe) {
-                throw new IOException("Something went wrong, file cannot be compressed", ioe);
-            }
-        }
-        return null;
-    }
+//    public static byte[] zipFolder(String... sourceFolderPaths) throws IOException {
+//        List<File> fileList = new ArrayList<>();
+//        for (String pathFolder : sourceFolderPaths) {
+//            File sourceFolder = new File(RESOURCES_PATH.resolve(pathFolder).toString());
+//            fileList.add(sourceFolder);
+//        }
+//
+//        if (CollectionUtils.isNotEmpty(fileList)) {
+//            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+//            ZipOutputStream zipOutputStream = new ZipOutputStream(byteArrayOutputStream);
+//            try {
+//                for (File fileFolder : fileList) {
+//                    addToZip(fileFolder.getParentFile().getPath(), zipOutputStream, fileFolder);
+//                }
+//                zipOutputStream.close();
+//                return byteArrayOutputStream.toByteArray();
+//            } catch (IOException ioe) {
+//                throw new IOException("Something went wrong, file cannot be compressed", ioe);
+//            }
+//        }
+//        return null;
+//    }
 
     /**
      * Zip một file hoặc nhiều file

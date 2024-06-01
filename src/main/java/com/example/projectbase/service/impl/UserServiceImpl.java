@@ -13,12 +13,11 @@ import com.example.projectbase.domain.mapper.UserMapper;
 import com.example.projectbase.exception.NotFoundException;
 import com.example.projectbase.repository.RoleRepository;
 import com.example.projectbase.repository.UserRepository;
-import com.example.projectbase.security.UserPrincipal;
 import com.example.projectbase.service.UserService;
 import com.example.projectbase.util.PaginationUtil;
 import com.example.projectbase.util.RandomPassUtil;
 import com.example.projectbase.util.SendMailUtil;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -27,23 +26,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class UserServiceImpl implements UserService {
 
   private final UserRepository userRepository;
 
   private final RoleRepository roleRepository;
 
-  private final PasswordEncoder passwordEncoder;
+  private PasswordEncoder passwordEncoder;
 
   private final UserMapper userMapper;
 
   private final SendMailUtil sendMailUtil;
 
   @Override
-  public UserDto getUserById(String userId) {
+  public UserDto getUserById(Long userId) {
     User user = userRepository.findById(userId)
-        .orElseThrow(() -> new NotFoundException(ErrorMessage.User.ERR_NOT_FOUND_ID, new String[]{userId}));
+        .orElseThrow(() -> new NotFoundException(ErrorMessage.User.ERR_NOT_FOUND_ID, new String[]{String.valueOf(userId)}));
     return userMapper.toUserDto(user);
   }
 
@@ -53,12 +52,6 @@ public class UserServiceImpl implements UserService {
     Pageable pageable = PaginationUtil.buildPageable(request, SortByDataConstant.USER);
     //Create Output
     return new PaginationResponseDto<>(null, null);
-  }
-
-  @Override
-  public UserDto getCurrentUser(UserPrincipal principal) {
-    User user = userRepository.getUser(principal);
-    return userMapper.toUserDto(user);
   }
 
   @Override

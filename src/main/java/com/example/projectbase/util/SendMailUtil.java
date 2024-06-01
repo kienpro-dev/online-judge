@@ -1,6 +1,8 @@
 package com.example.projectbase.util;
 
 import com.example.projectbase.domain.dto.common.DataMailDto;
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -9,8 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
@@ -46,7 +46,7 @@ public class SendMailUtil {
    * @param mail Thông tin của mail cần gửi
    * @param files File cần gửi
    */
-  public void sendMailWithAttachment(DataMailDto mail, MultipartFile[] files) throws MessagingException {
+  public void sendMailWithAttachment(DataMailDto mail, MultipartFile[] files) throws MessagingException, MessagingException {
     MimeMessage message = mailSender.createMimeMessage();
     MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
     helper.setTo(mail.getTo());
