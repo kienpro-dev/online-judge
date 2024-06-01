@@ -126,32 +126,37 @@
                 <a href="user_leaderboard.html" class="nav-item nav-link"><h4>Users</h4></a>
                 <a href="contest_list.html" class="nav-item nav-link"><h4>Contests</h4></a>
             </div>
-            <div class="d-flex m-3 me-0 navbar-nav ">
-                <div class="profile-container" style="position: relative;
+            <div th:switch="${currentUser}">
+                <div th:case="null" class="d-flex m-3 me-0 navbar-nav ">
+                    <a th:href="@{/ui/v1/auth/login}" class="nav-item nav-link font-weight-bold"><p class="btn"><b>Sign
+                        in</b></p></a>
+                    <a th:href="@{/ui/v1/auth/register}" class="nav-item nav-link font-weight-bold"><p
+                            class="btn btn-primary border" style="background-color: #20B486;"><b>Create free account</b>
+                    </p>
+                    </a>
+                </div>
+                <div th:case="*" class="d-flex m-3 me-0 navbar-nav">
+                    <div class="profile-container" style="position: relative;
                     display: inline-block;">
-                    <div class="profile"
-                         style="display: flex; align-items: center; background-color: #20B486;color: white;padding: 10px; border-radius: 5px;">
-                        <img th:src="@{/img/user.png}" alt="ảnh" class="profile-pic"
-                             style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
-                        <span>Hello, <strong>Nguyễn Tiến Kiên</strong>.</span>
-                    </div>
-                    <div class="dropdown-menu"
-                         style="display: none; position: absolute; top: 100%; left: 0; background-color: #333; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); border-radius: 5px; overflow: hidden; width: 100%;">
-                        <a href="edit_profile.html"
-                           style="color: white; padding: 12px 16px; text-decoration: none; display: block;">Edit
-                            profile</a>
-                        <a th:href="@{/ui/v1/auth/logout}"
-                           style="color: white; padding: 12px 16px; text-decoration: none; display: block;">Log out</a>
+                        <div class="profile"
+                             style="display: flex; align-items: center; background-color: #20B486;color: white;padding: 10px; border-radius: 5px;">
+                            <img th:src="@{/img/user.png}" alt="ảnh" class="profile-pic"
+                                 style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
+                            <span>Hello, <strong>Nguyễn Tiến Kiên</strong>.</span>
+                        </div>
+                        <div class="dropdown-menu"
+                             style="display: none; position: absolute; top: 100%; left: 0; background-color: #333; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); border-radius: 5px; overflow: hidden; width: 100%;">
+                            <a href="edit_profile.html"
+                               style="color: white; padding: 12px 16px; text-decoration: none; display: block;">Edit
+                                profile</a>
+                            <a th:href="@{/ui/v1/auth/logout}"
+                               style="color: white; padding: 12px 16px; text-decoration: none; display: block;">Log
+                                out</a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="d-flex m-3 me-0 navbar-nav">
-                <a th:href="@{/ui/v1/auth/login}" class="nav-item nav-link font-weight-bold"><p class="btn"><b>Sign
-                    in</b></p></a>
-                <a th:href="@{/ui/v1/auth/register}" class="nav-item nav-link font-weight-bold"><p
-                        class="btn btn-primary border" style="background-color: #20B486;"><b>Create free account</b></p>
-                </a>
-            </div>
+
         </div>
     </nav>
 </div>
