@@ -14,7 +14,7 @@ public class SubmissionDto {
 
     private String code;
 
-    private String userId;
+    private Long userId;
 
     private Long exId;
 }
