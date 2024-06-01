@@ -11,6 +11,7 @@ import com.example.projectbase.repository.UserRepository;
 import com.example.projectbase.service.ExerciseService;
 import com.example.projectbase.util.CompileUtil;
 import com.example.projectbase.util.FileUtil;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,7 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.*;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class ExerciseServiceImpl implements ExerciseService {
     private final ExerciseRepository exerciseRepository;
 

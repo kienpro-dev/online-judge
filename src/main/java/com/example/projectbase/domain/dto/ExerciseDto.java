@@ -23,5 +23,5 @@ public class ExerciseDto {
 
     private String testOutput;
 
-    private String userId;
+    private Long userId;
 }

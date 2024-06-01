@@ -4,15 +4,15 @@ import com.example.projectbase.domain.entity.common.DateAuditing;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.List;
 import java.util.Objects;
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Getter
 @Setter
-@Builder
 @Entity
 @Table(name = "exercises")
 public class Exercise extends DateAuditing {
@@ -41,7 +41,7 @@ public class Exercise extends DateAuditing {
     private String testOutput;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "FK_EXERCISE_USER"))
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "exercise")
