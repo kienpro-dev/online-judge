@@ -47,6 +47,9 @@ public class ExerciseServiceImpl implements ExerciseService {
         String fileName = exerciseRepository.count() + 1 + "";
         String savePath = "static/uploads";
         exercise.setExUrl(FileUtil.saveFile(fileName, savePath, exerciseDto.getExFilePDf()));
+        File pdfFile = FileUtil.getFileByPath("static/uploads/" + fileName + ".pdf");
+        byte[] image = FileUtil.convertPdfToLongImage(pdfFile);
+        FileUtil.saveByteToPng(image, fileName + ".png");
         return exerciseRepository.save(exercise);
     }
 

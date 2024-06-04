@@ -43,9 +43,6 @@ public class ExerciseController extends BaseController{
     @GetMapping(UrlConstant.Exercise.GET_EXERCISE)
     public String getExerciseById(Model model, @PathVariable Long exerciseId) throws IOException {
         Exercise exercise = exerciseService.getExerciseById(exerciseId);
-        File pdfFile = FileUtil.getFileByPath("static/uploads/" + exerciseId + ".pdf");
-        byte[] image = FileUtil.convertPdfToLongImage(pdfFile);
-        FileUtil.saveByteToPng(image, exerciseId + ".png");
         model.addAttribute("exercise", exercise);
         return "problem_detail";
     }
