@@ -4,105 +4,143 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign in</title>
-    <link rel="shortcut icon" th:href="@{/img/logo.PNG}" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" th:href="@{/img/logo.PNG}"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/abc5153db7.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div id="header" class="px-5">
-        <nav class="navbar navbar-light bg-white navbar-expand-xl" >
-            <img th:src="@{/img/logo.PNG}" width="50px" alt="ảnh">
-            <a th:href="@{/ui/v1}" class="navbar-brand"><h3 class="text-black ">AlgorithmMaster</h3></a>
-            
-            <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="fa fa-bars text-primary"></span>
-            </button>
-            <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
-                <div class="navbar-nav mx-auto">
-                    <a th:href="@{/ui/v1/exercise}" class="nav-item nav-link font-weight-bold"><h4>Problems</h4></a>
-                    <a th:href="@{/ui/v1/submission}" class="nav-item nav-link font-weight-bold"><h4>Submissions</h4></a>
-                    <a href="user_leaderboard.html" class="nav-item nav-link"><h4>Users</h4></a>
-                    <a href="contest_list.html" class="nav-item nav-link"><h4>Contests</h4></a>
-                </div>
-                <div class="d-flex m-3 me-0 navbar-nav ">
-                    <a th:href="@{/ui/v1/auth/login}" class="nav-item nav-link font-weight-bold"><p class="btn text-bold"><b>Sign in</b></p></a>
-                    <a th:href="@{/ui/v1/auth/register}" class="nav-item nav-link font-weight-bold"><p class="btn btn-primary border" style="background-color: #20B486;"><b>Create free account</b></p></a>
-                </div>
+<div id="header" class="px-5">
+    <nav class="navbar navbar-light bg-white navbar-expand-xl">
+        <img th:src="@{/img/logo.PNG}" width="50px" alt="ảnh">
+        <a th:href="@{/ui/v1}" class="navbar-brand"><h3 class="text-black ">AlgorithmMaster</h3></a>
+
+        <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarCollapse">
+            <span class="fa fa-bars text-primary"></span>
+        </button>
+        <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+            <div class="navbar-nav mx-auto">
+                <a th:href="@{/ui/v1/exercise}" class="nav-item nav-link font-weight-bold"><h4>Problems</h4></a>
+                <a th:href="@{/ui/v1/submission}" class="nav-item nav-link font-weight-bold"><h4>Submissions</h4></a>
+                <a href="user_leaderboard.html" class="nav-item nav-link"><h4>Users</h4></a>
+                <a href="contest_list.html" class="nav-item nav-link"><h4>Contests</h4></a>
             </div>
-        </nav>
-    </div>
-    <hr><br><br>
-    <div class="container shadow-lg" style="min-height: 300px;border-radius: 20px !important;">
-        <div class="row">
-            <div class="col-sm-6" >
-                <div>
-                    <img th:src="@{/img/anh2.PNG}" style="width: 100%;" alt="">
+            <div th:switch="${currentUser}">
+                <div th:case="null" class="d-flex m-3 me-0 navbar-nav ">
+                    <a th:href="@{/ui/v1/auth/login}" class="nav-item nav-link font-weight-bold"><p class="btn"><b>Sign
+                        in</b></p></a>
+                    <a th:href="@{/ui/v1/auth/register}" class="nav-item nav-link font-weight-bold"><p
+                            class="btn btn-primary border" style="background-color: #20B486;"><b>Create free account</b>
+                    </p>
+                    </a>
                 </div>
-            </div>
-            <div class="col-sm-6" style="background-color: #f1fced;">
-                <div class="container mt-5 pb-5">
-                    <br>
-                    <div class="row justify-content-center" style="padding: 60px;">
-                        <div style="border:1px solid #47C973; border-radius: 15px; background-color: #fff;" >
-                            <div class="pt-5 d-flex justify-content-center">
-                                <img th:src="@{/img/logo.PNG}" width="50px" alt="ảnh">
-                                <h3>AlgorithmMaster</h3>
-                            </div>
-                          <div class="card-body">
-                              <div th:if="${param.error}">
-								<div class="alert alert-danger" role="alert">
-									Đăng nhập thất bại
-								</div>
-							</div>
-                            <form method="post" th:action="@{/ui/v1/auth/login}">
-                              <div class="form-group" style="border:1px solid #47C973; border-radius: 5px;">
-                                <input type="text" class="form-control" id="username" placeholder="Username" name="username">
-                               
-                              </div>
-                              <br>
-                              <div class="form-group" style="border:1px solid #47C973; border-radius: 5px;">
-                                <div class="input-group">
-                                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
-                                  <div class="input-group-append  d-flex align-items-center text-center">
-                                    <i class="fa-regular fa-eye" style="width: 50px;" type="button" id="togglePassword"></i>
-                                  </div>
-                                </div>
-                              </div>
-                              <a th:href="@{/ui/v1/user/forgot-password}" style="color: #20B486; text-decoration: none;">Forget your password?</a><br><br><br>
-                              <button type="submit" class="btn btn-block w-100 shadow-lg" style="background-color: #FFB459; color: #fff;"><b>Sign in</b></button><br>
-                              <div class="text-center">
-                                <a th:href="@{/ui/v1/auth/register}" style="color: #20B486; text-decoration: none;">Create free account? <b></b></a>
-                              </div>
-                            </form>
-                          </div>
-                        
-                      </div>
+                <div th:case="*" class="d-flex m-3 me-0 navbar-nav">
+                    <div class="profile-container" style="position: relative;
+                    display: inline-block;">
+                        <div class="profile"
+                             style="display: flex; align-items: center; background-color: #20B486;color: white;padding: 10px; border-radius: 5px;">
+                            <img th:src="@{/img/user.png}" alt="ảnh" class="profile-pic"
+                                 style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
+                            <span>Hello, <strong>Nguyễn Tiến Kiên</strong>.</span>
+                        </div>
+                        <div class="dropdown-menu"
+                             style="display: none; position: absolute; top: 100%; left: 0; background-color: #333; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); border-radius: 5px; overflow: hidden; width: 100%;">
+                            <a href="edit_profile.html"
+                               style="color: white; padding: 12px 16px; text-decoration: none; display: block;">Edit
+                                profile</a>
+                            <a th:href="@{/ui/v1/auth/logout}"
+                               style="color: white; padding: 12px 16px; text-decoration: none; display: block;">Log
+                                out</a>
+                        </div>
                     </div>
-                  </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+<hr>
+<br><br>
+<div class="container shadow-lg" style="min-height: 300px;border-radius: 20px !important;">
+    <div class="row">
+        <div class="col-sm-6">
+            <div>
+                <img th:src="@{/img/anh2.PNG}" style="width: 100%;" alt="">
+            </div>
+        </div>
+        <div class="col-sm-6" style="background-color: #f1fced;">
+            <div class="container mt-5 pb-5">
+                <br>
+                <div class="row justify-content-center" style="padding: 60px;">
+                    <div style="border:1px solid #47C973; border-radius: 15px; background-color: #fff;">
+                        <div class="pt-5 d-flex justify-content-center">
+                            <img th:src="@{/img/logo.PNG}" width="50px" alt="ảnh">
+                            <h3>AlgorithmMaster</h3>
+                        </div>
+                        <div class="card-body">
+                            <div th:if="${param.error}">
+                                <div class="alert alert-danger" role="alert">
+                                    Đăng nhập thất bại
+                                </div>
+                            </div>
+                            <form method="post" th:action="@{/ui/v1/auth/login}">
+                                <div class="form-group" style="border:1px solid #47C973; border-radius: 5px;">
+                                    <input type="text" class="form-control" id="username" placeholder="Username"
+                                           name="username">
+
+                                </div>
+                                <br>
+                                <div class="form-group" style="border:1px solid #47C973; border-radius: 5px;">
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" id="exampleInputPassword1"
+                                               placeholder="Password" name="password">
+                                        <div class="input-group-append  d-flex align-items-center text-center">
+                                            <i class="fa-regular fa-eye" style="width: 50px;" type="button"
+                                               id="togglePassword"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a th:href="@{/ui/v1/user/forgot-password}"
+                                   style="color: #20B486; text-decoration: none;">Forget your password?</a><br><br><br>
+                                <button type="submit" class="btn btn-block w-100 shadow-lg"
+                                        style="background-color: #FFB459; color: #fff;"><b>Sign in</b></button>
+                                <br>
+                                <div class="text-center">
+                                    <a th:href="@{/ui/v1/auth/register}" style="color: #20B486; text-decoration: none;">Create
+                                        free account? <b></b></a>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    
+</div>
+
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
-    $(document).ready(function(){
-      $('#togglePassword').click(function(){
-        var input = $('#exampleInputPassword1');
-        var icon = $(this).find('i');
-        if (input.attr('type') === 'password') {
-          input.attr('type', 'text');
-          icon.removeClass('fa-eye').addClass('fa-eye-slash');
-        } else {
-          input.attr('type', 'password');
-          icon.removeClass('fa-eye-slash').addClass('fa-eye');
-        }
-      });
+    $(document).ready(function () {
+        $('#togglePassword').click(function () {
+            var input = $('#exampleInputPassword1');
+            var icon = $(this).find('i');
+            if (input.attr('type') === 'password') {
+                input.attr('type', 'text');
+                icon.removeClass('fa-eye').addClass('fa-eye-slash');
+            } else {
+                input.attr('type', 'password');
+                icon.removeClass('fa-eye-slash').addClass('fa-eye');
+            }
+        });
     });
-  </script>
-  
+</script>
+
 </html>
