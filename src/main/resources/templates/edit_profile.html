@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Edit profile</title>
+    <link rel="shortcut icon" th:href="@{/img/logo.PNG}"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
 </head>
 <style>
     * {
@@ -105,93 +106,109 @@
 </style>
 
 <body>
-    <div id="header" class="px-5">
-        <nav class="navbar navbar-light bg-white navbar-expand-xl">
-            <img src="root/img/logo.PNG" width="50px" alt="ảnh">
-            <a href="home.html" class="navbar-brand">
-                <h3 class="text-black ">AlgorithmMaster</h3>
-            </a>
-            <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse"
+<div id="header" class="px-5">
+    <nav class="navbar navbar-light bg-white navbar-expand-xl">
+        <img th:src="@{/img/logo.PNG}" width="50px" alt="ảnh">
+        <a th:href="@{/ui/v1}" class="navbar-brand">
+            <h3 class="text-black ">AlgorithmMaster</h3>
+        </a>
+        <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarCollapse">
-                <span class="fa fa-bars text-primary"></span>
-            </button>
-            <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
-                <div class="navbar-nav mx-auto">
-                    <a href="problems.html" class="nav-item nav-link font-weight-bold active">
-                        <h4>Problems</h4>
-                    </a>
-                    <a href="submissions.html" class="nav-item nav-link font-weight-bold">
-                        <h4>Submissions</h4>
-                    </a>
-                    <a href="user_leaderboard.html" class="nav-item nav-link">
-                        <h4>Users</h4>
-                    </a>
-                    <a href="contest_list.html" class="nav-item nav-link">
-                        <h4>Contests</h4>
+            <span class="fa fa-bars text-primary"></span>
+        </button>
+        <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+            <div class="navbar-nav mx-auto">
+                <a th:href="@{/ui/v1/exercise}" class="nav-item nav-link font-weight-bold">
+                    <h4>Problems</h4>
+                </a>
+                <a th:href="@{/ui/v1/submission}" class="nav-item nav-link font-weight-bold">
+                    <h4>Submissions</h4>
+                </a>
+                <a href="user_leaderboard.html" class="nav-item nav-link">
+                    <h4>Users</h4>
+                </a>
+                <a href="contest_list.html" class="nav-item nav-link">
+                    <h4>Contests</h4>
+                </a>
+            </div>
+            <div th:switch="${currentUser}">
+                <div th:case="null" class="d-flex m-3 me-0 navbar-nav ">
+                    <a th:href="@{/ui/v1/auth/login}" class="nav-item nav-link font-weight-bold"><p class="btn"><b>Sign
+                        in</b></p></a>
+                    <a th:href="@{/ui/v1/auth/register}" class="nav-item nav-link font-weight-bold"><p
+                            class="btn btn-primary border" style="background-color: #20B486;"><b>Create free account</b>
+                    </p>
                     </a>
                 </div>
-                <div class="d-flex m-3 me-0 navbar-nav ">
-
+                <div th:case="*" class="d-flex m-3 me-0 navbar-nav">
                     <div class="profile-container" style="position: relative;
                     display: inline-block;">
-                        <div class="profile" style="display: flex; align-items: center; background-color: #b6ac9e;color: white;padding: 10px; border-radius: 5px;">
-                            <img src="root/img/logo.PNG" alt="ảnh" class="profile-pic" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
-                            <span>Hello, <strong>Nguyễn Tiến Kiên</strong>.</span>
+                        <div class="profile"
+                             style="display: flex; align-items: center; background-color: #20B486;color: white;padding: 10px; border-radius: 5px;">
+                            <img th:src="@{/img/user.png}" alt="ảnh" class="profile-pic"
+                                 style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
+                            <span>Hello, <strong th:text="*{currentUser.fullName}"></strong>.</span>
                         </div>
-                        <div class="dropdown-menu" style="display: none; position: absolute; top: 100%; left: 0; background-color: #333; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); border-radius: 5px; overflow: hidden; width: 100%;">
-                            <a href="edit_profile.html" style="color: white; padding: 12px 16px; text-decoration: none; display: block;">Edit profile</a>
-                            <a href="signin.html" style="color: white; padding: 12px 16px; text-decoration: none; display: block;">Log out</a>
+                        <div class="dropdown-menu"
+                             style="display: none; position: absolute; top: 100%; left: 0; background-color: #333; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); border-radius: 5px; overflow: hidden; width: 100%;">
+                            <a href="edit_profile.html"
+                               style="color: white; padding: 12px 16px; text-decoration: none; display: block;">Edit
+                                profile</a>
+                            <a th:href="@{/ui/v1/auth/logout}"
+                               style="color: white; padding: 12px 16px; text-decoration: none; display: block;">Log
+                                out</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </nav>
-    </div>
-    <hr>
+        </div>
+    </nav>
+</div>
+<hr>
 
 
-    <div class="container" style="width: 700px;">
-        <h1>Profile</h1>
-        <form>
-            <div class="form-group">
-                <label for="full-name">Full name:</label>
-                <input type="text" id="full-name" name="full-name" value="" placeholder="Nguyen Tien Kien">
-            </div>
-            <div class="form-group">
-                <label for="description">Self-description:</label>
-                <textarea id="description" name="description"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="time-zone">Time zone:</label>
-                <select id="time-zone" name="time-zone" style="width: 100%;">
-                    <option value="saigon">Saigon</option>
-                    <option value="hanoi">Hanoi</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="language">Language:</label>
-                <select id="language" name="language" style="width: 100%;">
-                    <option value="cpp">C++</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="editor-theme">Editor theme:</label>
-                <select id="editor-theme" name="editor-theme" style="width: 100%;">
-                    <option value="site">Follow site theme</option>
-                </select>
-            </div>
-            <div class="form-group checkbox-group">
-                <label>Affiliated organizations:</label>
-                <label><input type="checkbox" name="organizations" value="club"> Luyện Code Club</label>
-                <label><input type="checkbox" name="organizations" value="school"> Luyện Code School</label>
-                <label><input type="checkbox" name="organizations" value="binh-son"> Trường THPT Bình Sơn</label>
-            </div>
-            <div class="buttons">
-                <button type="submit" style="width: 100%; border-radius: 10px;">Update preview</button>
-            </div>
-        </form>
+<div class="container" style="width: 700px;">
+    <h1>Profile</h1>
+    <form>
+        <div class="form-group">
+            <label for="full-name">Full name:</label>
+            <input type="text" id="full-name" name="full-name" value="" placeholder="Nguyen Tien Kien">
+        </div>
+        <div class="form-group">
+            <label for="description">Self-description:</label>
+            <textarea id="description" name="description"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="time-zone">Time zone:</label>
+            <select id="time-zone" name="time-zone" style="width: 100%;">
+                <option value="saigon">Saigon</option>
+                <option value="hanoi">Hanoi</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="language">Language:</label>
+            <select id="language" name="language" style="width: 100%;">
+                <option value="cpp">C++</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="editor-theme">Editor theme:</label>
+            <select id="editor-theme" name="editor-theme" style="width: 100%;">
+                <option value="site">Follow site theme</option>
+            </select>
+        </div>
+        <div class="form-group checkbox-group">
+            <label>Affiliated organizations:</label>
+            <label><input type="checkbox" name="organizations" value="club"> Luyện Code Club</label>
+            <label><input type="checkbox" name="organizations" value="school"> Luyện Code School</label>
+            <label><input type="checkbox" name="organizations" value="binh-son"> Trường THPT Bình Sơn</label>
+        </div>
+        <div class="buttons">
+            <button type="submit" style="width: 100%; border-radius: 10px;">Update preview</button>
+        </div>
+    </form>
 
-    </div>
+</div>
 
 
 </body>
