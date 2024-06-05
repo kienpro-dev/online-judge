@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -99,389 +99,44 @@
             </div>
             <div class="col-sm-8">
                 <div class="border-0 row">
-                    <table class="table table-bordered">
-                        <tr>
-                            <td class="text-center col-sm-2" style="background-color: greenyellow;">
+                    <table class="table table-bordered" th:each="sub : ${submissions}">
+                        <tr th:switch="${sub.status}">
+                            <td th:case="success" class="text-center col-sm-2" style="background-color: #53F23F;">
                                 <table border="0" style="margin: 0 auto;">
                                     <tr>
                                         <td class="text-center">100/100</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-center">AC | C++17</td>
+                                        <td class="text-center">
+                                            <span>AC | </span>
+                                            <span th:text="sub.codeType"></span>
+                                        </td>
                                     </tr>
                                 </table>
                             </td>
-                            <td class="col-sm-8">
-                                <table border="0">
-                                    <tr>
-                                        <td class="font-weight-bold"><b>Bước nhảy xa nhất</b></td>
-                                    </tr>
-                                    <tr>
-                                        <td>hoahoane 10:30:25 pm, 27/02/2024</td>
-                                    </tr>
-                                </table>
-                            </td>
-                            <td class="text-center col-sm-1">
-                                <table style="margin: 0 auto;">
-                                    <tr>
-                                        <td><b>33.15s</b></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">10.8 MB</td>
-                                    </tr>
-                                </table>
-                            </td>
-
-
-                        </tr>
-                        <tr>
-                            <td class="text-center col-sm-2" style="background-color: greenyellow;">
+                            <td th:case="wrong" class="text-center col-sm-2" style="background-color: #CCCCCC;">
                                 <table border="0" style="margin: 0 auto;">
                                     <tr>
-                                        <td class="text-center">100/100</td>
+                                        <td class="text-center">0/100</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-center">AC | C++17</td>
+                                        <td class="text-center" style="color: #EF1B53;">
+                                            <span>WA | </span>
+                                            <span th:text="sub.codeType"></span>
+                                        </td>
                                     </tr>
                                 </table>
                             </td>
-                            <td class="col-sm-8">
-                                <table border="0">
-                                    <tr>
-                                        <td class="font-weight-bold"><b>Bước nhảy xa nhất</b></td>
-                                    </tr>
-                                    <tr>
-                                        <td>hoahoane 10:30:25 pm, 27/02/2024</td>
-                                    </tr>
-                                </table>
-                            </td>
-                            <td class="text-center col-sm-1">
-                                <table style="margin: 0 auto;">
-                                    <tr>
-                                        <td><b>33.15s</b></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">10.8 MB</td>
-                                    </tr>
-                                </table>
-                            </td>
-
-
-                        </tr>
-                        <tr>
-                            <td class="text-center col-sm-2" style="background-color: greenyellow;">
+                            <td th:case="failed" class="text-center col-sm-2" style="background-color: #CCCCCC;">
                                 <table border="0" style="margin: 0 auto;">
                                     <tr>
-                                        <td class="text-center">100/100</td>
+                                        <td class="text-center">---</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-center">AC | C++17</td>
-                                    </tr>
-                                </table>
-                            </td>
-                            <td class="col-sm-8">
-                                <table border="0">
-                                    <tr>
-                                        <td class="font-weight-bold"><b>Bước nhảy xa nhất</b></td>
-                                    </tr>
-                                    <tr>
-                                        <td>hoahoane 10:30:25 pm, 27/02/2024</td>
-                                    </tr>
-                                </table>
-                            </td>
-                            <td class="text-center col-sm-1">
-                                <table style="margin: 0 auto;">
-                                    <tr>
-                                        <td><b>33.15s</b></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">10.8 MB</td>
-                                    </tr>
-                                </table>
-                            </td>
-
-
-                        </tr>
-                        <tr>
-                            <td class="text-center col-sm-2" style="background-color: greenyellow;">
-                                <table border="0" style="margin: 0 auto;">
-                                    <tr>
-                                        <td class="text-center">100/100</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">AC | C++17</td>
-                                    </tr>
-                                </table>
-                            </td>
-                            <td class="col-sm-8">
-                                <table border="0">
-                                    <tr>
-                                        <td class="font-weight-bold"><b>Bước nhảy xa nhất</b></td>
-                                    </tr>
-                                    <tr>
-                                        <td>hoahoane 10:30:25 pm, 27/02/2024</td>
-                                    </tr>
-                                </table>
-                            </td>
-                            <td class="text-center col-sm-1">
-                                <table style="margin: 0 auto;">
-                                    <tr>
-                                        <td><b>33.15s</b></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">10.8 MB</td>
-                                    </tr>
-                                </table>
-                            </td>
-
-
-                        </tr>
-                        <tr>
-                            <td class="text-center col-sm-2" style="background-color: greenyellow;">
-                                <table border="0" style="margin: 0 auto;">
-                                    <tr>
-                                        <td class="text-center">100/100</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">AC | C++17</td>
-                                    </tr>
-                                </table>
-                            </td>
-                            <td class="col-sm-8">
-                                <table border="0">
-                                    <tr>
-                                        <td class="font-weight-bold"><b>Bước nhảy xa nhất</b></td>
-                                    </tr>
-                                    <tr>
-                                        <td>hoahoane 10:30:25 pm, 27/02/2024</td>
-                                    </tr>
-                                </table>
-                            </td>
-                            <td class="text-center col-sm-1">
-                                <table style="margin: 0 auto;">
-                                    <tr>
-                                        <td><b>33.15s</b></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">10.8 MB</td>
-                                    </tr>
-                                </table>
-                            </td>
-
-
-                        </tr>
-                        <tr>
-                            <td class="text-center col-sm-2" style="background-color: greenyellow;">
-                                <table border="0" style="margin: 0 auto;">
-                                    <tr>
-                                        <td class="text-center">100/100</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">AC | C++17</td>
-                                    </tr>
-                                </table>
-                            </td>
-                            <td class="col-sm-8">
-                                <table border="0">
-                                    <tr>
-                                        <td class="font-weight-bold"><b>Bước nhảy xa nhất</b></td>
-                                    </tr>
-                                    <tr>
-                                        <td>hoahoane 10:30:25 pm, 27/02/2024</td>
-                                    </tr>
-                                </table>
-                            </td>
-                            <td class="text-center col-sm-1">
-                                <table style="margin: 0 auto;">
-                                    <tr>
-                                        <td><b>33.15s</b></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">10.8 MB</td>
-                                    </tr>
-                                </table>
-                            </td>
-
-
-                        </tr>
-                        <tr>
-                            <td class="text-center col-sm-2" style="background-color: greenyellow;">
-                                <table border="0" style="margin: 0 auto;">
-                                    <tr>
-                                        <td class="text-center">100/100</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">AC | C++17</td>
-                                    </tr>
-                                </table>
-                            </td>
-                            <td class="col-sm-8">
-                                <table border="0">
-                                    <tr>
-                                        <td class="font-weight-bold"><b>Bước nhảy xa nhất</b></td>
-                                    </tr>
-                                    <tr>
-                                        <td>hoahoane 10:30:25 pm, 27/02/2024</td>
-                                    </tr>
-                                </table>
-                            </td>
-                            <td class="text-center col-sm-1">
-                                <table style="margin: 0 auto;">
-                                    <tr>
-                                        <td><b>33.15s</b></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">10.8 MB</td>
-                                    </tr>
-                                </table>
-                            </td>
-
-
-                        </tr>
-                        <tr>
-                            <td class="text-center col-sm-2" style="background-color: greenyellow;">
-                                <table border="0" style="margin: 0 auto;">
-                                    <tr>
-                                        <td class="text-center">100/100</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">AC | C++17</td>
-                                    </tr>
-                                </table>
-                            </td>
-                            <td class="col-sm-8">
-                                <table border="0">
-                                    <tr>
-                                        <td class="font-weight-bold"><b>Bước nhảy xa nhất</b></td>
-                                    </tr>
-                                    <tr>
-                                        <td>hoahoane 10:30:25 pm, 27/02/2024</td>
-                                    </tr>
-                                </table>
-                            </td>
-                            <td class="text-center col-sm-1">
-                                <table style="margin: 0 auto;">
-                                    <tr>
-                                        <td><b>33.15s</b></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">10.8 MB</td>
-                                    </tr>
-                                </table>
-                            </td>
-
-
-                        </tr>
-                        <tr>
-                            <td class="text-center col-sm-2" style="background-color: greenyellow;">
-                                <table border="0" style="margin: 0 auto;">
-                                    <tr>
-                                        <td class="text-center">100/100</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">AC | C++17</td>
-                                    </tr>
-                                </table>
-                            </td>
-                            <td class="col-sm-8">
-                                <table border="0">
-                                    <tr>
-                                        <td class="font-weight-bold"><b>Bước nhảy xa nhất</b></td>
-                                    </tr>
-                                    <tr>
-                                        <td>hoahoane 10:30:25 pm, 27/02/2024</td>
-                                    </tr>
-                                </table>
-                            </td>
-                            <td class="text-center col-sm-1">
-                                <table style="margin: 0 auto;">
-                                    <tr>
-                                        <td><b>33.15s</b></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">10.8 MB</td>
-                                    </tr>
-                                </table>
-                            </td>
-
-
-                        </tr>
-                        <tr>
-                            <td class="text-center col-sm-2" style="background-color: greenyellow;">
-                                <table border="0" style="margin: 0 auto;">
-                                    <tr>
-                                        <td class="text-center">100/100</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">AC | C++17</td>
-                                    </tr>
-                                </table>
-                            </td>
-                            <td class="col-sm-8">
-                                <table border="0">
-                                    <tr>
-                                        <td class="font-weight-bold"><b>Bước nhảy xa nhất</b></td>
-                                    </tr>
-                                    <tr>
-                                        <td>hoahoane 10:30:25 pm, 27/02/2024</td>
-                                    </tr>
-                                </table>
-                            </td>
-                            <td class="text-center col-sm-1">
-                                <table style="margin: 0 auto;">
-                                    <tr>
-                                        <td><b>33.15s</b></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">10.8 MB</td>
-                                    </tr>
-                                </table>
-                            </td>
-
-
-                        </tr>
-                        <tr>
-                            <td class="text-center col-sm-2" style="background-color: greenyellow;">
-                                <table border="0" style="margin: 0 auto;">
-                                    <tr>
-                                        <td class="text-center">100/100</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">AC | C++17</td>
-                                    </tr>
-                                </table>
-                            </td>
-                            <td class="col-sm-8">
-                                <table border="0">
-                                    <tr>
-                                        <td class="font-weight-bold"><b>Bước nhảy xa nhất</b></td>
-                                    </tr>
-                                    <tr>
-                                        <td>hoahoane 10:30:25 pm, 27/02/2024</td>
-                                    </tr>
-                                </table>
-                            </td>
-                            <td class="text-center col-sm-1">
-                                <table style="margin: 0 auto;">
-                                    <tr>
-                                        <td><b>33.15s</b></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">10.8 MB</td>
-                                    </tr>
-                                </table>
-                            </td>
-
-
-                        </tr>
-                        <tr>
-                            <td class="text-center col-sm-2" style="background-color: greenyellow;">
-                                <table border="0" style="margin: 0 auto;">
-                                    <tr>
-                                        <td class="text-center">100/100</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">AC | C++17</td>
+                                        <td class="text-center" style="color: #EF1B53;">
+                                            <span>FAILED | </span>
+                                            <span th:text="sub.codeType"></span>
+                                        </td>
                                     </tr>
                                 </table>
                             </td>
@@ -509,7 +164,7 @@
                     </table>
                 </div>
             </div>
-            <div class="col-sm-4 navbar-light bg-white navbar-expand-xl">
+            <div class="ps-5 ms-5 col-sm-4 navbar-light bg-white navbar-expand-xl">
                 <h4 class="bg-dark text-white"
                     style="padding: 10px; border-top-left-radius: 15px; border-top-right-radius: 15px;">Filter
                     submissions</h4>

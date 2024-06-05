@@ -142,7 +142,7 @@
                              style="display: flex; align-items: center; background-color: #20B486;color: white;padding: 10px; border-radius: 5px;">
                             <img th:src="@{/img/user.png}" alt="ảnh" class="profile-pic"
                                  style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
-                            <span>Hello, <strong>Nguyễn Tiến Kiên</strong>.</span>
+                            <span>Hello, <strong th:text="*{currentUser.fullName}"></strong>.</span>
                         </div>
                         <div class="dropdown-menu"
                              style="display: none; position: absolute; top: 100%; left: 0; background-color: #333; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); border-radius: 5px; overflow: hidden; width: 100%;">
