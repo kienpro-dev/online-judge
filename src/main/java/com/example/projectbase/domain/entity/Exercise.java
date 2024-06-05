@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import jakarta.persistence.*;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -53,11 +54,11 @@ public class Exercise extends DateAuditing {
     private List<Contest> exercises_contests;
 
     public long countSuccessSubmissions() {
-        return submissions.stream().filter(submission -> submission.getStatus().equals("true")).count();
+        return submissions.stream().filter(submission -> submission.getStatus().equals("success")).count();
     }
 
     public long countFailedSubmissions() {
-        return submissions.stream().filter(submission -> submission.getStatus().equals("false")).count();
+        return submissions.stream().filter(submission -> "wrong failed".contains(submission.getStatus())).count();
     }
 
     public double calculateCorrectPercentage() {
@@ -73,9 +74,8 @@ public class Exercise extends DateAuditing {
 
     public boolean isSolvedByCurrentUser(String currentUsername) {
         return submissions.stream()
-                          .map(Submission::getUser)
-                          .filter(Objects::nonNull)
-                          .anyMatch(user -> user.getUsername().equals(currentUsername));
+                .filter(submission -> submission.getUser() != null && submission.getUser().getUsername().equals(currentUsername))
+                .anyMatch(submission -> submission.getStatus().equals("success"));
     }
 
 }
