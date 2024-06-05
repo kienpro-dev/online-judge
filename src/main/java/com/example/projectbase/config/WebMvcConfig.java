@@ -11,12 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addFormatters(FormatterRegistry registry) {
-        registry.addConverter(dateTimeConverter());
-    }
-
-    @Bean
-    private DateTimeConverter dateTimeConverter() {
-        return new DateTimeConverter("HH:mm:ss, dd/MM/yyyy");
+        registry.addConverter(new DateTimeConverter());
     }
 }
 
