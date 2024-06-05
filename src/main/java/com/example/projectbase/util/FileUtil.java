@@ -172,6 +172,19 @@ public class FileUtil {
         return convertFile;
     }
 
+    public static String readDataFromFile(File file) throws IOException {
+        StringBuilder contentBuilder = new StringBuilder();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                contentBuilder.append(line).append("\n");
+            }
+        }
+
+        return contentBuilder.toString();
+    }
+
     public static byte[] convertPdfToLongImage(File pdfFile) throws IOException {
         PDDocument document = PDDocument.load(pdfFile);
         PDFRenderer renderer = new PDFRenderer(document);
