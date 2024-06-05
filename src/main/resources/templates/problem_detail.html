@@ -93,7 +93,10 @@
 </div>
 <hr>
 <div class="container" style="min-height: 1000px;" th:object="${exercise}">
-    <h2 th:text="${exercise.name}"></h2>
+    <h2>
+        <span>Problem Detail ID: </span>
+        <span th:text="${exercise.id}"></span>
+    </h2>
     <hr>
 
     <div class="row">
@@ -124,9 +127,9 @@
             <hr>
             <span th:switch="${exercise.category}">
                     <b>Points: </b>
-                    <span th:case="'Dễ'">0.1</span>
-                    <span th:case="'Trung bình'">0.2</span>
-                    <span th:case="'Khó'">0.3</span>
+                    <span th:case="'Dễ'">1.0</span>
+                    <span th:case="'Trung bình'">2.0</span>
+                    <span th:case="'Khó'">3.0</span>
                     <span th:case="*">0.0</span>
                     <span> (partial)</span>
                 </span>
