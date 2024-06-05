@@ -2,8 +2,11 @@ package com.example.projectbase.controller;
 
 import com.example.projectbase.base.UiV1;
 import com.example.projectbase.constant.UrlConstant;
+import com.example.projectbase.domain.dto.SubmissionDto;
 import com.example.projectbase.domain.entity.Exercise;
+import com.example.projectbase.domain.entity.Submission;
 import com.example.projectbase.service.ExerciseService;
+import com.example.projectbase.service.SubmissionService;
 import com.example.projectbase.util.FileUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +24,13 @@ import java.io.IOException;
 
 @AllArgsConstructor
 @UiV1
-public class ExerciseController extends BaseController{
+public class ExerciseController extends BaseController {
 
     @Autowired
     private ExerciseService exerciseService;
+
+    @Autowired
+    private SubmissionService submissionService;
 
     @GetMapping(UrlConstant.Exercise.GET_EXERCISES)
     public String getPage(Model model,
@@ -47,21 +53,21 @@ public class ExerciseController extends BaseController{
     }
 
     @PostMapping(UrlConstant.Exercise.SUBMIT_CODE)
-    public String submitCode(Model model, @PathVariable Long exerciseId, @RequestParam("file") MultipartFile file) throws IOException, InterruptedException {
+    public String submitCode(Model model, @PathVariable Long exerciseId, @RequestParam("file") MultipartFile file, @RequestParam(required = false) Long contestId) throws IOException, InterruptedException {
+        Exercise exercise = exerciseService.getExerciseById(exerciseId);
+        model.addAttribute("exercise", exercise);
+        if (getCurrentUser() == null) {
+            model.addAttribute("auth", "Bạn cần đăng nhập để nộp bài");
+            return "problem_detail";
+        }
         if (!file.isEmpty()) {
-            String message = exerciseService.compileAndRunExercise(file, exerciseId);
-            if(message.equals("success")) {
+            SubmissionDto submissionDto = exerciseService.compileAndRunExercise(file, exerciseId, getCurrentUser().getId(), contestId);
+            Submission submission = submissionService.createSubmission(submissionDto);
+            return "redirect:/ui/v1/submission";
 
-            } else if (message.equals("wrong")) {
-
-            } else if (message.equals("failed")) {
-
-            }
         } else {
             model.addAttribute("error", "File chưa được chọn");
         }
-        Exercise exercise = exerciseService.getExerciseById(exerciseId);
-        model.addAttribute("exercise", exercise);
         return "problem_detail";
     }
 }

@@ -14,7 +14,11 @@ public class SubmissionDto {
 
     private String code;
 
+    private String codeType;
+
     private Long userId;
 
     private Long exId;
+
+    private Long contestId;
 }

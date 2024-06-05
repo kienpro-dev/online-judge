@@ -1,6 +1,7 @@
 package com.example.projectbase.service;
 
 import com.example.projectbase.domain.dto.ExerciseDto;
+import com.example.projectbase.domain.dto.SubmissionDto;
 import com.example.projectbase.domain.entity.Exercise;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,5 +18,5 @@ public interface ExerciseService {
 
     Exercise createExercise(ExerciseDto exerciseDto) throws IOException;
 
-    String compileAndRunExercise(MultipartFile file, Long id) throws IOException;
+    SubmissionDto compileAndRunExercise(MultipartFile file, Long id, Long userId, Long contestId) throws IOException;
 }

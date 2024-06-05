@@ -24,6 +24,9 @@ public class Submission extends DateAuditing {
     @Lob
     private String code;
 
+    @Column(nullable = false)
+    private String codeType;
+
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;

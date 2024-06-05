@@ -2,6 +2,7 @@ package com.example.projectbase.service.impl;
 
 import com.example.projectbase.constant.ErrorMessage;
 import com.example.projectbase.domain.dto.ExerciseDto;
+import com.example.projectbase.domain.dto.SubmissionDto;
 import com.example.projectbase.domain.entity.Exercise;
 import com.example.projectbase.domain.entity.User;
 import com.example.projectbase.domain.mapper.ExerciseMapper;
@@ -54,19 +55,12 @@ public class ExerciseServiceImpl implements ExerciseService {
     }
 
     @Override
-    public String compileAndRunExercise(MultipartFile file, Long id) throws IOException {
+    public SubmissionDto compileAndRunExercise(MultipartFile file, Long id, Long userId, Long contestId) throws IOException {
         Exercise exercise = exerciseRepository.findById(id).orElseThrow(() -> new NotFoundException(ErrorMessage.User.ERR_NOT_FOUND_ID));
         File tempFile = FileUtil.convertMultipartToFile(file);
         String message = CompileUtil.compileAndRunExercise(tempFile, exercise.getTestInput(), exercise.getTestOutput());
-        if (message.equals("success")) {
-
-        } else if (message.equals("wrong")) {
-
-        } else if (message.equals("failed")) {
-
-        }
-
-        return message;
+        String code = FileUtil.readDataFromFile(tempFile);
+        return new SubmissionDto(message, code, "java", userId, id, contestId);
     }
 
 }
