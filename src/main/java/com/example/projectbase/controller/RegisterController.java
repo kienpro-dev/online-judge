@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @UiV1
 @AllArgsConstructor
-public class RegisterController {
+public class RegisterController extends BaseController{
 
     private final UserService userService;
 
