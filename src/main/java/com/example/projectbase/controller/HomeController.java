@@ -19,7 +19,6 @@ public class HomeController extends BaseController{
     public String getPage(Model model) {
         List<Blog> blogs = blogService.getAllBlogs();
         model.addAttribute("listBlogs", blogs);
-        model.addAttribute("currentUser", getCurrentUser());
         return "home";
     }
 }

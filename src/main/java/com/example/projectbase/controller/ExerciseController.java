@@ -35,7 +35,6 @@ public class ExerciseController extends BaseController{
         model.addAttribute("exercises", exercises);
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", exercises.getTotalPages());
-        model.addAttribute("currentUser", getCurrentUser());
 
         return "problems";
     }
