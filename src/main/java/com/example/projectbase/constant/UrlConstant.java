@@ -42,4 +42,10 @@ public class UrlConstant {
     public static final String GET_SUBMISSION = PRE_FIX + "/{submissionId}";
   }
 
+  public static class Board {
+    private static final String PRE_FIX = "/board";
+
+    public static final String GET_USER_BOARD = PRE_FIX + "/user";
+  }
+
 }

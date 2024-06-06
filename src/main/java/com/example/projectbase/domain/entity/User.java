@@ -11,7 +11,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -70,6 +72,33 @@ public class User extends DateAuditing implements UserDetails {
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "contests_users")
     @JsonIgnore
     private List<Contest> users_contests;
+
+    @Transient
+    private double totalPoints = calculateTotalPoints();
+
+    public double calculateTotalPoints() {
+        double totalPoints = 0;
+        if (submissions != null) {
+            for (Submission submission : submissions) {
+                if ("success".equals(submission.getStatus())) {
+                    totalPoints += submission.getExercise().getScore();
+                }
+            }
+        }
+        return totalPoints;
+    }
+
+    public int calculateTotalExercise() {
+        Set<Long> uniqueExerciseIds = new HashSet<>();
+        if (submissions != null) {
+            for (Submission submission : submissions) {
+                if ("success".equals(submission.getStatus())) {
+                    uniqueExerciseIds.add(submission.getExercise().getId());
+                }
+            }
+        }
+        return uniqueExerciseIds.size();
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

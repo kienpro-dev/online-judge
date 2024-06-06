@@ -18,10 +18,12 @@ import com.example.projectbase.util.PaginationUtil;
 import com.example.projectbase.util.RandomPassUtil;
 import com.example.projectbase.util.SendMailUtil;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -92,6 +94,13 @@ public class UserServiceImpl implements UserService {
       e.printStackTrace();
     }
     return true;
+  }
+
+  @Override
+  public Page<User> getAllUsers(Pageable pageable) {
+    Page<User> users = userRepository.findAll(pageable);
+//    users.getContent().sort(Comparator.comparing(User::calculateTotalPoints).reversed());
+    return users;
   }
 
 }

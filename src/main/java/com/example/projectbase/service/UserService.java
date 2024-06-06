@@ -4,6 +4,9 @@ import com.example.projectbase.domain.dto.pagination.PaginationFullRequestDto;
 import com.example.projectbase.domain.dto.pagination.PaginationResponseDto;
 import com.example.projectbase.domain.dto.request.UserCreateDto;
 import com.example.projectbase.domain.dto.response.UserDto;
+import com.example.projectbase.domain.entity.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface UserService {
 
@@ -14,4 +17,6 @@ public interface UserService {
   boolean createUser(UserCreateDto userCreateDto);
 
   boolean resetPassword(String email);
+
+  Page<User> getAllUsers(Pageable pageable);
 }
