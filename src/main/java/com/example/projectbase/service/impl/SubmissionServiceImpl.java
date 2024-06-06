@@ -27,7 +27,7 @@ public class SubmissionServiceImpl implements SubmissionService {
 
     @Override
     public Page<Submission> getAllSubmissions(Pageable pageable) {
-        return submissionRepository.findAll(pageable);
+        return submissionRepository.findAllByCreatedAtDesc(pageable);
     }
 
     @Override
