@@ -20,9 +20,9 @@ public class SubmissionController extends BaseController{
 
     @GetMapping(UrlConstant.Submission.GET_SUBMISSIONS)
     public String getPage(Model model,
-                          @RequestParam(name = "page", defaultValue = "1") int page,
+                          @RequestParam(name = "page", defaultValue = "0") int page,
                           @RequestParam(name = "size", defaultValue = "10") int size) {
-        Page<Submission> submissions = submissionService.getAllSubmissions(PageRequest.of(page - 1, size));
+        Page<Submission> submissions = submissionService.getAllSubmissions(PageRequest.of(page, size));
         model.addAttribute("submissions", submissions);
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", submissions.getTotalPages());

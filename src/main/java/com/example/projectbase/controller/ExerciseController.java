@@ -34,9 +34,9 @@ public class ExerciseController extends BaseController {
 
     @GetMapping(UrlConstant.Exercise.GET_EXERCISES)
     public String getPage(Model model,
-                          @RequestParam(name = "page", defaultValue = "1") int page,
+                          @RequestParam(name = "page", defaultValue = "0") int page,
                           @RequestParam(name = "size", defaultValue = "10") int size) {
-        Page<Exercise> exercises = exerciseService.getAllExercise(PageRequest.of(page - 1, size));
+        Page<Exercise> exercises = exerciseService.getAllExercise(PageRequest.of(page, size));
 
         model.addAttribute("exercises", exercises);
         model.addAttribute("currentPage", page);

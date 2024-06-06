@@ -87,16 +87,12 @@
 
     <div class="row mt-2 container">
         <div class="list-group list-group-horizontal">
-            <div th:if="${totalPages > 1}" class="list-group list-group-horizontal"
-                 th:each="pageNumber : ${#numbers.sequence(1, totalPages)}">
-                <a th:class="${pageNumber == currentPage+1 ? 'list-group-item text-white bg-dark border active' : 'list-group-item text-white bg-dark border'}"
-                   th:href="@{/ui/v1/submission(page=${pageNumber})}" th:text="${pageNumber}"></a>
-                <!--                <a href="#" class="list-group-item text-white bg-dark border">&lt&lt</a>-->
-                <!--                <a href="#" class="list-group-item text-white bg-dark border active">1</a>-->
-                <!--                <a href="#" class="list-group-item text-white bg-dark border">2</a>-->
-                <!--                <a href="#" class="list-group-item text-white bg-dark border">3</a>-->
-                <!--                <a href="#" class="list-group-item text-white bg-dark border">>></a>-->
-            </div>
+            <<ul th:if="${totalPages > 1}" class="list-group list-group-horizontal">
+                <li th:each="pageNumber : ${#numbers.sequence(1, totalPages)}"
+                    th:class="${pageNumber == currentPage + 1 ? 'list-group-item text-white bg-dark border active' : 'list-group-item text-white bg-dark border'}">
+                    <a style="text-decoration: none; color: white" th:href="@{/ui/v1/exercise(page=${pageNumber - 1})}" th:text="${pageNumber}"></a>
+                </li>
+            </ul>
             <div class="col-sm-8">
                 <div class="border-0 row">
                     <table class="table table-bordered mb-0" th:each="sub : ${submissions}">
