@@ -123,7 +123,7 @@
             <div class="navbar-nav mx-auto">
                 <a th:href="@{/ui/v1/exercise}" class="nav-item nav-link font-weight-bold"><h4>Problems</h4></a>
                 <a th:href="@{/ui/v1/submission}" class="nav-item nav-link font-weight-boldS"><h4>Submissions</h4></a>
-                <a href="user_leaderboard.html" class="nav-item nav-link"><h4>Users</h4></a>
+                <a th:href="@{/ui/v1/board/user}" class="nav-item nav-link"><h4>Users</h4></a>
                 <a href="contest_list.html" class="nav-item nav-link"><h4>Contests</h4></a>
             </div>
             <div th:switch="${currentUser}">
