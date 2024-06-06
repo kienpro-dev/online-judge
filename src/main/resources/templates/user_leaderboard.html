@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <title>User Leader Board</title>
+    <link rel="shortcut icon" th:href="@{/img/logo.PNG}"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
 </head>
 <style>
     *{
@@ -19,147 +23,114 @@
     .active{
         color: #1A906B !important;
     }
-    
+
 </style>
 <body>
-    <div id="header" class="px-5">
-        <nav class="navbar navbar-light bg-white navbar-expand-xl" >
-            <img src="root/img/logo.PNG" width="50px" alt="ảnh">
-            <a href="home.html" class="navbar-brand"><h3 class="text-black ">AlgorithmMaster</h3></a>
-            <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="fa fa-bars text-primary"></span>
-            </button>
-            <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
-                <div class="navbar-nav mx-auto">
-                    <a href="problems.html" class="nav-item nav-link font-weight-bold"><h4>Problems</h4></a>
-                    <a href="submissions.html" class="nav-item nav-link font-weight-bold"><h4>Submissions</h4></a>
-                    <a href="user_leaderboard.html" class="nav-item nav-link active"><h4>Users</h4></a>
-                    <a href="contest_list.html" class="nav-item nav-link"><h4>Contests</h4></a>
+<div id="header" class="px-5">
+    <nav class="navbar navbar-light bg-white navbar-expand-xl">
+        <img th:src="@{/img/logo.PNG}" width="50px" alt="ảnh">
+        <a th:href="@{/ui/v1}" class="navbar-brand"><h3 class="text-black ">AlgorithmMaster</h3></a>
+        <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarCollapse">
+            <span class="fa fa-bars text-primary"></span>
+        </button>
+        <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+            <div class="navbar-nav mx-auto">
+                <a th:href="@{/ui/v1/exercise}" class="nav-item nav-link font-weight-bold"><h4>Problems</h4></a>
+                <a th:href="@{/ui/v1/submission}" class="nav-item nav-link font-weight-bold"><h4>Submissions</h4></a>
+                <a th:href="@{/ui/v1/board/user}" class="nav-item nav-link active"><h4>Users</h4></a>
+                <a href="contest_list.html" class="nav-item nav-link"><h4>Contests</h4></a>
+            </div>
+            <div th:switch="${currentUser}">
+                <div th:case="null" class="d-flex m-3 me-0 navbar-nav ">
+                    <a th:href="@{/ui/v1/auth/login}" class="nav-item nav-link font-weight-bold"><p class="btn"><b>Sign
+                        in</b></p></a>
+                    <a th:href="@{/ui/v1/auth/register}" class="nav-item nav-link font-weight-bold"><p
+                            class="btn btn-primary border" style="background-color: #20B486;"><b>Create free account</b>
+                    </p>
+                    </a>
                 </div>
-                <div class="d-flex m-3 me-0 navbar-nav ">
-                    <a href="signin.html" class="nav-item nav-link font-weight-bold"><p class="btn"><b>Sign in</b></p></a>
-                    <a href="signup.html" class="nav-item nav-link font-weight-bold"><p class="btn btn-primary border" style="background-color: #20B486;"><b>Create free account</b></p></a>
+                <div th:case="*" class="d-flex m-3 me-0 navbar-nav">
+                    <div class="profile-container" style="position: relative;
+                    display: inline-block;">
+                        <div class="profile"
+                             style="display: flex; align-items: center; background-color: #20B486;color: white;padding: 10px; border-radius: 5px;">
+                            <img th:src="@{/img/user.png}" alt="ảnh" class="profile-pic"
+                                 style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
+                            <span>Hello, <strong th:text="*{currentUser.fullName}"></strong>.</span>
+                        </div>
+                        <div class="dropdown-menu"
+                             style="display: none; position: absolute; top: 100%; left: 0; background-color: #333; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); border-radius: 5px; overflow: hidden; width: 100%;">
+                            <a href="edit_profile.html"
+                               style="color: white; padding: 12px 16px; text-decoration: none; display: block;">Edit
+                                profile</a>
+                            <a th:href="@{/ui/v1/auth/logout}"
+                               style="color: white; padding: 12px 16px; text-decoration: none; display: block;">Log
+                                out</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </nav>
-    </div>
-    <hr>
-    <div class="container mt-5" style="min-height: 1000px;">
-        <div class="d-flex">
-            <h2>Leaderboard</h2>
-            <div class="d-flex navbar-collapse bg-white justify-content-end">
-                <a href="#" class="nav-item nav-link hover" ><p class="btn" style="border-bottom: 3px solid green !important; border: 1px solid #ccc;">Leaderboard</p></a>
-                <a href="user_organization.html" class="nav-item nav-link"><p class="btn btn-outline-secondary border-0" style=" margin-right: -10px; margin-left: -20px;">Organization</p></a>
-            </div>
         </div>
-        <hr style="margin-top: -25px;">
-        <div class="row container">
-            <div class="list-group list-group-horizontal">
-                <a href="#" class="list-group-item text-white bg-dark border">&lt&lt</a>
-                <a href="#" class="list-group-item text-white bg-dark border active">1</a>
-                <a href="#" class="list-group-item text-white bg-dark border">2</a>
-                <a href="#" class="list-group-item text-white bg-dark border">3</a>
-                <a href="#" class="list-group-item text-white bg-dark border">>></a>
-              </div>
-            
-                <div class="border-0 row">
-                    <table class="table table-bordered">
-                        <tr class="bg-dark text-white">
-                            <th class="col-sm-1 text-center">Rank</th>
-                            <th class="col-sm-1 text-center">Rating</th>
-                            <th class="col-sm-7 text-center">Username</th>
-                            <th class="col-sm-1 text-center">Points</th>
-                            <th class="col-sm-2 text-center">Problem count</th>
-                            
-                        </tr>
-                        <tr>
-                            <td class="text-center align-middle">1</td>
-                            <td class="text-center align-middle text-primary">1612</td>
-                            <td class="align-middle">
-                                <a style="text-decoration: none;" href="perinformation.html"><p class="text-primary mb-1" style="margin-top: -10px">hoahoane</p></a>
-                                <a style="text-decoration: none; color: #000;" href="perinformation.html">Phạm Thị Hoa</a>
-                            </td>
-                            <td class="text-center align-middle">11.72</td>
-                            <td class="text-center align-middle">24</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center align-middle">1</td>
-                            <td class="text-center align-middle text-primary">1612</td>
-                            <td class="align-middle">
-                                <a style="text-decoration: none;" href="perinformation.html"><p class="text-primary mb-1" style="margin-top: -10px">hoahoane</p></a>
-                                <a style="text-decoration: none; color: #000;" href="perinformation.html">Phạm Thị Hoa</a>
-                            </td>
-                            <td class="text-center align-middle">11.72</td>
-                            <td class="text-center align-middle">24</td>
-                        </tr><tr>
-                            <td class="text-center align-middle">1</td>
-                            <td class="text-center align-middle text-primary">1612</td>
-                            <td class="align-middle">
-                                <a style="text-decoration: none;" href="perinformation.html"><p class="text-primary mb-1" style="margin-top: -10px">hoahoane</p></a>
-                                <a style="text-decoration: none; color: #000;" href="perinformation.html">Phạm Thị Hoa</a>
-                            </td>
-                            <td class="text-center align-middle">11.72</td>
-                            <td class="text-center align-middle">24</td>
-                        </tr><tr>
-                            <td class="text-center align-middle">1</td>
-                            <td class="text-center align-middle text-primary">1612</td>
-                            <td class="align-middle">
-                                <a style="text-decoration: none;" href="perinformation.html"><p class="text-primary mb-1" style="margin-top: -10px">hoahoane</p></a>
-                                <a style="text-decoration: none; color: #000;" href="perinformation.html">Phạm Thị Hoa</a>
-                            </td>
-                            <td class="text-center align-middle">11.72</td>
-                            <td class="text-center align-middle">24</td>
-                        </tr><tr>
-                            <td class="text-center align-middle">1</td>
-                            <td class="text-center align-middle text-primary">1612</td>
-                            <td class="align-middle">
-                                <a style="text-decoration: none;" href="perinformation.html"><p class="text-primary mb-1" style="margin-top: -10px">hoahoane</p></a>
-                                <a style="text-decoration: none; color: #000;" href="perinformation.html">Phạm Thị Hoa</a>
-                            </td>
-                            <td class="text-center align-middle">11.72</td>
-                            <td class="text-center align-middle">24</td>
-                        </tr><tr>
-                            <td class="text-center align-middle">1</td>
-                            <td class="text-center align-middle text-primary">1612</td>
-                            <td class="align-middle">
-                                <a style="text-decoration: none;" href="perinformation.html"><p class="text-primary mb-1" style="margin-top: -10px">hoahoane</p></a>
-                                <a style="text-decoration: none; color: #000;" href="perinformation.html">Phạm Thị Hoa</a>
-                            </td>
-                            <td class="text-center align-middle">11.72</td>
-                            <td class="text-center align-middle">24</td>
-                        </tr><tr>
-                            <td class="text-center align-middle">1</td>
-                            <td class="text-center align-middle text-primary">1612</td>
-                            <td class="align-middle">
-                                <a style="text-decoration: none;" href="perinformation.html"><p class="text-primary mb-1" style="margin-top: -10px">hoahoane</p></a>
-                                <a style="text-decoration: none; color: #000;" href="perinformation.html">Phạm Thị Hoa</a>
-                            </td>
-                            <td class="text-center align-middle">11.72</td>
-                            <td class="text-center align-middle">24</td>
-                        </tr><tr>
-                            <td class="text-center align-middle">1</td>
-                            <td class="text-center align-middle text-primary">1612</td>
-                            <td class="align-middle">
-                                <a style="text-decoration: none;" href="perinformation.html"><p class="text-primary mb-1" style="margin-top: -10px">hoahoane</p></a>
-                                <a style="text-decoration: none; color: #000;" href="perinformation.html">Phạm Thị Hoa</a>
-                            </td>
-                            <td class="text-center align-middle">11.72</td>
-                            <td class="text-center align-middle">24</td>
-                        </tr>
-                        
-                    </table>
-                </div>
-                <div class="list-group list-group-horizontal">
-                    <a href="#" class="list-group-item text-white bg-dark border">&lt&lt</a>
-                    <a href="#" class="list-group-item text-white bg-dark border active">1</a>
-                    <a href="#" class="list-group-item text-white bg-dark border">2</a>
-                    <a href="#" class="list-group-item text-white bg-dark border">3</a>
-                    <a href="#" class="list-group-item text-white bg-dark border">>></a>
-                  </div>
-                
+    </nav>
+</div>
+<hr>
+<div class="container mt-5" style="min-height: 1000px;">
+    <div class="d-flex">
+        <h2>Leaderboard</h2>
+        <div class="d-flex navbar-collapse bg-white justify-content-end">
+            <a href="#" class="nav-item nav-link hover"><p class="btn"
+                                                           style="border-bottom: 3px solid green !important; border: 1px solid #ccc;">
+                Leaderboard</p></a>
+            <a href="user_organization.html" class="nav-item nav-link"><p class="btn btn-outline-secondary border-0"
+                                                                          style=" margin-right: -10px; margin-left: -20px;">
+                Organization</p></a>
         </div>
     </div>
-    
+    <hr style="margin-top: -25px;">
+    <div class="row container">
+        <ul th:if="${totalPages > 1}" class="list-group list-group-horizontal">
+                <li th:each="pageNumber : ${#numbers.sequence(1, totalPages)}"
+                    th:class="${pageNumber == currentPage + 1 ? 'list-group-item text-white bg-dark border active' : 'list-group-item text-white bg-dark border'}">
+                    <a style="text-decoration: none; color: white" th:href="@{/ui/v1/board/user(page=${pageNumber - 1})}" th:text="${pageNumber}"></a>
+                </li>
+        </ul>
+
+        <div class="border-0 row">
+            <table class="table table-bordered">
+                <tr class="bg-dark text-white">
+                    <th class="col-sm-1 text-center">Rank</th>
+                    <th class="col-sm-1 text-center">Rating</th>
+                    <th class="col-sm-7 text-center">Username</th>
+                    <th class="col-sm-1 text-center">Points</th>
+                    <th class="col-sm-2 text-center">Problem count</th>
+
+                </tr>
+                <tr th:each="u,i : ${users}">
+                    <td class="text-center align-middle" th:text="${i.index + 1}"></td>
+                    <td class="text-center align-middle text-primary">----</td>
+                    <td class="align-middle">
+                        <a style="text-decoration: none;" href="perinformation.html">
+                            <p class="text-primary mb-1" style="margin-top: -10px" th:text="${u.username}"></p>
+                        </a>
+                        <a style="text-decoration: none; color: #000;" href="perinformation.html" th:text="${u.fullName}"></a>
+                    </td>
+                    <td class="text-center align-middle" th:text="${u.calculateTotalPoints()}"></td>
+                    <td class="text-center align-middle" th:text="${u.calculateTotalExercise()}"></td>
+                </tr>
+
+            </table>
+        </div>
+        <ul th:if="${totalPages > 1}" class="list-group list-group-horizontal">
+                <li th:each="pageNumber : ${#numbers.sequence(1, totalPages)}"
+                    th:class="${pageNumber == currentPage + 1 ? 'list-group-item text-white bg-dark border active' : 'list-group-item text-white bg-dark border'}">
+                    <a style="text-decoration: none; color: white" th:href="@{/ui/v1/board/user(page=${pageNumber - 1})}" th:text="${pageNumber}"></a>
+                </li>
+        </ul>
+
+    </div>
+</div>
+
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
