@@ -172,8 +172,8 @@
                     </a>
                 </div>
                 <hr>
-                <div class="sidebox-content">
-                    <section class="sticky post pb-5" id="post-850">
+                <div class="sidebox-content" th:each="blog : ${listBlogs}">
+                    <section class="sticky post pb-5">
                         <div style="display: flex; gap: 0.5em;">
                             <div class="vote">
                                 <a href="javascript:alert('Hãy đăng nhập để bình chọn')"
@@ -187,98 +187,32 @@
                             </div>
                             <div>
                                 <h4 class="title">
-                                    <a href="" previewlistener="true">VNOI CUP 2024: CÁC BẠN HỎI -
-                                        VNOI ĐÁP</a>
+                                    <a href="" previewlistener="true" th:text="${blog.name}"></a>
                                 </h4>
                                 <span class="time"><i title="Sticky" class="fa fa-star fa-fw"></i><span
                                         class="post-authors"><span class="rating rate-none user"><a
                                         href="" style="display: inline-block;"
-                                        previewlistener="true">admin</a></span></span>
+                                        previewlistener="true" th:text="${blog.user.username}"></a></span></span>
                                     <i class="fa-regular fa-circle-check"></i>
-                                        <span data-iso="2024-05-19T13:57:01+00:00" class="time-with-rel"
-                                              title="19, Tháng 5, 2024, 13:57" data-format="đã đăng {time}">đã đăng
-                                            8:57:01 ch, 19/05/2024</span>
+                                        <span class="time-with-rel" data-format="đã đăng {time}">đã đăng </span>
+                                        <span th:text="${#dates.format(blog.createdDate, 'HH:mm:ss, dd/MM/yyyy')}"></span>
                                     </span>
                             </div>
                         </div>
                         <div class="summary content-description blog-body border-start border-dark border-5 ps-3 pb-1">
                             <div>
-                                <p> Chỉ còn hơn tuần nữa, VNOI CUP sẽ chính thức khởi tranh.
-                                    Ngoài sự quan tâm đông đảo từ các thí sinh, BTC cũng nhận được vô số câu hỏi,
-                                    băn khoăn về cuộc thi từ các bạn. Với sự trở lại đầy khác biệt về thể lệ của
-                                    VNOI CUP, hãy cùng chúng mình giải
-                                    đáp những thắc mắc này nhé
-                                </p>
+                                <p th:text="${blog.content}"></p>
                             </div>
                         </div>
                         <div class="border border-secondary border-1 p-1 ps-3 pe-3 mt-3">
                             <i class="fa fa-user"></i>
                             <span class="rating rate-none user">
-                                <a href="" style="display: inline-block;vertical-align:middle;">admin</a>
+                                <a href="" style="display: inline-block;vertical-align:middle;" th:text="${blog.user.fullName}"></a>
                             </span>
                             <div style="float: right">
                                 <i class="fa fa-clock-o"></i>
-                                <span data-iso="2024-05-15T09:20:57.849742+00:00" class="time-with-rel"
-                                      title="May 15, 2024, 9:20 a.m."
-                                      data-format="{time}">4:20:57 pm, 15/05/2024
-                                    </span>
-                                <span class="comment-data">
-                                        <i class="fa fa-comments comment-icon"></i>
-                                        <span class="comment-count">0</span>
-                                </span>
-                            </div>
-                        </div>
-
-                    </section>
-
-                    <section class="sticky post pb-5" id="post-851">
-                        <div style="display: flex; gap: 0.5em;">
-                            <div class="vote">
-                                <a href="javascript:alert('Hãy đăng nhập để bình chọn')"
-                                   title="Hãy đăng nhập để bình chọn"
-                                   class="upvote-link fa fa-chevron-up fa-fw"></a>
-                                <br>
-                                <div id="post-score" class="comment-score">15</div>
-                                <a href="javascript:alert('Hãy đăng nhập để bình chọn')"
-                                   title="Hãy đăng nhập để bình chọn"
-                                   class="downvote-link fa fa-chevron-down fa-fw"></a>
-                            </div>
-                            <div>
-                                <h4 class="title">
-                                    <a href="" previewlistener="true">VNOI CUP 2024: CÁC BẠN HỎI -
-                                        VNOI ĐÁP</a>
-                                </h4>
-                                <span class="time"><i title="Sticky" class="fa fa-star fa-fw"></i><span
-                                        class="post-authors"><span class="rating rate-none user"><a
-                                        href="" style="display: inline-block;"
-                                        previewlistener="true">admin</a></span></span>
-                                    <i class="fa-regular fa-circle-check"></i>
-                                        <span data-iso="2024-05-19T13:57:01+00:00" class="time-with-rel"
-                                              title="19, Tháng 5, 2024, 13:57" data-format="đã đăng {time}">đã đăng
-                                            8:57:01 ch, 19/05/2024</span>
-                                    </span>
-                            </div>
-                        </div>
-                        <div class="summary content-description blog-body border-start border-dark border-5 ps-3 pb-1">
-                            <div>
-                                <p> Chỉ còn hơn tuần nữa, VNOI CUP sẽ chính thức khởi tranh.
-                                    Ngoài sự quan tâm đông đảo từ các thí sinh, BTC cũng nhận được vô số câu hỏi,
-                                    băn khoăn về cuộc thi từ các bạn. Với sự trở lại đầy khác biệt về thể lệ của
-                                    VNOI CUP, hãy cùng chúng mình giải
-                                    đáp những thắc mắc này nhé
-                                </p>
-                            </div>
-                        </div>
-                        <div class="border border-secondary border-1 p-1 ps-3 pe-3 mt-3">
-                            <i class="fa fa-user"></i>
-                            <span class="rating rate-none user">
-                                <a href="" style="display: inline-block;vertical-align:middle;">admin</a>
-                            </span>
-                            <div style="float: right">
-                                <i class="fa fa-clock-o"></i>
-                                <span data-iso="2024-05-15T09:20:57.849742+00:00" class="time-with-rel"
-                                      title="May 15, 2024, 9:20 a.m."
-                                      data-format="{time}">4:20:57 pm, 15/05/2024
+                                <span  class="time-with-rel"
+                                      data-format="{time}" th:text="${#dates.format(blog.createdDate, 'HH:mm:ss, dd/MM/yyyy')}">
                                     </span>
                                 <span class="comment-data">
                                         <i class="fa fa-comments comment-icon"></i>
