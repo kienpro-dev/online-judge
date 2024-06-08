@@ -28,6 +28,14 @@
         color: #1A906B !important;
     }
 
+            .dropdown-menu a:hover {
+            background-color: #575757;
+        }
+
+        .profile-container:hover .dropdown-menu {
+            display: block !important;
+        }
+
 </style>
 <body>
 <div id="header" class="px-5">
@@ -90,7 +98,8 @@
             <ul th:if="${totalPages > 1}" class="list-group list-group-horizontal">
                 <li th:each="pageNumber : ${#numbers.sequence(1, totalPages)}"
                     th:class="${pageNumber == currentPage + 1 ? 'list-group-item text-white bg-dark border active' : 'list-group-item text-white bg-dark border'}">
-                    <a style="text-decoration: none; color: white" th:href="@{/ui/v1/submission(page=${pageNumber - 1})}" th:text="${pageNumber}"></a>
+                    <a style="text-decoration: none; color: white"
+                       th:href="@{/ui/v1/submission(page=${pageNumber - 1})}" th:text="${pageNumber}"></a>
                 </li>
             </ul>
             <div class="col-sm-8">
@@ -142,9 +151,11 @@
                                         <td class="text-center">---</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-center" style="color: #EF1B53;">
-                                            <span>ERROR | </span>
-                                            <span th:text="*{sub.codeType}"></span>
+                                        <td class="text-center">
+                                            <strong>
+                                                <span>ERROR | </span>
+                                                <span th:text="*{sub.codeType}"></span>
+                                            </strong>
                                         </td>
                                     </tr>
                                 </table>
