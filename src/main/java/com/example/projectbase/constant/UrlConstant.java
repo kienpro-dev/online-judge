@@ -48,4 +48,11 @@ public class UrlConstant {
     public static final String GET_USER_BOARD = PRE_FIX + "/user";
   }
 
+  public static class Blog {
+    private static final String PRE_FIX = "/blog";
+
+    public static final String GET_BLOGS = PRE_FIX;
+    public static final String CREATE_BLOG = PRE_FIX;
+  }
+
 }
