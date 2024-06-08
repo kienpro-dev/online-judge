@@ -217,4 +217,15 @@ public class FileUtil {
             fos.write(data);
         }
     }
+
+    public static String getFileNameExtension(File file) {
+        String fileName = file.getName();
+        int dotIndex = fileName.lastIndexOf('.');
+
+        if (dotIndex == -1 || dotIndex == 0) {
+            return "";
+        }
+
+        return fileName.substring(dotIndex + 1);
+    }
 }
