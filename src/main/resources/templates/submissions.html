@@ -136,6 +136,19 @@
                                     </tr>
                                 </table>
                             </td>
+                            <td th:case="error" class="text-center col-sm-2" style="background-color: #FAB623;">
+                                <table border="0" style="margin: 0 auto;">
+                                    <tr>
+                                        <td class="text-center">---</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center" style="color: #EF1B53;">
+                                            <span>ERROR | </span>
+                                            <span th:text="*{sub.codeType}"></span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
                             <td class="col-sm-8">
                                 <table border="0">
                                     <tr>
