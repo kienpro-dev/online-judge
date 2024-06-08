@@ -19,88 +19,88 @@ import com.example.projectbase.util.RandomPassUtil;
 import com.example.projectbase.util.SendMailUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {
 
-  private final UserRepository userRepository;
+    private final UserRepository userRepository;
 
-  private final RoleRepository roleRepository;
+    private final RoleRepository roleRepository;
 
-  private PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
-  private final UserMapper userMapper;
+    private final UserMapper userMapper;
 
-  private final SendMailUtil sendMailUtil;
+    private final SendMailUtil sendMailUtil;
 
-  @Override
-  public UserDto getUserById(Long userId) {
-    User user = userRepository.findById(userId)
-        .orElseThrow(() -> new NotFoundException(ErrorMessage.User.ERR_NOT_FOUND_ID, new String[]{String.valueOf(userId)}));
-    return userMapper.toUserDto(user);
-  }
-
-  @Override
-  public PaginationResponseDto<UserDto> getCustomers(PaginationFullRequestDto request) {
-    //Pagination
-    Pageable pageable = PaginationUtil.buildPageable(request, SortByDataConstant.USER);
-    //Create Output
-    return new PaginationResponseDto<>(null, null);
-  }
-
-  @Override
-  public boolean createUser(UserCreateDto userCreateDto) {
-    if(userRepository.existsByUsername(userCreateDto.getUsername()) || userRepository.existsByEmail(userCreateDto.getEmail())) {
-      return false;
+    @Override
+    public UserDto getUserById(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new NotFoundException(ErrorMessage.User.ERR_NOT_FOUND_ID, new String[]{String.valueOf(userId)}));
+        return userMapper.toUserDto(user);
     }
-    User user = userMapper.toUser(userCreateDto);
-    user.setRole(roleRepository.findByRoleName(RoleConstant.USER));
-    user.setPassword(passwordEncoder.encode(userCreateDto.getPassword()));
-    userRepository.save(user);
-    return true;
-  }
 
-  @Override
-  public boolean resetPassword(String email) {
-    User u = userRepository.findUserByEmail(email);
-    if(u == null) {
-      return false;
+    @Override
+    public PaginationResponseDto<UserDto> getCustomers(PaginationFullRequestDto request) {
+        //Pagination
+        Pageable pageable = PaginationUtil.buildPageable(request, SortByDataConstant.USER);
+        //Create Output
+        return new PaginationResponseDto<>(null, null);
     }
-    String newPassword = RandomPassUtil.random();
 
-    u.setPassword(passwordEncoder.encode(newPassword));
-    userRepository.save(u);
-    DataMailDto dataMailDto = new DataMailDto();
-    dataMailDto.setTo(email);
-    dataMailDto.setSubject("Mật khẩu mới của bạn là: " + newPassword);
-
-    Map<String, Object> properties = new HashMap<>();
-    properties.put("username", u.getUsername());
-    properties.put("newPassword", newPassword);
-
-    dataMailDto.setProperties(properties);
-
-    try {
-      sendMailUtil.sendEmailWithHTML(dataMailDto, "sendmail.html");
-    } catch (Exception e) {
-      e.printStackTrace();
+    @Override
+    public boolean createUser(UserCreateDto userCreateDto) {
+        if (userRepository.existsByUsername(userCreateDto.getUsername()) || userRepository.existsByEmail(userCreateDto.getEmail())) {
+            return false;
+        }
+        User user = userMapper.toUser(userCreateDto);
+        user.setRole(roleRepository.findByRoleName(RoleConstant.USER));
+        user.setPassword(passwordEncoder.encode(userCreateDto.getPassword()));
+        userRepository.save(user);
+        return true;
     }
-    return true;
-  }
 
-  @Override
-  public Page<User> getAllUsers(Pageable pageable) {
-    Page<User> users = userRepository.findAll(pageable);
-//    users.getContent().sort(Comparator.comparing(User::calculateTotalPoints).reversed());
-    return users;
-  }
+    @Override
+    public boolean resetPassword(String email) {
+        User u = userRepository.findUserByEmail(email);
+        if (u == null) {
+            return false;
+        }
+        String newPassword = RandomPassUtil.random();
+
+        u.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(u);
+        DataMailDto dataMailDto = new DataMailDto();
+        dataMailDto.setTo(email);
+        dataMailDto.setSubject("Mật khẩu mới của bạn là: " + newPassword);
+
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("username", u.getUsername());
+        properties.put("newPassword", newPassword);
+
+        dataMailDto.setProperties(properties);
+
+        try {
+            sendMailUtil.sendEmailWithHTML(dataMailDto, "sendmail.html");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+    @Override
+    public Page<User> getAllUsers(Pageable pageable) {
+        Page<User> users = userRepository.findAll(pageable);
+        List<User> content = new ArrayList<>(users.getContent());
+        content.sort((o1, o2) -> o2.calculateTotalPoints().compareTo(o1.calculateTotalPoints()));
+        return new PageImpl<>(content, pageable, users.getTotalElements());
+    }
 
 }

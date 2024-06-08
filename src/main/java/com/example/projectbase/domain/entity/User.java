@@ -73,10 +73,7 @@ public class User extends DateAuditing implements UserDetails {
     @JsonIgnore
     private List<Contest> users_contests;
 
-    @Transient
-    private double totalPoints = calculateTotalPoints();
-
-    public double calculateTotalPoints() {
+    public Double calculateTotalPoints() {
         double totalPoints = 0;
         if (submissions != null) {
             for (Submission submission : submissions) {
@@ -88,7 +85,7 @@ public class User extends DateAuditing implements UserDetails {
         return totalPoints;
     }
 
-    public int calculateTotalExercise() {
+    public Integer calculateTotalExercise() {
         Set<Long> uniqueExerciseIds = new HashSet<>();
         if (submissions != null) {
             for (Submission submission : submissions) {
