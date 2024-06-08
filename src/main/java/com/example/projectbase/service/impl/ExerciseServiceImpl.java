@@ -58,9 +58,16 @@ public class ExerciseServiceImpl implements ExerciseService {
     public SubmissionDto compileAndRunExercise(MultipartFile file, Long id, Long userId, Long contestId) throws IOException {
         Exercise exercise = exerciseRepository.findById(id).orElseThrow(() -> new NotFoundException(ErrorMessage.User.ERR_NOT_FOUND_ID));
         File tempFile = FileUtil.convertMultipartToFile(file);
-        String message = CompileUtil.compileAndRunExercise(tempFile, exercise.getTestInput(), exercise.getTestOutput());
         String code = FileUtil.readDataFromFile(tempFile);
-        return new SubmissionDto(message, code, "java", userId, id, contestId);
+        String codeType = FileUtil.getFileNameExtension(tempFile);
+        String message = "error";
+        if(codeType.equals("java")) {
+            message = CompileUtil.compileAndRunExercise(tempFile, exercise.getTestInput(), exercise.getTestOutput());
+        } else if(codeType.equals("cpp") || codeType.equals("c")) {
+            message = CompileUtil.compileAndRunCppExercise(tempFile, exercise.getTestInput(), exercise.getTestOutput());
+        }
+
+        return new SubmissionDto(message, code, codeType.toUpperCase(), userId, id, contestId);
     }
 
 }
