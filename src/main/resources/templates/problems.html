@@ -124,7 +124,7 @@
                                 </span>
                             </td>
                             <td class="text-center"
-                                th:text="${ex.calculateCorrectPercentage()} + '%'"></td>
+                                th:text="${#numbers.formatDecimal(ex.calculateCorrectPercentage(), 1, 2)} + '%'"></td>
                             <td class="text-center" th:text="${ex.countSuccessSubmissions()}"></td>
                             <td class="text-center">
                                 <span th:switch="${currentUser}">
