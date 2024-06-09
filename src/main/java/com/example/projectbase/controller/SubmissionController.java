@@ -21,8 +21,14 @@ public class SubmissionController extends BaseController{
     @GetMapping(UrlConstant.Submission.GET_SUBMISSIONS)
     public String getPage(Model model,
                           @RequestParam(name = "page", defaultValue = "0") int page,
-                          @RequestParam(name = "size", defaultValue = "10") int size) {
-        Page<Submission> submissions = submissionService.getAllSubmissions(PageRequest.of(page, size));
+                          @RequestParam(name = "size", defaultValue = "10") int size,
+                          @RequestParam(name = "id", required = false) Long id) {
+        Page<Submission> submissions = null;
+        if(id == null) {
+            submissions = submissionService.getAllSubmissions(PageRequest.of(page, size));
+        } else {
+            submissions = submissionService.getAllSubmissionsByExerciseId(id, PageRequest.of(page, size));
+        }
         model.addAttribute("submissions", submissions);
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", submissions.getTotalPages());

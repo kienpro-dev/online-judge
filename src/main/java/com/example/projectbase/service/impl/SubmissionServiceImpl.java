@@ -14,6 +14,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class SubmissionServiceImpl implements SubmissionService {
@@ -33,6 +35,11 @@ public class SubmissionServiceImpl implements SubmissionService {
     @Override
     public Submission getSubmissionById(Long id) {
         return submissionRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public Page<Submission> getAllSubmissionsByExerciseId(Long id, Pageable pageable) {
+        return submissionRepository.findByExerciseId(id, pageable);
     }
 
     @Override

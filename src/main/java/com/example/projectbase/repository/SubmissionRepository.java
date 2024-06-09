@@ -6,6 +6,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 public interface SubmissionRepository extends JpaRepository<Submission, Long> {
     Page<Submission> findByOrderByCreatedDateDesc(Pageable pageable);
+
+    Page<Submission> findByExerciseId(Long userId, Pageable pageable);
 }
