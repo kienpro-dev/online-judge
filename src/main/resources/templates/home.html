@@ -165,11 +165,23 @@
     <div class="row">
         <div class="col-sm-9 navbar-light bg-white navbar-expand-xl">
             <div class="border-0 p-3">
-                <div class="navbar-nav d-flex flex-row mx-auto">
+                <div class="navbar-nav d-flex flex-row mx-auto" style="justify-content: space-between;">
                     <a href="#" class="nav-item nav-link active font-weight-bold pr-4">
                         <i class="fa fa-newspaper-o"></i>
                         Newsfeed
                     </a>
+                    <span th:switch="${currentUser}">
+                        <span th:case="null">
+
+                        </span>
+                        <span th:case="*">
+                            <a th:href="@{/ui/v1/blog}" class="nav-item nav-link font-weight-bold"><p
+                                class="btn btn-primary border" style="background-color: #20B486;"><b>Upload blog</b>
+                            </p>
+                            </a>
+                        </span>
+
+                    </span>
                 </div>
                 <hr>
                 <div class="sidebox-content" th:each="blog : ${listBlogs}">
@@ -207,12 +219,14 @@
                         <div class="border border-secondary border-1 p-1 ps-3 pe-3 mt-3">
                             <i class="fa fa-user"></i>
                             <span class="rating rate-none user">
-                                <a href="" style="display: inline-block;vertical-align:middle;" th:text="${blog.user.fullName}"></a>
+                                <a href="" style="display: inline-block;vertical-align:middle;"
+                                   th:text="${blog.user.fullName}"></a>
                             </span>
                             <div style="float: right">
                                 <i class="fa fa-clock-o"></i>
-                                <span  class="time-with-rel"
-                                      data-format="{time}" th:text="${#dates.format(blog.createdDate, 'HH:mm:ss, dd/MM/yyyy')}">
+                                <span class="time-with-rel"
+                                      data-format="{time}"
+                                      th:text="${#dates.format(blog.createdDate, 'HH:mm:ss, dd/MM/yyyy')}">
                                     </span>
                                 <span class="comment-data">
                                         <i class="fa fa-comments comment-icon"></i>
@@ -259,7 +273,8 @@
                     <span class="d-flex flex-row">
                         <p class="nav-item nav-link pr-4 text-secondary" th:text="${exe.user.username}"></p>
                         <p style="color: red; padding: 8px">  posted  </p>
-                        <a style="color: blue" th:href="@{'/ui/v1/exercise/' + ${exe.id}}" class="nav-item nav-link pr-4" th:text="${exe.name}"></a>
+                        <a style="color: blue" th:href="@{'/ui/v1/exercise/' + ${exe.id}}"
+                           class="nav-item nav-link pr-4" th:text="${exe.name}"></a>
                     </span>
                 </span>
             </div>
