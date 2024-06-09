@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-public interface ExerciseRepository extends JpaRepository<Exercise, Long> {
+import java.util.List;
 
+public interface ExerciseRepository extends JpaRepository<Exercise, Long> {
+    List<Exercise> findTop3ByOrderByCreatedDateDesc();
 }

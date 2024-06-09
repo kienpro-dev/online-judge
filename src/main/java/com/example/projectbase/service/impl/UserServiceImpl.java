@@ -103,4 +103,11 @@ public class UserServiceImpl implements UserService {
         return new PageImpl<>(content, pageable, users.getTotalElements());
     }
 
+    @Override
+    public List<User> findTopUser() {
+        List<User> content = userRepository.findAll();
+        content.sort((o1, o2) -> o2.calculateTotalPoints().compareTo(o1.calculateTotalPoints()));
+        return content.subList(0, Math.min(content.size(), 3));
+    }
+
 }

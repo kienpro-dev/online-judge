@@ -8,6 +8,8 @@ import com.example.projectbase.domain.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 public interface UserService {
 
   UserDto getUserById(Long userId);
@@ -19,4 +21,6 @@ public interface UserService {
   boolean resetPassword(String email);
 
   Page<User> getAllUsers(Pageable pageable);
+
+  List<User> findTopUser();
 }

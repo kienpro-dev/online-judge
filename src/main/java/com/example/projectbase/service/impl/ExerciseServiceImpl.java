@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -52,6 +53,11 @@ public class ExerciseServiceImpl implements ExerciseService {
         byte[] image = FileUtil.convertPdfToLongImage(pdfFile);
         FileUtil.saveByteToPng(image, fileName + ".png");
         return exerciseRepository.save(exercise);
+    }
+
+    @Override
+    public List<Exercise> findRecentExercise() {
+        return exerciseRepository.findTop3ByOrderByCreatedDateDesc();
     }
 
     @Override
