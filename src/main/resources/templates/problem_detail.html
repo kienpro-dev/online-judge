@@ -127,7 +127,7 @@
                 <input type="file" width="200px" name="file">
                 <br><br>
                 <button type="submit"
-                        style="width: 200px; height: 30px; border-radius: 12px; border: none; color: #fff; background-color: #20B486;">
+                        style="width: 200px; height: 30px; border-radius: .25rem; border: none; color: #fff; background-color: #20B486;">
                     Submit Code
                 </button>
             </form>
@@ -137,7 +137,7 @@
                 </div>
             </div>
             <hr>
-            <a style="text-decoration: none;" href="submissions.html">All submissions</a>
+            <a style="text-decoration: none;" th:href="@{/ui/v1/submission(id=${exercise.id})}">All submissions</a>
             <hr>
             <span th:switch="${exercise.category}">
                     <b>Points: </b>
