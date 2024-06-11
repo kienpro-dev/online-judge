@@ -3,6 +3,7 @@ package com.example.projectbase.service;
 import com.example.projectbase.domain.dto.pagination.PaginationFullRequestDto;
 import com.example.projectbase.domain.dto.pagination.PaginationResponseDto;
 import com.example.projectbase.domain.dto.request.UserCreateDto;
+import com.example.projectbase.domain.dto.request.UserUpdateDto;
 import com.example.projectbase.domain.dto.response.UserDto;
 import com.example.projectbase.domain.entity.User;
 import org.springframework.data.domain.Page;
@@ -25,4 +26,6 @@ public interface UserService {
   Page<User> getAllUsers(Pageable pageable);
 
   List<User> findTopUser();
+
+  User updateUser(Long id, UserUpdateDto userUpdateDto);
 }

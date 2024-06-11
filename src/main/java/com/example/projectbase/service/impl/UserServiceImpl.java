@@ -7,6 +7,7 @@ import com.example.projectbase.domain.dto.common.DataMailDto;
 import com.example.projectbase.domain.dto.pagination.PaginationFullRequestDto;
 import com.example.projectbase.domain.dto.pagination.PaginationResponseDto;
 import com.example.projectbase.domain.dto.request.UserCreateDto;
+import com.example.projectbase.domain.dto.request.UserUpdateDto;
 import com.example.projectbase.domain.dto.response.UserDto;
 import com.example.projectbase.domain.entity.User;
 import com.example.projectbase.domain.mapper.UserMapper;
@@ -114,6 +115,21 @@ public class UserServiceImpl implements UserService {
         List<User> content = userRepository.findAll();
         content.sort((o1, o2) -> o2.calculateTotalPoints().compareTo(o1.calculateTotalPoints()));
         return content.subList(0, Math.min(content.size(), 3));
+    }
+
+    @Override
+    public User updateUser(Long id, UserUpdateDto userUpdateDto) {
+        Optional<User> optionalUser = userRepository.findById(id);
+
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            user.setFullName(userUpdateDto.getFullName());
+            user.setTimezone(userUpdateDto.getTimezone());
+            user.setDefaultLanguage(userUpdateDto.getDefaultLanguage());
+            return userRepository.save(user);
+        } else {
+            return null;
+        }
     }
 
 }
