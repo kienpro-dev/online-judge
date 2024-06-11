@@ -100,7 +100,7 @@
     <div class="d-flex">
         <h2 style="color: blue;" th:text="${user.username}"></h2>
         <div class="d-flex navbar-collapse bg-white justify-content-end">
-            <a href="#" class="nav-item nav-link hover">
+            <a th:href="@{/ui/v1/user(id=${user.id})}" class="nav-item nav-link hover">
                 <p class="btn"
                    style="border-bottom: 3px solid green !important; border-left: 1px solid #ccc; border-right:1px solid #ccc;">
                     <i class="tab-icon fa fa-info-circle"></i>
@@ -138,7 +138,7 @@
             <img th:src="@{/img/user.PNG}" alt="" style="width: 170px; height: 170px;">
             <br>
             <b>
-                <span>Số bài đã giải:</span><span th:text="${user.calculateTotalExercise()}"></span>
+                <span>Số bài đã giải: </span><span th:text="${user.calculateTotalExercise()}"></span>
             </b>
             <p>
                 <span>Hạng điểm: </span><span th:text="${user.calculateTotalExercise()}"></span><br>
