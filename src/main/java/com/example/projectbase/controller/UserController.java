@@ -34,13 +34,14 @@ public class UserController extends BaseController {
     }
 
     @PostMapping(UrlConstant.User.EDIT_USER_PARAM)
-    public String updateUser(Model model, @RequestParam(name = "id") Long id, @ModelAttribute UserUpdateDto userUpdateDto) {
-        User user = userService.updateUser(id, userUpdateDto);
+    public String updateUser(Model model, @ModelAttribute UserUpdateDto userUpdateDto) {
+        User user = userService.updateUser(getCurrentUser().getId(), userUpdateDto);
         if (user != null) {
             model.addAttribute("success", "Update user successfully!");
         } else {
-            model.addAttribute("failed", "Update user failed!");
+            model.addAttribute("error", "Update user failed!");
         }
-        return "redirect:/user/edit(id=id)";
+        model.addAttribute("user", user);
+        return "edit_profile";
     }
 }
