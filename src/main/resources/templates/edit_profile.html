@@ -198,7 +198,7 @@
             <span th:switch="${user}">
                 <span th:case="null"></span>
                 <span th:case="*">
-                    <a th:href="${/ui/v1/user/profile(id=${user.id})}" class="nav-item nav-link hover">
+                    <a th:href="@{/ui/v1/user/profile(id=${user.id})}" class="nav-item nav-link hover">
                         <p class="btn"
                            style="border-bottom: 3px solid green !important; border-left: 1px solid #ccc; border-right:1px solid #ccc;">
                             <i class="tab-icon fa fa-edit"></i>
