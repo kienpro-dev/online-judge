@@ -49,13 +49,13 @@
         </button>
         <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
             <div class="navbar-nav mx-auto">
-                <a th:href="@{/ui/v1/exercise}" class="nav-item nav-link font-weight-bold active">
+                <a th:href="@{/ui/v1/exercise}" class="nav-item nav-link font-weight-bold">
                     <h4>Problems</h4>
                 </a>
                 <a th:href="@{/ui/v1/submission}" class="nav-item nav-link font-weight-bold">
                     <h4>Submissions</h4>
                 </a>
-                <a th:href="@{/ui/v1/board/user}" class="nav-item nav-link">
+                <a th:href="@{/ui/v1/board/user}" class="nav-item nav-link active">
                     <h4>Users</h4>
                 </a>
                 <a href="contest_list.html" class="nav-item nav-link"><h4>Contests</h4></a>
@@ -82,7 +82,7 @@
                         </a>
                         <div class="dropdown-menu"
                              style="display: none; position: absolute; top: 100%; left: 0; background-color: #333; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); border-radius: 5px; overflow: hidden; width: 100%;">
-                            <a href="edit_profile.html"
+                            <a th:href="${/ui/v1/user/profile(id=${currentUser.id})}"
                                style="color: white; padding: 12px 16px; text-decoration: none; display: block;">Edit
                                 profile</a>
                             <a th:href="@{/ui/v1/auth/logout}"
@@ -122,7 +122,7 @@
             <span th:switch="${user}">
                 <span th:case="null"></span>
                 <span th:case="*">
-                    <a href="#" class="nav-item nav-link">
+                    <a th:href="${/ui/v1/user/profile(id=${user.id})}" class="nav-item nav-link">
                         <p class="btn btn-outline-secondary border-0" style=" margin-right: -10px; margin-left: -20px;">
                             <i class="tab-icon fa fa-edit"></i>
                             Edit Profile
@@ -143,7 +143,7 @@
             <p>
                 <span>Hạng điểm: </span><span th:text="${user.calculateTotalExercise()}"></span><br>
                 <span>Tổng điểm: </span><span th:text="${user.calculateTotalPoints()}"></span><br>
-                <span>Đóng góp:</span><span th:text="${user.calculateTotalExercise()}"></span><br>
+                <span>Đóng góp: </span><span th:text="${user.calculateTotalExercise()}"></span><br>
             </p>
             <br>
             <p style="color: blue;">Xem các bài nộp
