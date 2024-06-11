@@ -212,7 +212,17 @@
     <hr style="margin-top: -25px;">
     <div class="container2">
         <div class="row">
-            <form th:action="@{/ui/v1/user/edit}" method="post">
+            <div th:if="${success}">
+                <div class="alert alert-success" role="alert">
+                    Đăng ký thành công !
+                </div>
+            </div>
+            <div th:if="${error}">
+                <div class="alert alert-danger" role="alert">
+                    Đăng ký thất bại !
+                </div>
+            </div>
+            <form th:action="@{/ui/v1/user/profile}" method="post">
                 <div class="form-group">
                     <label for="fullName">Full name:</label>
                     <input type="text" id="fullName" name="fullName" th:value="${user.fullName}">
