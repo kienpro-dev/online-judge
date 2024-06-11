@@ -48,6 +48,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findUserById(Long userId) {
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new NotFoundException(ErrorMessage.User.ERR_NOT_FOUND_ID, new String[]{String.valueOf(userId)}));
+    }
+
+    @Override
     public PaginationResponseDto<UserDto> getCustomers(PaginationFullRequestDto request) {
         //Pagination
         Pageable pageable = PaginationUtil.buildPageable(request, SortByDataConstant.USER);

@@ -14,6 +14,8 @@ public interface UserService {
 
   UserDto getUserById(Long userId);
 
+  User findUserById(Long userId);
+
   PaginationResponseDto<UserDto> getCustomers(PaginationFullRequestDto request);
 
   boolean createUser(UserCreateDto userCreateDto);
