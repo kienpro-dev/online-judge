@@ -70,7 +70,7 @@
                 <div th:case="*" class="d-flex m-3 me-0 navbar-nav">
                     <div class="profile-container" style="position: relative;
                     display: inline-block;">
-                        <a th:href="@{/ui/v1/user(id=${currentUser.id})}"  style="text-decoration: none">
+                        <a th:href="@{/ui/v1/user(id=${currentUser.id})}" style="text-decoration: none">
                             <div class="profile"
                                  style="display: flex; align-items: center; background-color: #20B486;color: white;padding: 10px; border-radius: 5px;">
                                 <img th:src="@{/img/user.png}" alt="ảnh" class="profile-pic"
@@ -99,14 +99,14 @@
     <hr>
 
     <div class="row mt-2 container">
+        <ul th:if="${totalPages > 1}" class="list-group list-group-horizontal pb-3">
+            <li th:each="pageNumber : ${#numbers.sequence(1, totalPages)}"
+                th:class="${pageNumber == currentPage + 1 ? 'list-group-item text-white bg-dark border active' : 'list-group-item text-white bg-dark border'}">
+                <a style="text-decoration: none; color: white"
+                   th:href="@{/ui/v1/submission(page=${pageNumber - 1})}" th:text="${pageNumber}"></a>
+            </li>
+        </ul>
         <div class="list-group list-group-horizontal">
-            <ul th:if="${totalPages > 1}" class="list-group list-group-horizontal">
-                <li th:each="pageNumber : ${#numbers.sequence(1, totalPages)}"
-                    th:class="${pageNumber == currentPage + 1 ? 'list-group-item text-white bg-dark border active' : 'list-group-item text-white bg-dark border'}">
-                    <a style="text-decoration: none; color: white"
-                       th:href="@{/ui/v1/submission(page=${pageNumber - 1})}" th:text="${pageNumber}"></a>
-                </li>
-            </ul>
             <div class="col-sm-8">
                 <div class="border-0 row">
                     <table class="table table-bordered mb-0" th:each="sub : ${submissions}">

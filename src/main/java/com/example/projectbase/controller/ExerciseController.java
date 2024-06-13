@@ -52,6 +52,13 @@ public class ExerciseController extends BaseController {
         return "problem_detail";
     }
 
+    @GetMapping(UrlConstant.Exercise.SUBMIT_CODE)
+    public String getSubmitCodePage(Model model, @PathVariable Long exerciseId) {
+       Exercise exercise = exerciseService.getExerciseById(exerciseId);
+       model.addAttribute("exercise", exercise);
+       return "submit_code";
+    }
+
     @PostMapping(UrlConstant.Exercise.SUBMIT_CODE)
     public String submitCode(Model model, @PathVariable Long exerciseId, @RequestParam("file") MultipartFile file, @RequestParam(required = false) Long contestId) throws IOException, InterruptedException {
         Exercise exercise = exerciseService.getExerciseById(exerciseId);
