@@ -71,6 +71,8 @@ public class ExerciseServiceImpl implements ExerciseService {
             message = CompileUtil.compileAndRunExercise(tempFile, exercise.getTestInput(), exercise.getTestOutput());
         } else if(codeType.equals("cpp") || codeType.equals("c")) {
             message = CompileUtil.compileAndRunCppExercise(tempFile, exercise.getTestInput(), exercise.getTestOutput());
+        } else if(codeType.equals("py")) {
+            message = CompileUtil.compileAndRunPythonExercise(tempFile, exercise.getTestInput(), exercise.getTestOutput());
         }
 
         return new SubmissionDto(message, code, codeType.toUpperCase(), userId, id, contestId);

@@ -84,4 +84,41 @@ public class CompileUtil {
         return "success";
     }
 
+    public static String compileAndRunPythonExercise(File tempFile, String input, String expectedOutput) {
+    try {
+        ProcessBuilder runProcessBuilder = new ProcessBuilder("python3", tempFile.getAbsolutePath());
+        runProcessBuilder.redirectErrorStream(true);
+        Process runProcess = runProcessBuilder.start();
+
+        if (input != null && !input.isEmpty()) {
+            runProcess.getOutputStream().write(input.getBytes());
+            runProcess.getOutputStream().flush();
+        }
+        runProcess.getOutputStream().close();
+
+        InputStream inputStream = runProcess.getInputStream();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        StringBuilder outputBuilder = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            outputBuilder.append(line).append("\n");
+        }
+        reader.close();
+
+        if (!outputBuilder.toString().trim().equals(expectedOutput.trim())) {
+            return "wrong";
+        }
+
+        int runExitCode = runProcess.waitFor();
+        if (runExitCode != 0) {
+            return "failed";
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+        return "error";
+    }
+
+    return "success";
+}
+
 }
