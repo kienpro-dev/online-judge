@@ -19,6 +19,7 @@ public class UrlConstant {
     public static final String GET_USERS = PRE_FIX;
     public static final String GET_USER = PRE_FIX + "/{userId}";
     public static final String GET_USER_PARAM = PRE_FIX;
+    public static final String STATISTIC_USER_PARAM = PRE_FIX + "/statistic";
     public static final String EDIT_USER_PARAM = PRE_FIX + "/profile";
     public static final String GET_CURRENT_USER = PRE_FIX + "/current";
     public static final String FORGOT_PASSWORD = PRE_FIX + "/forgot-password";
