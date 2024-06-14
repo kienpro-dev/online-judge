@@ -97,6 +97,42 @@ public class User extends DateAuditing implements UserDetails {
         return uniqueExerciseIds.size();
     }
 
+    public Double calculateTotalPointsEasy() {
+        double totalPoints = 0;
+        if (submissions != null) {
+            for (Submission submission : submissions) {
+                if ("success".equals(submission.getStatus()) && "Dễ".equals(submission.getExercise().getCategory())) {
+                    totalPoints += submission.getExercise().getScore();
+                }
+            }
+        }
+        return totalPoints;
+    }
+
+    public Double calculateTotalPointsMedium() {
+        double totalPoints = 0;
+        if (submissions != null) {
+            for (Submission submission : submissions) {
+                if ("success".equals(submission.getStatus()) && "Trung bình".equals(submission.getExercise().getCategory())) {
+                    totalPoints += submission.getExercise().getScore();
+                }
+            }
+        }
+        return totalPoints;
+    }
+
+    public Double calculateTotalPointsHard() {
+        double totalPoints = 0;
+        if (submissions != null) {
+            for (Submission submission : submissions) {
+                if ("success".equals(submission.getStatus()) && "Khó".equals(submission.getExercise().getCategory())) {
+                    totalPoints += submission.getExercise().getScore();
+                }
+            }
+        }
+        return totalPoints;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of();
