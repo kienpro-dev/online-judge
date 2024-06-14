@@ -146,7 +146,8 @@
                 <span>Đóng góp: </span><span th:text="${user.calculateTotalExercise()}"></span><br>
             </p>
             <br>
-            <p style="color: blue;">Xem các bài nộp
+            <a style="text-decoration: none;" th:href="@{/ui/v1/submission(userId=${user.id})}">Xem các bài đã nộp</a>
+
 
         </div>
         <div class="col-9">
