@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -39,7 +40,16 @@ public class SubmissionServiceImpl implements SubmissionService {
 
     @Override
     public Page<Submission> getAllSubmissionsByExerciseId(Long id, Pageable pageable) {
-        return submissionRepository.findByExerciseId(id, pageable);
+        List<Long> ids = new ArrayList<>();
+        ids.add(id);
+        return submissionRepository.findByExerciseIdInOrderByCreatedDateDesc(ids, pageable);
+    }
+
+    @Override
+    public Page<Submission> getAllSubmissionByUserId(Long userId, Pageable pageable) {
+        List<Long> ids = new ArrayList<>();
+        ids.add(userId);
+        return submissionRepository.findByUserIdInOrderByCreatedDateDesc(ids, pageable);
     }
 
     @Override

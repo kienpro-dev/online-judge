@@ -22,10 +22,15 @@ public class SubmissionController extends BaseController{
     public String getPage(Model model,
                           @RequestParam(name = "page", defaultValue = "0") int page,
                           @RequestParam(name = "size", defaultValue = "10") int size,
-                          @RequestParam(name = "id", required = false) Long id) {
+                          @RequestParam(name = "id", required = false) Long id,
+                          @RequestParam(name = "userId", required = false) Long userId) {
         Page<Submission> submissions = null;
         if(id == null) {
-            submissions = submissionService.getAllSubmissions(PageRequest.of(page, size));
+            if(userId == null) {
+                submissions = submissionService.getAllSubmissions(PageRequest.of(page, size));
+            } else {
+                submissions = submissionService.getAllSubmissionByUserId(userId, PageRequest.of(page, size));
+            }
         } else {
             submissions = submissionService.getAllSubmissionsByExerciseId(id, PageRequest.of(page, size));
         }

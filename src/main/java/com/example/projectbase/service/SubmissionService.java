@@ -14,5 +14,7 @@ public interface SubmissionService {
 
     Page<Submission> getAllSubmissionsByExerciseId(Long id, Pageable pageable);
 
+    Page<Submission> getAllSubmissionByUserId(Long userId, Pageable pageable);
+
     Submission createSubmission(SubmissionDto submissionDto);
 }
