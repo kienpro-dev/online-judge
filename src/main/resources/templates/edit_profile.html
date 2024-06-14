@@ -200,7 +200,7 @@
             </a>
             <span th:if="${currentUser != null and currentUser.id == user.id}">
                 <a th:href="@{/ui/v1/user/profile(id=${user.id})}" class="nav-item nav-link">
-                    <p class="btn btn-outline-secondary border-0" style=" margin-right: -10px; margin-left: -20px;">
+                    <p class="btn" style="border-bottom: 3px solid green !important; border-left: 1px solid #ccc; border-right:1px solid #ccc;">
                         <i class="tab-icon fa fa-edit"></i>
                         Edit Profile
                     </p>

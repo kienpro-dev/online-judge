@@ -10,6 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/abc5153db7.js" crossorigin="anonymous"></script>
 </head>
 <style>
     * {
@@ -79,14 +80,14 @@
         <h2 style="color: blue;" th:text="${user.username}"></h2>
         <div class="d-flex navbar-collapse bg-white justify-content-end">
             <a th:href="@{/ui/v1/user(id=${user.id})}" class="nav-item nav-link hover">
-                <p class="btn"
+                <p class="btn btn-outline-secondary border-0"
                    style=" margin-right: -10px; margin-left: -20px;">
                     <i class="tab-icon fa fa-info-circle"></i>
                     About
                 </p>
             </a>
             <a href="#" class="nav-item nav-link">
-                <p class="btn btn-outline-secondary border-0"
+                <p class="btn"
                    style="border-bottom: 3px solid green !important; border-left: 1px solid #ccc; border-right:1px solid #ccc;">
                     <i class="tab-icon fa fa-puzzle-piece"></i>
                     Statistics
