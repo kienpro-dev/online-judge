@@ -123,10 +123,10 @@
                     <td class="text-center align-middle" th:text="${i.index + 1}"></td>
                     <td class="text-center align-middle text-primary">----</td>
                     <td class="align-middle">
-                        <a style="text-decoration: none;" href="perinformation.html">
+                        <a style="text-decoration: none;" th:href="@{/ui/v1/user(id=${u.id})}">
                             <p class="text-primary mb-1" style="margin-top: -10px" th:text="${u.username}"></p>
                         </a>
-                        <a style="text-decoration: none; color: #000;" href="perinformation.html" th:text="${u.fullName}"></a>
+                        <a style="text-decoration: none; color: #000;" th:href="@{/ui/v1/user(id=${u.id})}" th:text="${u.fullName}"></a>
                     </td>
                     <td class="text-center align-middle" th:text="${u.calculateTotalPoints()}"></td>
                     <td class="text-center align-middle" th:text="${u.calculateTotalExercise()}"></td>

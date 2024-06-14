@@ -119,16 +119,13 @@
                     Blogs
                 </p>
             </a>
-            <span th:switch="${user}">
-                <span th:case="null"></span>
-                <span th:case="*">
-                    <a th:href="@{/ui/v1/user/profile(id=${user.id})}" class="nav-item nav-link">
-                        <p class="btn btn-outline-secondary border-0" style=" margin-right: -10px; margin-left: -20px;">
-                            <i class="tab-icon fa fa-edit"></i>
-                            Edit Profile
-                        </p>
-                    </a>
-                </span>
+            <span th:if="${currentUser != null and currentUser.id == user.id}">
+                <a th:href="@{/ui/v1/user/profile(id=${user.id})}" class="nav-item nav-link">
+                    <p class="btn btn-outline-secondary border-0" style=" margin-right: -10px; margin-left: -20px;">
+                        <i class="tab-icon fa fa-edit"></i>
+                        Edit Profile
+                    </p>
+                </a>
             </span>
         </div>
     </div>
