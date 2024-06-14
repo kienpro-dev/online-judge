@@ -103,7 +103,7 @@
             <li th:each="pageNumber : ${#numbers.sequence(1, totalPages)}"
                 th:class="${pageNumber == currentPage + 1 ? 'list-group-item text-white bg-dark border active' : 'list-group-item text-white bg-dark border'}">
                 <a style="text-decoration: none; color: white"
-                   th:href="@{/ui/v1/submission(page=${pageNumber - 1})}" th:text="${pageNumber}"></a>
+                   th:href="@{/ui/v1/submission(page=${pageNumber - 1}, id=${exeId}, userId=${userId})}" th:text="${pageNumber}"></a>
             </li>
         </ul>
         <div class="list-group list-group-horizontal">

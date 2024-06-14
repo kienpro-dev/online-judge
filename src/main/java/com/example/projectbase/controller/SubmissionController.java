@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @UiV1
 @AllArgsConstructor
-public class SubmissionController extends BaseController{
+public class SubmissionController extends BaseController {
     @Autowired
     private SubmissionService submissionService;
 
@@ -25,8 +25,8 @@ public class SubmissionController extends BaseController{
                           @RequestParam(name = "id", required = false) Long id,
                           @RequestParam(name = "userId", required = false) Long userId) {
         Page<Submission> submissions = null;
-        if(id == null) {
-            if(userId == null) {
+        if (id == null) {
+            if (userId == null) {
                 submissions = submissionService.getAllSubmissions(PageRequest.of(page, size));
             } else {
                 submissions = submissionService.getAllSubmissionByUserId(userId, PageRequest.of(page, size));
@@ -37,6 +37,12 @@ public class SubmissionController extends BaseController{
         model.addAttribute("submissions", submissions);
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", submissions.getTotalPages());
+        if (id != null) {
+            model.addAttribute("exeId", id);
+        }
+        if (userId != null) {
+            model.addAttribute("userId", userId);
+        }
         return "submissions";
     }
 }
