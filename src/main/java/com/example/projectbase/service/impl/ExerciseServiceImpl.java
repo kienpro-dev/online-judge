@@ -61,19 +61,26 @@ public class ExerciseServiceImpl implements ExerciseService {
     }
 
     @Override
-    public SubmissionDto compileAndRunExercise(MultipartFile file, Long id, Long userId, Long contestId) throws IOException {
+    public SubmissionDto compileAndRunExercise(MultipartFile file, String code, Long id, Long userId, Long contestId) throws IOException {
         Exercise exercise = exerciseRepository.findById(id).orElseThrow(() -> new NotFoundException(ErrorMessage.User.ERR_NOT_FOUND_ID));
-        File tempFile = FileUtil.convertMultipartToFile(file);
-        String code = FileUtil.readDataFromFile(tempFile);
-        String codeType = FileUtil.getFileNameExtension(tempFile);
-        String message = "error";
-        if(codeType.equals("java")) {
-            message = CompileUtil.compileAndRunExercise(tempFile, exercise.getTestInput(), exercise.getTestOutput());
-        } else if(codeType.equals("cpp") || codeType.equals("c")) {
-            message = CompileUtil.compileAndRunCppExercise(tempFile, exercise.getTestInput(), exercise.getTestOutput());
-        } else if(codeType.equals("py")) {
-            message = CompileUtil.compileAndRunPythonExercise(tempFile, exercise.getTestInput(), exercise.getTestOutput());
+        String codeType;
+        if(!file.isEmpty()) {
+            File tempFile = FileUtil.convertMultipartToFile(file);
+            codeType = FileUtil.getFileNameExtension(tempFile);
+        } else {
+            codeType = code.contains("System.out.print") ? "java" : (code.contains("cout") ? "cpp" : (code.contains("scanf") ? "c" : "py"));
         }
+//        String code = FileUtil.readDataFromFile(tempFile);
+
+        String message = switch (codeType) {
+            case "java" ->
+                    CompileUtil.compileAndRunExercise(code, exercise.getTestInput(), exercise.getTestOutput());
+            case "cpp", "c" ->
+                    CompileUtil.compileAndRunCppExercise(code, exercise.getTestInput(), exercise.getTestOutput());
+            case "py" ->
+                    CompileUtil.compileAndRunPythonExercise(code, exercise.getTestInput(), exercise.getTestOutput());
+            default -> "error";
+        };
 
         return new SubmissionDto(message, code, codeType.toUpperCase(), userId, id, contestId);
     }

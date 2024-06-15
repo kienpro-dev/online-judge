@@ -21,5 +21,5 @@ public interface ExerciseService {
 
     List<Exercise> findRecentExercise();
 
-    SubmissionDto compileAndRunExercise(MultipartFile file, Long id, Long userId, Long contestId) throws IOException;
+    SubmissionDto compileAndRunExercise(MultipartFile file, String code, Long id, Long userId, Long contestId) throws IOException;
 }

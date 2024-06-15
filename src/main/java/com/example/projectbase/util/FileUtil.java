@@ -185,6 +185,14 @@ public class FileUtil {
         return contentBuilder.toString();
     }
 
+    public static File writeDataToFile(String code) throws IOException {
+        File file = new File("code");
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
+            bw.write(code);
+        }
+        return file;
+    }
+
     public static byte[] convertPdfToLongImage(File pdfFile) throws IOException {
         PDDocument document = PDDocument.load(pdfFile);
         PDFRenderer renderer = new PDFRenderer(document);

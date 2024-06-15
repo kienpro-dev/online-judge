@@ -60,21 +60,15 @@ public class ExerciseController extends BaseController {
     }
 
     @PostMapping(UrlConstant.Exercise.SUBMIT_CODE)
-    public String submitCode(Model model, @PathVariable Long exerciseId, @RequestParam("file") MultipartFile file, @RequestParam(required = false) Long contestId) throws IOException, InterruptedException {
+    public String submitCode(Model model, @PathVariable Long exerciseId, @RequestParam("file") MultipartFile file, @RequestParam("code") String code, @RequestParam(required = false) Long contestId) throws IOException, InterruptedException {
         Exercise exercise = exerciseService.getExerciseById(exerciseId);
         model.addAttribute("exercise", exercise);
         if (getCurrentUser() == null) {
             model.addAttribute("auth", "Bạn cần đăng nhập để nộp bài");
-            return "problem_detail";
+            return "submit_code";
         }
-        if (!file.isEmpty()) {
-            SubmissionDto submissionDto = exerciseService.compileAndRunExercise(file, exerciseId, getCurrentUser().getId(), contestId);
-            Submission submission = submissionService.createSubmission(submissionDto);
-            return "redirect:/ui/v1/submission";
-
-        } else {
-            model.addAttribute("error", "File chưa được chọn");
-        }
-        return "problem_detail";
+        SubmissionDto submissionDto = exerciseService.compileAndRunExercise(file, code, exerciseId, getCurrentUser().getId(), contestId);
+        Submission submission = submissionService.createSubmission(submissionDto);
+        return "redirect:/ui/v1/submission";
     }
 }
