@@ -191,16 +191,12 @@
                 Bạn cần đăng nhập để nộp bài!
             </div>
         </div>
-        <div th:if="${error}" class="w-50" style="padding-left: 70px">
-            <div class="alert alert-danger" role="alert">
-                File chưa được chọn
-            </div>
-        </div>
         <h3 style="padding-left: 10px; margin: 12px 60px">Write a program to reverse a string in</h3>
         <div class="row">
             <form th:action="@{'/ui/v1/exercise/' + ${exercise.id} + '/submit'}" method="post"
-                  enctype="multipart/form-data">
+                  enctype="multipart/form-data" id="form-code">
                 <input id="file-input" type="file" width="100px" name="file" style="padding: 0; margin: 12px 60px" class="col-sm-5">
+                <input type="hidden" id="code" name="code">
                 <button type="submit"
                         style=" margin-left: 500px; width: 100px; height: 30px; border-radius: .25rem; border: none; color: #fff; background-color: #20B486;"
                         class="col-sm-5">
@@ -246,6 +242,10 @@
         document.getElementById("language-select").addEventListener("change", function() {
             const language = this.value;
             editor.session.setMode("ace/mode/" + language);
+        });
+
+        document.getElementById("form-code").addEventListener("submit", function(event) {
+            document.getElementById("code").value = editor.getValue();
         });
     </script>
 </div>
