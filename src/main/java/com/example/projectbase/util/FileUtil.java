@@ -186,7 +186,7 @@ public class FileUtil {
     }
 
     public static File writeDataToFile(String code) throws IOException {
-        File file = new File("code");
+        File file = new File("code" + (code.contains("System.out.print") ? ".java" : (code.contains("cout") ? ".cpp" : (code.contains("scanf") ? "c" : ".py"))));
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
             bw.write(code);
         }
