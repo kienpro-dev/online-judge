@@ -168,11 +168,19 @@
                             <td class="col-sm-8">
                                 <table border="0">
                                     <tr>
-                                        <td class="font-weight-bold"><b th:text="*{sub.exercise.name}"></b></td>
+                                        <td class="font-weight-bold">
+                                            <b>
+                                                <a style="text-decoration: none; color: #000;"
+                                                th:href="@{'/ui/v1/exercise/' + ${sub.exercise.id}}" th:text="${sub.exercise.name}"></a>
+                                            </b>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <span th:text="*{sub.user.username}"></span>
+                                            <span>
+                                                <a style="text-decoration: none; color: #000;"
+                                                th:href="@{/ui/v1/user(id=${sub.user.id})}" th:text="*{sub.user.username}"></a>
+                                            </span>
                                             <span th:text="${#dates.format(sub.createdDate, 'HH:mm:ss, dd/MM/yyyy')}"></span>
                                         </td>
                                     </tr>
