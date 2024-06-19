@@ -130,6 +130,11 @@
       font-size: 20px;
     }
 
+    .case-AC {
+        color: #20B486;
+        font-weight: 700;
+    }
+
 </style>
 <body>
 <div id="header" class="px-5">
@@ -186,7 +191,23 @@
 <hr>
 <div class="container" style="min-height: 800px;">
     <div class="row" style="width: 100%">
-        <h3 style="padding-left: 10px; margin: 12px 60px">Write a program to reverse a string in</h3>
+        <h3 style="padding-left: 10px; margin: 12px 60px">
+            <span>Problem: </span>
+            <span th:text="${submission.exercise.name}"></span>
+            <span>, User: </span>
+            <span th:text="${submission.user.name}"></span>
+        </h3>
+        <h2 style="padding-left: 10px; margin: 12px 60px">
+            Execution Results
+        </h2>
+        <div style="padding-left: 10px; margin: 12px 60px">
+            <span class="fa fa-check case-AC"></span>
+            <span class="fa fa-check case-AC"></span>
+            <span class="fa fa-check case-AC"></span>
+            <span class="fa fa-check case-AC"></span>
+            <span class="fa fa-check case-AC"></span>
+        </div>
+
         <div class="row">
             <form th:action="@{'/ui/v1/exercise/' + ${exercise.id} + '/submit'}" method="post"
                   enctype="multipart/form-data" id="form-code">
@@ -195,7 +216,7 @@
                 <button type="submit"
                         style=" margin-left: 500px; width: 100px; height: 30px; border-radius: .25rem; border: none; color: #fff; background-color: #20B486;"
                         class="col-sm-5">
-                    Submit
+                    Resubmit
                 </button>
             </form>
         </div>
@@ -203,7 +224,7 @@
 
     <hr style="width: 90%; margin: auto">
     <div class="editor-container">
-        <div id="editor">// Code here</div>
+        <div id="editor" th:text="${submission.code}"></div>
     </div>
     <div class="d-flex" style="padding-left: 70px">
         <label class="pe-2" for="language-select">Choose language:</label>
