@@ -191,7 +191,10 @@
                 Bạn cần đăng nhập để nộp bài!
             </div>
         </div>
-        <h3 style="padding-left: 10px; margin: 12px 60px">Write a program to reverse a string in</h3>
+        <h3 style="padding-left: 10px; margin: 12px 60px">
+            <span>Problem: </span>
+            <span th:text="${exercise.name}"></span>
+        </h3>
         <div class="row">
             <form th:action="@{'/ui/v1/exercise/' + ${exercise.id} + '/submit'}" method="post"
                   enctype="multipart/form-data" id="form-code">
