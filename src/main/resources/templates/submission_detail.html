@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submission detail</title>
+    <link rel="shortcut icon" th:href="@{/img/logo.PNG}"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/abc5153db7.js" crossorigin="anonymous"></script>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .list-group-horizontal .list-group-item.active {
+        background-color: #28a745 !important;
+        color: #fff !important;
+
+    }
+
+    .active {
+        color: #1A906B !important;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    #click li {
+        display: none;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    #click:hover li {
+        display: block !important;
+        z-index: 100;
+    }
+
+
+    .container {
+        width: 80%;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px 0px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    textarea {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+    }
+
+    textarea {
+        height: 100px;
+    }
+
+    .checkbox-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .checkbox-group input {
+        margin-right: 10px;
+    }
+
+    .buttons {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .buttons button {
+        padding: 10px 20px;
+        margin: 0 5px;
+    }
+
+
+    .dropdown-menu a:hover {
+        background-color: #575757;
+    }
+
+    .profile-container:hover .dropdown-menu {
+        display: block !important;
+    }
+    .dropdown-menu {
+            border-left: 5px solid #20B486;
+        }
+
+    .editor-container {
+      width: 90%;
+      height: 540px;
+      margin: 20px auto;
+      position: relative;
+    }
+
+    #editor {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      height: 100%;
+      width: 100%;
+      font-size: 20px;
+    }
+
+</style>
+<body>
+<div id="header" class="px-5">
+    <nav class="navbar navbar-light bg-white navbar-expand-xl">
+        <img th:src="@{/img/logo.PNG}" width="50px" alt="ảnh">
+        <a th:href="@{/ui/v1}" class="navbar-brand"><h3 class="text-black ">AlgorithmMaster</h3></a>
+        <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarCollapse">
+            <span class="fa fa-bars text-primary"></span>
+        </button>
+        <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+            <div class="navbar-nav mx-auto">
+                <a th:href="@{/ui/v1/exercise}" class="nav-item nav-link font-weight-bold"><h4>Problems</h4></a>
+                <a th:href="@{/ui/v1/submission}" class="nav-item nav-link font-weight-boldS"><h4>Submissions</h4></a>
+                <a th:href="@{/ui/v1/board/user}" class="nav-item nav-link"><h4>Users</h4></a>
+                <a href="contest_list.html" class="nav-item nav-link"><h4>Contests</h4></a>
+            </div>
+            <div th:switch="${currentUser}">
+                <div th:case="null" class="d-flex m-3 me-0 navbar-nav ">
+                    <a th:href="@{/ui/v1/auth/login}" class="nav-item nav-link font-weight-bold"><p class="btn"><b>Sign
+                        in</b></p></a>
+                    <a th:href="@{/ui/v1/auth/register}" class="nav-item nav-link font-weight-bold"><p
+                            class="btn btn-primary border" style="background-color: #20B486;"><b>Create free account</b>
+                    </p>
+                    </a>
+                </div>
+                <div th:case="*" class="d-flex m-3 me-0 navbar-nav">
+                    <div class="profile-container" style="position: relative;
+                    display: inline-block;">
+                        <a th:href="@{/ui/v1/user(id=${currentUser.id})}" style="text-decoration: none">
+                            <div class="profile"
+                                 style="display: flex; align-items: center; background-color: #20B486;color: white;padding: 10px; border-radius: 5px;">
+                                <img th:src="@{/img/user.png}" alt="ảnh" class="profile-pic"
+                                     style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
+                                <span>Hello, <strong th:text="*{currentUser.fullName}"></strong>.</span>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu"
+                             style="display: none; position: absolute; top: 100%; left: 0; background-color: #333; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); border-radius: 5px; overflow: hidden; width: 100%;">
+                            <a th:href="@{/ui/v1/user/profile(id=${currentUser.id})}"
+                               style="color: white; padding: 12px 16px; text-decoration: none; display: block;">Edit
+                                profile</a>
+                            <a th:href="@{/ui/v1/auth/logout}"
+                               style="color: white; padding: 12px 16px; text-decoration: none; display: block;">Log
+                                out</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+</div>
+<hr>
+<div class="container" style="min-height: 800px;">
+    <div class="row" style="width: 100%">
+        <h3 style="padding-left: 10px; margin: 12px 60px">Write a program to reverse a string in</h3>
+        <div class="row">
+            <form th:action="@{'/ui/v1/exercise/' + ${exercise.id} + '/submit'}" method="post"
+                  enctype="multipart/form-data" id="form-code">
+                <input id="file-input" type="file" width="100px" name="file" style="padding: 0; margin: 12px 60px" class="col-sm-5">
+                <input type="hidden" id="code" name="code">
+                <button type="submit"
+                        style=" margin-left: 500px; width: 100px; height: 30px; border-radius: .25rem; border: none; color: #fff; background-color: #20B486;"
+                        class="col-sm-5">
+                    Submit
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <hr style="width: 90%; margin: auto">
+    <div class="editor-container">
+        <div id="editor">// Code here</div>
+    </div>
+    <div class="d-flex" style="padding-left: 70px">
+        <label class="pe-2" for="language-select">Choose language:</label>
+        <select id="language-select">
+            <option value="java">Java</option>
+            <option value="c_cpp">C/C++</option>
+            <option value="python">Python</option>
+        </select>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.5.3/ace.js"></script>
+
+    <script>
+        document.getElementById("file-input").addEventListener("change", function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const content = e.target.result;
+                    editor.setValue(content, -1); // -1 để giữ con trỏ ở đầu tài liệu
+                };
+                reader.readAsText(file);
+            }
+        });
+
+        const editor = ace.edit("editor", {
+            theme: "ace/theme/monokai",
+            mode: "ace/mode/java"
+        });
+
+        document.getElementById("language-select").addEventListener("change", function() {
+            const language = this.value;
+            editor.session.setMode("ace/mode/" + language);
+        });
+
+        document.getElementById("form-code").addEventListener("submit", function(event) {
+            document.getElementById("code").value = editor.getValue();
+        });
+    </script>
+</div>
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</html>
