@@ -135,6 +135,11 @@
         font-weight: 700;
     }
 
+    .case-WA {
+        color: red;
+        font-weight: 700;
+    }
+
 </style>
 <body>
 <div id="header" class="px-5">
@@ -195,21 +200,66 @@
             <span>Problem: </span>
             <span th:text="${submission.exercise.name}"></span>
             <span>, User: </span>
-            <span th:text="${submission.user.name}"></span>
+            <span th:text="${submission.user.username}"></span>
         </h3>
         <h2 style="padding-left: 10px; margin: 12px 60px">
             Execution Results
         </h2>
-        <div style="padding-left: 10px; margin: 12px 60px">
-            <span class="fa fa-check case-AC"></span>
-            <span class="fa fa-check case-AC"></span>
-            <span class="fa fa-check case-AC"></span>
-            <span class="fa fa-check case-AC"></span>
-            <span class="fa fa-check case-AC"></span>
+        <div th:switch="${submission.status}">
+            <div th:case="'success'" style="padding-left: 10px; margin: 12px 60px">
+                <span class="fa fa-check case-AC"></span>
+                <span class="fa fa-check case-AC"></span>
+                <span class="fa fa-check case-AC"></span>
+                <span class="fa fa-check case-AC"></span>
+                <span class="fa fa-check case-AC"></span>
+                 <div>
+                    Test case #1: <span style="color: #20B486">AC</span> [0.002s,	3.12 MB] (1/1)
+                </div>
+                <div>
+                    Test case #2: <span style="color: #20B486">AC</span> [0.001s,	3.10 MB] (1/1)
+                </div>
+                <div>
+                    Test case #3: <span style="color: #20B486">AC</span> [0.003s,	3.00 MB] (1/1)
+                </div>
+                <div>
+                    Test case #4: <span style="color: #20B486">AC</span> [0.002s,	3.11 MB] (1/1)
+                </div>
+                <div>
+                    Test case #5: <span style="color: #20B486">AC</span> [0.001s,	2.93 MB] (1/1)
+                </div>
+            </div>
+
+
+            <div th:case="'wrong'" style="padding-left: 10px; margin: 12px 60px">
+                <span class="fa fa-times case-WA"></span>
+                <span class="fa fa-times case-WA"></span>
+                <span class="fa fa-times case-WA"></span>
+                <span class="fa fa-times case-WA"></span>
+                <span class="fa fa-times case-WA"></span>
+                <div>
+                    Test case #1: <span style="color: red">WA</span> [0.002s,	3.12 MB] (1/1)
+                </div>
+                <div>
+                    Test case #2: <span style="color: red">WA</span> [0.001s,	3.10 MB] (1/1)
+                </div>
+                <div>
+                    Test case #3: <span style="color: red">WA</span> [0.003s,	3.00 MB] (1/1)
+                </div>
+                <div>
+                    Test case #4: <span style="color: red">WA</span> [0.002s,	3.11 MB] (1/1)
+                </div>
+                <div>
+                    Test case #5: <span style="color: red">WA</span> [0.001s,	2.93 MB] (1/1)
+                </div>
+            </div>
+
+            <div th:case="*" style="padding-left: 10px; margin: 12px 60px">
+                Compilation Error
+            </div>
         </div>
 
         <div class="row">
-            <form th:action="@{'/ui/v1/exercise/' + ${exercise.id} + '/submit'}" method="post"
+            <form th:action="@{'/ui/v1/exercise/' + ${submission.exercise.id} + '/submit'}" method="post"
                   enctype="multipart/form-data" id="form-code">
                 <input id="file-input" type="file" width="100px" name="file" style="padding: 0; margin: 12px 60px" class="col-sm-5">
                 <input type="hidden" id="code" name="code">
