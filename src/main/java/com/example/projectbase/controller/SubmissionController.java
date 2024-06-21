@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @UiV1
@@ -44,5 +45,13 @@ public class SubmissionController extends BaseController {
             model.addAttribute("userId", userId);
         }
         return "submissions";
+    }
+
+    @GetMapping(UrlConstant.Submission.GET_SUBMISSION)
+    public String getSubmissionDetail(Model model,
+                                      @PathVariable Long submissionId) {
+        Submission submission = submissionService.getSubmissionById(submissionId);
+        model.addAttribute("submission", submission);
+        return "submission_detail";
     }
 }
